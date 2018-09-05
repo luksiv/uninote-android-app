@@ -20,7 +20,7 @@ L1:
     L1a:
       ✔ Duomenu faile IFF68_SivickasL_L1a_dat.json yra jusu pasirinkto tipo strukturu (bent trys skirtingu tipu laukai: string, int, double) penki duomenu rinkiniai. @done (18-09-04 11:18)
       ☐ Ivesti siuos duomenis i penkis masyvus P1(k1), P2(k2), ..., P5(k5) (4 < k1, ..., k5 < 10).
-      ☐ Spausdinti masyvu duomenis lentelemis i faila IFF69_SivickasL_L1a_rez.txt
+      ☐ Spausdinti masyvu duomenis lentelemis i faila IFF68_SivickasL_L1a_rez.txt
 
       - --------------------------------------------------------------------------------------------------
 

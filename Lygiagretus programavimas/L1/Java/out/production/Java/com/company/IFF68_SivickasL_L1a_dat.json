@@ -2,11 +2,11 @@
   "grupes": [
     {
       "vaikai": [
-        {"varpav": "rimbar", "numeris": 11, "bestlap": 43.881},
-        {"varpav": "ginten", "numeris": 12, "bestlap": 42.976},
-        {"varpav": "lukpol", "numeris": 13, "bestlap": 42.325},
-        {"varpav": "urllyk", "numeris": 14, "bestlap": 44.732},
-        {"varpav": "jonsmi", "numeris": 15, "bestlap": 43.826}
+        {"varpav": "rimbar", "numeris": 10, "bestlap": 43.881},
+        {"varpav": "ginten", "numeris": 11, "bestlap": 42.976},
+        {"varpav": "lukpol", "numeris": 12, "bestlap": 42.325},
+        {"varpav": "urllyk", "numeris": 13, "bestlap": 44.732},
+        {"varpav": "jonsmi", "numeris": 14, "bestlap": 43.826}
       ],
       "jaunuciai": [
         {"varpav": "rombar", "numeris":20, "bestlap":43.091},

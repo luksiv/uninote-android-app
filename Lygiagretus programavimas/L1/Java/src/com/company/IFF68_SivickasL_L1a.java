@@ -15,6 +15,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+class MyThread extends Thread {
+
+    private Data[] data;
+
+    MyThread(String name, Data[] data, String[] array) {
+        super(name);
+        this.data = data;
+    }
+
+    @Override
+    public void run() {
+        System.out.print(this.getName() + ": ");
+        System.out.print("vienas ");
+        System.out.print("du ");
+        System.out.println("trys ");
+    }
+}
+
 class Data {
     public String varpav;
     public Integer numeris;
@@ -34,9 +52,8 @@ class Data {
 
 public class IFF68_SivickasL_L1a {
 
-    public static void readFromJson(String location) {
+    public static void readFromJsonFile(String location, Integer groupCount, Integer entryCount) {
         JSONParser parser = new JSONParser();
-
         try {
 
             Object obj = parser.parse(new FileReader(location));
@@ -46,11 +63,25 @@ public class IFF68_SivickasL_L1a {
             System.out.println();
             JSONArray grupes = (JSONArray) jsonObject.get("grupes");
             JSONObject grupes2 = (JSONObject) grupes.get(0);
-            JSONArray vaikuGrupe = (JSONArray) grupes2.get("vaikai");
-            Iterator<JSONObject> iterator = vaikuGrupe.iterator();
-            while(iterator.hasNext()){
+            for (Object key: grupes2.keySet()) {
+                System.out.println(key);
+                JSONArray values = (JSONArray) grupes2.get(key);
+                for (Object value: values) {
+                    JSONObject entry = (JSONObject) value;
 
+                }
             }
+//            Iterator<JSONObject> grupiuIter = grupes.iterator();
+//            while(grupiuIter.hasNext()){
+//                JSONObject grupe = grupiuIter.next();
+//                System.out.println(grupe);
+//            }
+
+//            JSONArray vaikuGrupe = (JSONArray) grupes2.get("vaikai");
+//            Iterator<JSONObject> iterator = vaikuGrupe.iterator();
+//            while (iterator.hasNext()) {
+//                System.out.println(iterator.next());
+//            }
 
 //            JSONObject grupes = (JSONObject) jsonObject.get("grupes");
 //            System.out.println(grupes.get("jauniai"));
