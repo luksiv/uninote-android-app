@@ -10,26 +10,40 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 class MyThread extends Thread {
 
-    private Data[] data;
+    private String threadName;
+    private ArrayList<Data> data;
+    private ArrayList<String> outputData;
 
-    MyThread(String name, Data[] data, String[] array) {
+    MyThread(String name, ArrayList<Data> data, ArrayList<String> array) {
         super(name);
+        this.threadName = name;
         this.data = data;
+        this.outputData = array;
+
+
     }
 
     @Override
     public void run() {
-        System.out.print(this.getName() + ": ");
-        System.out.print("vienas ");
-        System.out.print("du ");
-        System.out.println("trys ");
+        for (int i = 0; i < data.size(); i++) {
+            String output = String.format("%s %d %s %d %f",
+                    threadName,
+                    i+1,
+                    data.get(i).varpav,
+                    data.get(i).numeris,
+                    data.get(i).bestlap);
+            outputData.add(output);
+        }
     }
 }
 
@@ -52,49 +66,27 @@ class Data {
 
 public class IFF68_SivickasL_L1a {
 
-    public static void readFromJsonFile(String location, Integer groupCount, Integer entryCount) {
+    final static String dataLocation = System.getProperty("user.dir") + "\\src\\com\\company\\IFF68_SivickasL_L1a_dat.json";
+    final static String outputLocation = "IFF68_SivickasL_L1a_rez.txt";
+
+    public static ArrayList<Data> readFromJsonFile(String key) {
         JSONParser parser = new JSONParser();
+        ArrayList<Data> results = new ArrayList<>();
         try {
 
-            Object obj = parser.parse(new FileReader(location));
+            Object obj = parser.parse(new FileReader(dataLocation));
 
             JSONObject jsonObject = (JSONObject) obj;
-            System.out.println(jsonObject.get("grupes"));
-            System.out.println();
             JSONArray grupes = (JSONArray) jsonObject.get("grupes");
             JSONObject grupes2 = (JSONObject) grupes.get(0);
-            for (Object key: grupes2.keySet()) {
-                System.out.println(key);
-                JSONArray values = (JSONArray) grupes2.get(key);
-                for (Object value: values) {
-                    JSONObject entry = (JSONObject) value;
-
-                }
+            JSONArray values = (JSONArray) grupes2.get(key);
+            for (Object value : values) {
+                JSONObject entry = (JSONObject) value;
+                String varpav = (String) entry.get("varpav");
+                Integer num = Integer.parseInt(entry.get("numeris").toString());
+                Double bestLap = Double.parseDouble(entry.get("bestlap").toString());
+                results.add(new Data(varpav, num, bestLap));
             }
-//            Iterator<JSONObject> grupiuIter = grupes.iterator();
-//            while(grupiuIter.hasNext()){
-//                JSONObject grupe = grupiuIter.next();
-//                System.out.println(grupe);
-//            }
-
-//            JSONArray vaikuGrupe = (JSONArray) grupes2.get("vaikai");
-//            Iterator<JSONObject> iterator = vaikuGrupe.iterator();
-//            while (iterator.hasNext()) {
-//                System.out.println(iterator.next());
-//            }
-
-//            JSONObject grupes = (JSONObject) jsonObject.get("grupes");
-//            System.out.println(grupes.get("jauniai"));
-//            System.out.println();
-//            System.out.println(grupes.get("suauge"));
-//            System.out.println();
-
-//            // loop array
-//            JSONArray msg = (JSONArray) grupes.get("suauge");
-//            Iterator<String> iterator = msg.iterator();
-//            while (iterator.hasNext()) {
-//                System.out.println(iterator.next());
-//            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -103,14 +95,110 @@ public class IFF68_SivickasL_L1a {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        return results;
+    }
+
+    public static void writeDataToFile(String name, ArrayList<Data> data) {
+        try {
+            File file = new File(outputLocation);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            // true = append file
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            String header = String.format("*** %s ***", name);
+            header += "\nVarpav Numeris Ger. laikas";
+            bw.append(header + '\n');
+            for (int i = 0; i < data.size(); i++) {
+                String line = String.format("%d) %s %d %f", i+1,
+                        data.get(i).varpav,
+                        data.get(i).numeris,
+                        data.get(i).bestlap);
+                bw.append(line + '\n');
+            }
+            bw.append('\n');
+            if (bw != null)
+                bw.close();
+
+            if (fw != null)
+                fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeCommonListToFile(ArrayList<String> data) {
+        try {
+            File file = new File(outputLocation);
+
+            // true = append file
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            String header = String.format("----------------------------------------");
+            bw.append(header + '\n');
+            for (int i = 0; i < data.size(); i++) {
+                bw.append(data.get(i) + '\n');
+            }
+            bw.append('\n');
+            if (bw != null)
+                bw.close();
+
+            if (fw != null)
+                fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-//        String dataLocation = System.getProperty("user.dir")+ "/IFF68_SivickasL_L1a_dat.json";
-        String dataLocation = "C:\\Users\\Lukas\\Desktop\\SemestroDarbai\\Lygiagretus programavimas\\L1\\Java\\src\\com\\company\\IFF68_SivickasL_L1a_dat.json";
-        String outputLocation = "IFF68_SivickasL_L1a_rez.txt";
+        // Getting the data from a json file and storing them into ArrayLists
+        ArrayList<Data> vaikai = readFromJsonFile("vaikai");
+        ArrayList<Data> jaunuciai = readFromJsonFile("jaunuciai");
+        ArrayList<Data> jauniai = readFromJsonFile("jauniai");
+        ArrayList<Data> u21 = readFromJsonFile("u21");
+        ArrayList<Data> suauge = readFromJsonFile("suauge");
 
-        readFromJson(dataLocation);
+        // Writing data from ArrayLists to txt file
+        writeDataToFile("Vaikai", vaikai);
+        writeDataToFile("Jaunuciai", jaunuciai);
+        writeDataToFile("Jauniai", jauniai);
+        writeDataToFile("U21", u21);
+        writeDataToFile("Suauge", suauge);
+
+        // Created a common ArrayList to write data into
+        ArrayList<String> commonList = new ArrayList<>();
+
+        // Creating threads and storing them in to an ArrayList
+        ArrayList<MyThread> threads = new ArrayList<>();
+        threads.add(new MyThread("thread1", vaikai, commonList));
+        threads.add(new MyThread("thread2", jaunuciai, commonList));
+        threads.add(new MyThread("thread3", jauniai, commonList));
+        threads.add(new MyThread("thread4", u21, commonList));
+        threads.add(new MyThread("thread5", suauge, commonList));
+
+        // Starting the threads
+        for (MyThread thread : threads) {
+            thread.start();
+        }
+
+        // Waiting for all the threads to finish
+        for (MyThread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("All threads have finished...");
+        writeCommonListToFile(commonList);
+
 
     }
 }

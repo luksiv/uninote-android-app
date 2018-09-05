@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d07ffd5c-c398-458c-b263-0439f31232a7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java/com/company/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java/com/company/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java/com/company/IFF68_SivickasL_L1a.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java/com/company/IFF68_SivickasL_L1a.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Java.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java/com/company/Data.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java/com/company/IFF68_SivickasL_L1a.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java/com/company/MyThread.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a_dat.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a_dat.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,17 +55,65 @@
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.spring.boot.mvc.usages" />
     </session>
+    <session id="-2036918647">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="2298" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="2298" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+          <entry key="json" value="1" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="JSON" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
+            <state relative-caret-position="447">
+              <caret line="175" column="32" selection-start-line="175" selection-start-column="32" selection-end-line="175" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#readFromJsonFile#0;class#IFF68_SivickasL_L1a#0" />
+                <element signature="method#writeDataToFile#0;class#IFF68_SivickasL_L1a#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFF68_SivickasL_L1a_rez.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -94,6 +144,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/company/package.json" />
         <option value="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a_dat.json" />
+        <option value="$PROJECT_DIR$/IFF68_SivickasL_L1a_rez.txt" />
         <option value="$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a.java" />
       </list>
     </option>
@@ -115,6 +166,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -139,18 +191,18 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536165702058" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/json-simple-1.1.1.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536171917670" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/json-simple-1.1.1.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -193,17 +245,19 @@
       <updated>1536045764309</updated>
       <workItem from="1536045770455" duration="4516000" />
       <workItem from="1536163601021" duration="2358000" />
+      <workItem from="1536166710309" duration="829000" />
+      <workItem from="1536168128209" duration="3598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6874000" />
+    <option name="totallyTimeSpent" value="11301000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="62" y="-8" width="1866" height="1096" extended-state="6" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14507198" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14829107" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -247,12 +301,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IFF68_SivickasL_L1a_rez.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/IFF68_SivickasL_L1a.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
+        <state relative-caret-position="447">
+          <caret line="175" column="32" selection-start-line="175" selection-start-column="32" selection-end-line="175" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#readFromJsonFile#0;class#IFF68_SivickasL_L1a#0" />
+            <element signature="method#writeDataToFile#0;class#IFF68_SivickasL_L1a#0" />
           </folding>
         </state>
       </provider>
@@ -297,7 +360,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9.0</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -310,6 +373,19 @@
       <state key="ModuleStructureConfigurable.UI">
         <settings>
           <last-edited>Java</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

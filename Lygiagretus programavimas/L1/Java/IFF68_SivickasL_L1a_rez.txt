@@ -1,0 +1,67 @@
+*** Vaikai ***
+Varpav Numeris Ger. laikas
+1) rimbar 10 43.881000
+2) ginten 11 42.976000
+3) lukpol 12 42.325000
+4) urllyk 13 44.732000
+5) jonsmi 14 43.826000
+
+*** Jaunuciai ***
+Varpav Numeris Ger. laikas
+1) rombar 20 43.091000
+2) varpar 21 43.577000
+3) valten 22 43.273000
+4) glemop 23 41.319000
+5) zemper 24 43.851000
+
+*** Jauniai ***
+Varpav Numeris Ger. laikas
+1) jonsmi 30 42.388000
+2) jakpau 31 43.145000
+3) logpau 32 43.694000
+4) olaoja 33 43.851000
+5) ricgum 34 42.120000
+
+*** U21 ***
+Varpav Numeris Ger. laikas
+1) felkje 40 44.967000
+2) benbro 41 42.578000
+3) casnei 42 42.433000
+4) rompau 43 41.834000
+5) nempoi 44 43.296000
+
+*** Suauge ***
+Varpav Numeris Ger. laikas
+1) artrim 50 41.912000
+2) brerim 51 42.889000
+3) vensom 52 44.979000
+4) granat 53 41.938000
+5) natbos 54 43.543000
+
+----------------------------------------
+thread1 1 rimbar 10 43.881000
+thread1 2 ginten 11 42.976000
+thread2 1 rombar 20 43.091000
+thread2 2 varpar 21 43.577000
+thread2 3 valten 22 43.273000
+thread2 4 glemop 23 41.319000
+thread2 5 zemper 24 43.851000
+thread1 3 lukpol 12 42.325000
+thread1 4 urllyk 13 44.732000
+thread1 5 jonsmi 14 43.826000
+thread3 1 jonsmi 30 42.388000
+thread4 1 felkje 40 44.967000
+thread3 2 jakpau 31 43.145000
+thread5 1 artrim 50 41.912000
+thread3 3 logpau 32 43.694000
+thread3 4 olaoja 33 43.851000
+thread5 2 brerim 51 42.889000
+thread5 3 vensom 52 44.979000
+thread4 2 benbro 41 42.578000
+thread5 4 granat 53 41.938000
+thread4 3 casnei 42 42.433000
+thread5 5 natbos 54 43.543000
+thread4 4 rompau 43 41.834000
+thread3 5 ricgum 34 42.120000
+thread4 5 nempoi 44 43.296000
+
