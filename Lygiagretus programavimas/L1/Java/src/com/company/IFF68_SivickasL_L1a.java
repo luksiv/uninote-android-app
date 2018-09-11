@@ -2,7 +2,18 @@
 Variantas - LD1a
 Autorius - Lukas Sivickas
  */
+/*
+Atsakymai i klausimus:
+1. Tokia, kokia uzrasyti.
+2. Atsitiktine.
+3. Atsitiktini skaiciu.
+4. Tokia, kokia surasyti duomenu masyve.
+ */
 
+/*
+    SVARBU: Programos veikimui reikalinga JSON.simple biblioteka.
+    Ja atsisiusti galima: https://code.google.com/archive/p/json-simple/downloads
+ */
 package com.company;
 
 import org.json.simple.JSONArray;
@@ -28,8 +39,6 @@ class MyThread extends Thread {
         this.threadName = name;
         this.data = data;
         this.outputData = array;
-
-
     }
 
     // Overridintas metodas run, kuriame nusakomas gijos darbas
@@ -126,11 +135,11 @@ public class IFF68_SivickasL_L1a {
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            String header = String.format("*** %s ***", name);
-            header += "\nVarpav Numeris Ger. laikas";
+            String header = String.format("******* %s *******\n", name);
+            header += String.format("%-3s %-7s %-7s %-5s","#","VarPav", "Numeris", "Geriausias_Laikas");
             bw.append(header + '\n');
             for (int i = 0; i < data.size(); i++) {
-                String line = String.format("%d) %s %d %f", i + 1,
+                String line = String.format("%-3d %-7s %-7d %-5f", i + 1,
                         data.get(i).varpav,
                         data.get(i).numeris,
                         data.get(i).bestlap);
@@ -162,10 +171,11 @@ public class IFF68_SivickasL_L1a {
             BufferedWriter bw = new BufferedWriter(fw);
 
             String header = String.format("----------------------------------------\n");
-            header += "#  Gijos_Pav  Vieta_Masyve Var_Pav Numeris Geriausias_Laikas";
+            header += String.format("%-3s %-10s %-12s %-8s %-7s %s", "#", "Gijos_Pav", "Vieta_Masyve", "Var_Pav", "Numeris", "Geriausias_Laikas");
             bw.append(header + '\n');
             for (int i = 0; i < data.size(); i++) {
-                String output = String.format("%d %s \n", i, data.get(i));
+                String[] duom = data.get(i).split(" ");
+                String output = String.format("%-3s %-10s %-12s %-8s %-7s %s\n", i, duom[0], duom[1], duom[2], duom[3], duom[4]);
                 bw.append(output);
             }
             bw.append('\n');

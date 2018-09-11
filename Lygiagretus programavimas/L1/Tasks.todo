@@ -13,7 +13,7 @@ Bendri reikalavimai:
 
 L1:
   Atsiskaitymas:
-    ☐ L1a - 3 sav.
+    ✔ L1a - 3 sav. @done (18-09-11 12:11)
     ☐ L1b - 4 sav.
 
   Uzduotis:
@@ -28,12 +28,12 @@ L1:
       ✔ Kiekvienos gijos kurimo metu jai perduodami atitinkamo masyvo (P1,p2,p3,p4,p5) duomenys. @done (18-09-05 21:25)
       ✔ Vykdymo metu gijos savo masyvu elementus raso i visoms gijoms bendro masyvo P pabaiga neatsizvelgdamos i kitu giju darba. @done (18-09-05 21:25)
       ✔ Kiekvienam gijos masyvo elementui i masyva p irasyti gijos pavadinima, masyvo elementi numeri ir laukus. @done (18-09-05 21:25)
-      ☐ Baigus giju darba i faila IFF68_SivickasL_L1a_rez.txt spaustindi masyva P lenetele
+      ✔ Baigus giju darba i faila IFF68_SivickasL_L1a_rez.txt spaustindi masyva P lenetele @done (18-09-11 11:02)
 
       Butini metodai (funkcijos):
         ✔ Duomenu skaitymui @done (18-09-05 20:46)
-        ☐ Duomenu spausdinimui (spausdinti lentelemis su stulpeliu pavadinimais ir eiluciu numeriais)
-        ☐ Kiti metodai - pagal poreiki
+        ✔ Duomenu spausdinimui (spausdinti lentelemis su stulpeliu pavadinimais ir eiluciu numeriais) @done (18-09-11 11:02)
+        ✔ Kiti metodai - pagal poreiki @done (18-09-11 11:02)
 
       Kita:
         ✔ Visa programa viename faile IFF68_SivickasL_L1a.java @done (18-09-05 21:03)
