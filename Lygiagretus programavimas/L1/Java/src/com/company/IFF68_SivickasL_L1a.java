@@ -11,19 +11,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
+/*
+ * Klase skirta darbams su gijomis
+ */
 class MyThread extends Thread {
 
-    private String threadName;
-    private ArrayList<Data> data;
-    private ArrayList<String> outputData;
+    private String threadName; // gijos pavadinimas
+    private ArrayList<Data> data; // duomenys su kuriais gija dirbs
+    private ArrayList<String> outputData; // bendras masyvas i kuri gija rasys rezultatus
 
+    // Konstruktorius
     MyThread(String name, ArrayList<Data> data, ArrayList<String> array) {
         super(name);
         this.threadName = name;
@@ -33,12 +32,13 @@ class MyThread extends Thread {
 
     }
 
+    // Overridintas metodas run, kuriame nusakomas gijos darbas
     @Override
     public void run() {
         for (int i = 0; i < data.size(); i++) {
             String output = String.format("%s %d %s %d %f",
                     threadName,
-                    i+1,
+                    i + 1,
                     data.get(i).varpav,
                     data.get(i).numeris,
                     data.get(i).bestlap);
@@ -47,28 +47,42 @@ class MyThread extends Thread {
     }
 }
 
+/*
+ * Klase skirta saugoti duomenu strukturos irasus
+ */
 class Data {
-    public String varpav;
-    public Integer numeris;
-    public Double bestlap;
+    public String varpav; // vardo ir pavardes pirmu 3 raidziu kombinacija
+    public Integer numeris; // vairuotojo numeris
+    public Double bestlap; // geriausias lapo laikas
 
+    // Konstruktorius
     public Data(String inVarpav, Integer inNumeris, Double inBestlap) {
         varpav = inVarpav;
         numeris = inNumeris;
         bestlap = inBestlap;
     }
 
+    // Overridintas toString metodas isvedimui
     @Override
     public String toString() {
         return String.format("%s %d %f", varpav, numeris, bestlap);
     }
 }
 
+
 public class IFF68_SivickasL_L1a {
 
+    // Duomenu vieta
     final static String dataLocation = System.getProperty("user.dir") + "\\src\\com\\company\\IFF68_SivickasL_L1a_dat.json";
+    // Isvedimo vieta
     final static String outputLocation = "IFF68_SivickasL_L1a_rez.txt";
 
+    /**
+     * Metodas skirtas is json failo nuskaityti duomenis, sudeti i ArrayList ir grazinti
+     *
+     * @param key grupes pavadinimas (pvz.: "jauniai", "u21", "suauge")
+     * @return ArrayList<Data> masyva su nuskaitytais irasais.
+     */
     public static ArrayList<Data> readFromJsonFile(String key) {
         JSONParser parser = new JSONParser();
         ArrayList<Data> results = new ArrayList<>();
@@ -98,6 +112,12 @@ public class IFF68_SivickasL_L1a {
         return results;
     }
 
+    /**
+     * Metodas skirtas isvesti duomenis is ArrayList<Data> objekto i txt faila
+     *
+     * @param name grupes pavadinimas
+     * @param data duomenys pateikti ArrayList<Data> objekte
+     */
     public static void writeDataToFile(String name, ArrayList<Data> data) {
         try {
             File file = new File(outputLocation);
@@ -114,7 +134,7 @@ public class IFF68_SivickasL_L1a {
             header += "\nVarpav Numeris Ger. laikas";
             bw.append(header + '\n');
             for (int i = 0; i < data.size(); i++) {
-                String line = String.format("%d) %s %d %f", i+1,
+                String line = String.format("%d) %s %d %f", i + 1,
                         data.get(i).varpav,
                         data.get(i).numeris,
                         data.get(i).bestlap);
@@ -132,6 +152,11 @@ public class IFF68_SivickasL_L1a {
         }
     }
 
+    /**
+     * Metodas skirtas isvesti bendro masyvo duomenis i tekstini faila
+     *
+     * @param data duomenys ArrayList<String> objekte
+     */
     public static void writeCommonListToFile(ArrayList<String> data) {
         try {
             File file = new File(outputLocation);
@@ -197,6 +222,7 @@ public class IFF68_SivickasL_L1a {
             }
         }
         System.out.println("All threads have finished...");
+        // Writing the common list to a text file.
         writeCommonListToFile(commonList);
 
 
