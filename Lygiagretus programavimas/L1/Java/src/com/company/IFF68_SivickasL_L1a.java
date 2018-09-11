@@ -122,10 +122,6 @@ public class IFF68_SivickasL_L1a {
         try {
             File file = new File(outputLocation);
 
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
             // true = append file
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -165,10 +161,12 @@ public class IFF68_SivickasL_L1a {
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            String header = String.format("----------------------------------------");
+            String header = String.format("----------------------------------------\n");
+            header += "#  Gijos_Pav  Vieta_Masyve Var_Pav Numeris Geriausias_Laikas";
             bw.append(header + '\n');
             for (int i = 0; i < data.size(); i++) {
-                bw.append(data.get(i) + '\n');
+                String output = String.format("%d %s \n", i, data.get(i));
+                bw.append(output);
             }
             bw.append('\n');
             if (bw != null)
@@ -182,6 +180,20 @@ public class IFF68_SivickasL_L1a {
         }
     }
 
+    public static void prepareOutputFile(){
+        File file = new File(outputLocation);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                file.delete();
+                file.createNewFile();
+            }
+        } catch (IOException ex){
+            System.out.println(ex);
+        }
+    }
+
     public static void main(String[] args) {
         // Getting the data from a json file and storing them into ArrayLists
         ArrayList<Data> vaikai = readFromJsonFile("vaikai");
@@ -189,6 +201,8 @@ public class IFF68_SivickasL_L1a {
         ArrayList<Data> jauniai = readFromJsonFile("jauniai");
         ArrayList<Data> u21 = readFromJsonFile("u21");
         ArrayList<Data> suauge = readFromJsonFile("suauge");
+
+        prepareOutputFile();
 
         // Writing data from ArrayLists to txt file
         writeDataToFile("Vaikai", vaikai);
