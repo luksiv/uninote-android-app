@@ -39,8 +39,8 @@ namespace Pvz1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,15 +51,18 @@ namespace Pvz1
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(669, 394);
@@ -94,7 +97,7 @@ namespace Pvz1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(692, 12);
+            this.button3.Location = new System.Drawing.Point(692, 171);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(156, 25);
             this.button3.TabIndex = 4;
@@ -104,7 +107,7 @@ namespace Pvz1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(692, 107);
+            this.button2.Location = new System.Drawing.Point(692, 142);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(156, 23);
             this.button2.TabIndex = 5;
@@ -125,7 +128,7 @@ namespace Pvz1
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(692, 59);
+            this.button5.Location = new System.Drawing.Point(692, 113);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(156, 23);
             this.button5.TabIndex = 7;
@@ -137,11 +140,44 @@ namespace Pvz1
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(692, 81);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(156, 26);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "Kvazi-Niutono";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(692, 23);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(156, 23);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "Skenavimo";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(692, 52);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(156, 23);
+            this.button8.TabIndex = 10;
+            this.button8.Text = "Paprastųjų iteracijų";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 678);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -212,6 +248,9 @@ namespace Pvz1
         private Button button4;
         private Button button5;
         private Timer timer3;
+        private Button button6;
+        private Button button7;
+        private Button button8;
     }
 
 

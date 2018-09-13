@@ -39,7 +39,10 @@ namespace Pvz1
         /// <returns></returns>
         private double F(double x)
         {
-            return (double)(Math.Sin(x));
+            // 1.40x^5 + 0.85x^4 - 8.22x^3 - 4.67x^2 + 6.51x + 0.86
+            //return Math.Pow(1.4*x, 5) + Math.Pow(0.85*x, 4) - Math.Pow(8.22*x, 3) - Math.Pow(4.67*x, 2) + 6.51 * x + 0.86;
+            // cos(2x) * e^-((x/2))^2 ; -6 <= x <= 6
+            return (double)(Math.Cos(2 * x) * Math.Pow(Math.E, -1 * Math.Pow(x / 2, 2)));
         }
 
 
@@ -47,16 +50,17 @@ namespace Pvz1
         private void button3_Click(object sender, EventArgs e)
         {
             ClearForm(); // išvalomi programos duomenys
-            PreparareForm(0, 10, -2, 2);
-            x1 = 2; // izoliacijos intervalo pradžia
-            x2 = 5; // izoliacijos intervalo galas
+            PreparareForm(-10, 10, -4, 4);
+            x1 = 0; // izoliacijos intervalo pradžia
+            x2 = 2; // izoliacijos intervalo galas
             iii = 0; // iteraciju skaičius
             richTextBox1.AppendText("Iteracija         x            F(x)        x1          x2          F(x1)         F(x2)       \n");
             // Nubraižoma f-ja, kuriai ieskome saknies
             Fx = chart1.Series.Add("F(x)");
             Fx.ChartType = SeriesChartType.Line;
-            double x = 0;
-            for (int i = 0; i < 50; i++)
+            // NUO KOKIO X PIESIA
+            double x = -6;
+            for (int i = 0; i < 2000; i++)
             {
                 Fx.Points.AddXY(x, F(x));  x = x + (2 * Math.PI) /50;
             }
@@ -166,6 +170,44 @@ namespace Pvz1
             {
                 timer1.Stop();
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            double x0 = 0;
+            double x1 = 3;
+            double xTemp = x0;
+            double coef;
+            for (int i = 1; i < 100; i++)
+            {
+
+            }
+        }
+
+        // Paprastu iteraciju
+        private void button8_Click(object sender, EventArgs e)
+        {
+            double x0 = 0;
+            double x1 = 3;
+            double xTemp = x0;
+            double coef;
+            for (int i = 1; i < 1000; i++)
+            {
+                xTemp = xTemp + F(xTemp);
+                richTextBox1.AppendText(String.Format(" {0,6:d}    {1,12:f7}   {2,12:f7}\n", i, xTemp, F(xTemp)));
+
+                if(Math.Abs(F(xTemp)) < 1e-7)
+                {
+                    break;
+                }
+            }
+
+        }
+
+        // Skenavimas
+        private void button7_Click(object sender, EventArgs e)
+        {
+
         }
 
         // ---------------------------------------------- TIESINĖ ALGEBRA ----------------------------------------------

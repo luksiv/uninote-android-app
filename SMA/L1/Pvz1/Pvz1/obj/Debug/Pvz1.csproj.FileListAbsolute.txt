@@ -49,3 +49,16 @@ G:\AndriusK\Pvz1\Pvz1\obj\Debug\Pvz1.Properties.Resources.resources
 G:\AndriusK\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.GenerateResource.Cache
 G:\AndriusK\Pvz1\Pvz1\obj\Debug\Pvz1.exe
 G:\AndriusK\Pvz1\Pvz1\obj\Debug\Pvz1.pdb
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.exe.config
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.exe
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.pdb
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\MathNet.Numerics.dll
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\MathNet.Numerics.xml
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csprojAssemblyReference.cache
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.Form1.resources
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.Properties.Resources.resources
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.GenerateResource.cache
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.CoreCompileInputs.cache
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.CopyComplete
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.exe
+C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.pdb
