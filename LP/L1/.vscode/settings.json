@@ -1,4 +1,12 @@
 {
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
-    "C_Cpp.errorSquiggles": "Disabled"
+    "files.associations": {
+        "fstream": "cpp",
+        "istream": "cpp",
+        "string": "cpp",
+        "xstring": "cpp",
+        "iostream": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp",
+        "iomanip": "cpp"
+    }
 }

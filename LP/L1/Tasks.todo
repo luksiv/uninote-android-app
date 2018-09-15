@@ -1,20 +1,20 @@
 Bendri reikalavimai:
-  ☐ Viena programa - vienas failas
-  ☐ Visi vienos programos duomenys - viename faile
-  ☐ Visi vienos programos rezultatai - viename faile
+  ✔ Viena programa - vienas failas @done (18-09-15 20:02)
+  ✔ Visi vienos programos duomenys - viename faile @done (18-09-15 20:02)
+  ✔ Visi vienos programos rezultatai - viename faile @done (18-09-15 20:02)
 
   Komentarai:
-    ☐ Programos pradzioje - (LD variantas, autorius)
-    ☐ Klasiu paskirtys
-    ☐ Klasiu kintamuju paskirtys
-    ☐ Klasiu metodu paskirtys
-    ☐ Lygiagretaus programavimo priemoniu panaudojimas
+    ✔ Programos pradzioje - (LD variantas, autorius) @done (18-09-15 19:55)
+    ✔ Klasiu paskirtys @done (18-09-15 19:55)
+    ✔ Klasiu kintamuju paskirtys @done (18-09-15 20:02)
+    ✔ Klasiu metodu paskirtys @done (18-09-15 20:02)
+    ✔ Lygiagretaus programavimo priemoniu panaudojimas @done (18-09-15 20:02)
     - Pastaba. Galima nekomentuoti tu˛ klasiu˛, metodu˛, ar kintamu˛ju˛, kuriu˛ vardai vienareikšmiškai nusako ju˛ paskirti
 
 L1:
   Atsiskaitymas:
     ✔ L1a - 3 sav. @done (18-09-11 12:11)
-    ☐ L1b - 4 sav.
+    ✔ L1b - 4 sav. @done (18-09-15 19:55)
 
   Uzduotis:
     L1a:
@@ -38,3 +38,28 @@ L1:
       Kita:
         ✔ Visa programa viename faile IFF68_SivickasL_L1a.java @done (18-09-05 21:03)
         ✔ Duomenu failas gali buti pasirenkamas @done (18-09-05 21:03)
+    L1b:
+      ✔ Duomenu faile IFF68_SivickasL_L1a_dat.txt yra jusu pasirinkto tipo strukturu duomenu rinkinys (string, int, double). @done (18-09-15 18:47)
+      ✔ String tipo lauko reiksmes surikiuotos pagal abecele @done (18-09-15 18:47)
+      ✔ Int,Double surikiuotos didejimo kryptimi @done (18-09-15 18:47)
+
+      ✔ Ivesti siuos duomenis i tris masyvus S(n), I(n), D(n) (10 < n < 20). @done (18-09-15 18:59)
+      ✔ Kiekvieno duomenu lauko reiksmes ivedamos i atskira masyva. @done (18-09-15 18:59)
+      ✔ Spausdinti masyvu duomenis lentelemis i faila IFF68_SivickasL_L1b_rez.txt @done (18-09-15 19:15)
+      ✔ Kiekviena masyva spausdinti atskirame lenteles stulpelyje. @done (18-09-15 19:15)
+
+      - --------------------------------------------------------------------------------------------------
+
+      ✔ Sukurti ir ivykdyti n giju. @done (18-09-15 19:21)
+      ✔ Giju vykdymo metu kuriamas bendras strukturu (string, int, double) masyvas P tokiu budu: @done (18-09-15 19:21)
+        ✔ i-oji gija (i = 0, 1, 2, ..., n-1) i masyvo P pabaiga (i naujo elemento laukus) raso i, Si, Ii, Di reiksmes. @done (18-09-15 19:21)
+        ✔ Gijos dirba neatsizvelgdamos i kitu giju darba @done (18-09-15 19:21)
+      ✔ Baigus giju darba i faila IFF68_SivickasL_L1b_rez.txt spaustindi masyva P lenetele @done (18-09-15 19:55)
+
+      Butini metodai (funkcijos):
+        ✔ Duomenu skaitymui @done (18-09-15 19:55)
+        ✔ Duomenu spausdinimui (spausdinti lentelemis su stulpeliu pavadinimais ir eiluciu numeriais) @done (18-09-15 19:55)
+        ✔ Kiti metodai - pagal poreiki @done (18-09-15 19:55)
+
+      Kita:
+        ✔ Visa programa viename faile IFF68_SivickasL_L1b.cpp @done (18-09-15 19:55)
