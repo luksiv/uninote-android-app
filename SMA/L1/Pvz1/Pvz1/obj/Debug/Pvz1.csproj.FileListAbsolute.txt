@@ -62,3 +62,14 @@ C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.Cor
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.CopyComplete
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.exe
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.pdb
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.exe.config
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.exe
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\Pvz1.pdb
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\MathNet.Numerics.dll
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\bin\Debug\MathNet.Numerics.xml
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.Form1.resources
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.Properties.Resources.resources
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.exe
+C:\Users\User\Desktop\SemestroDarbai\SMA\L1\Pvz1\Pvz1\obj\Debug\Pvz1.pdb
