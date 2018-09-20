@@ -39,10 +39,18 @@ namespace Pvz1
         /// <returns></returns>
         private double F(double x)
         {
-            // 1.40x^5 + 0.85x^4 - 8.22x^3 - 4.67x^2 + 6.51x + 0.86
-            return (1.4*Math.Pow(x, 5) + 0.85 * Math.Pow(x, 4) - 8.22 * Math.Pow(x, 3) - 4.67 * Math.Pow(x, 2) + 6.51 * x + 0.86);
-            // cos(2x) * e^-((x/2))^2 ; -6 <= x <= 6
-            //return (double)(Math.Cos(2 * x) * Math.Pow(Math.E, -1 * Math.Pow(x / 2, 2)));
+            if (rb_fx.Checked)
+            {
+                // 1.40x^5 + 0.85x^4 - 8.22x^3 - 4.67x^2 + 6.51x + 0.86
+                return (1.4 * Math.Pow(x, 5) + 0.85 * Math.Pow(x, 4) - 8.22 * Math.Pow(x, 3) - 4.67 * Math.Pow(x, 2) + 6.51 * x + 0.86);
+                //return 5500 - (25000 * x * Math.Pow(1 + x, 6) / (Math.Pow(1 + x, 6) - 1));
+            }
+            else if (rb_gx.Checked)
+            {
+                // cos(2x) * e^-((x/2))^2 ; -6 <= x <= 6
+                return (double)(Math.Cos(2 * x) * Math.Pow(Math.E, -1 * Math.Pow(x / 2, 2)));
+            }
+            return 0;
         }
 
 
@@ -172,38 +180,9 @@ namespace Pvz1
             }
         }
 
-        // Kvazi-Niutono
-        private void button6_Click(object sender, EventArgs e)
-        {
-            double x0 = 0;
-            double x1 = 3;
-            double xTemp = x0;
-            double coef;
-            for (int i = 1; i < 100; i++)
-            {
+        
 
-            }
-        }
-
-        // Paprastu iteraciju
-        private void button8_Click(object sender, EventArgs e)
-        {
-            double x0 = 0;
-            double x1 = 3;
-            double xTemp = x0;
-            for (int i = 1; i < 1000; i++)
-            {
-                xTemp = xTemp + F(xTemp);
-                richTextBox1.AppendText(String.Format(" {0,6:d}    {1,12:f7}   {2,12:f7}\n", i, xTemp, F(xTemp)));
-
-                if(Math.Abs(F(xTemp)) < 1e-7)
-                {
-                    break;
-                }
-            }
-
-        }
-
+        
         // Skenavimas
         private void button7_Click(object sender, EventArgs e)
         {
@@ -235,17 +214,13 @@ namespace Pvz1
             X1X2.ChartType = SeriesChartType.Line;
             XMid.MarkerSize = 8;
 
-            double x0 = -1;
-            double x1 = 0;
-            double step = 0.20;
+            double x0 = double.Parse(tb_x0.Text);
+            double x1 = double.Parse(tb_x1.Text);
+            double step = 0.10;
             double stepReductionCoef = 5;
-            double xTemp0 = x0;
-            double xTemp1 = x1;
             richTextBox1.AppendText("      I      x0              F(x0)         x1              F(x1)\n");
             for (int i = 1; i < 1000; i++)
             {
-                xTemp0 = F(x0);
-                xTemp1 = F(x1);
                 if(Math.Sign(F(x0)) != Math.Sign(F(x0+step)))
                 {
 
@@ -267,6 +242,130 @@ namespace Pvz1
                     break;
                 }
             }
+        }
+
+        // Paprastu iteraciju
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+            ClearForm(); // išvalomi programos duomenys
+            PreparareForm(-7, 7, -5, 5);
+            // Nubraižoma f-ja, kuriai ieskome saknies
+            Fx = chart1.Series.Add("F(x)");
+            Fx.ChartType = SeriesChartType.Line;
+            // NUO KOKIO X PIESIA
+            double x = -6;
+            double atstumas = 12;
+            int iter_sk = 2000;
+            for (int i = 0; i < iter_sk; i++)
+            {
+                Fx.Points.AddXY(x, F(x)); x = x + atstumas / iter_sk;
+            }
+            Fx.BorderWidth = 3;
+
+            X1X2 = chart1.Series.Add("X1X2");
+            X1X2.MarkerStyle = MarkerStyle.Circle;
+            X1X2.MarkerSize = 8;
+            X1X2.ChartType = SeriesChartType.Point;
+            X1X2.ChartType = SeriesChartType.Line;
+
+
+            XMid = chart1.Series.Add("XMid");
+            XMid.MarkerStyle = MarkerStyle.Circle;
+            X1X2.ChartType = SeriesChartType.Point;
+            X1X2.ChartType = SeriesChartType.Line;
+            XMid.MarkerSize = 8;
+
+            double x0 = double.Parse(tb_art.Text);
+            double alpha = double.Parse(tb_alpha.Text);
+            richTextBox1.AppendText("      I      x0\n");
+            double xTemp = x0;
+            for (int i = 1; i < 1000; i++)
+            {
+                xTemp = xTemp + (F(xTemp) / alpha);
+                chart1.Series[1].Points.AddXY(xTemp, F(xTemp));
+
+                richTextBox1.AppendText(String.Format(" {0,6:d}    {1,12:f7}\n", i, xTemp));
+
+                if (Math.Abs(F(xTemp)) < 1e-7)
+                {
+                    chart1.Series[2].Points.AddXY(xTemp, 0);
+                    richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f7}) per {1:d} iteracijas(-a).\n", xTemp, i));
+                    break;
+                }
+                if (xTemp > 10 || xTemp < -10)
+                {
+                    richTextBox1.AppendText("RIP");
+                    break;
+                }
+            }
+
+        }
+
+        // Kvazi-Niutono
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ClearForm(); // išvalomi programos duomenys
+            PreparareForm(-7, 7, -5, 5);
+            // Nubraižoma f-ja, kuriai ieskome saknies
+            Fx = chart1.Series.Add("F(x)");
+            Fx.ChartType = SeriesChartType.Line;
+            // NUO KOKIO X PIESIA
+            double x = -6;
+            double atstumas = 12;
+            int iter_sk = 2000;
+            for (int i = 0; i < iter_sk; i++)
+            {
+                Fx.Points.AddXY(x, F(x)); x = x + atstumas / iter_sk;
+            }
+            Fx.BorderWidth = 3;
+
+            X1X2 = chart1.Series.Add("X1X2");
+            X1X2.MarkerStyle = MarkerStyle.Circle;
+            X1X2.MarkerSize = 8;
+            X1X2.ChartType = SeriesChartType.Point;
+            X1X2.ChartType = SeriesChartType.Line;
+
+
+            XMid = chart1.Series.Add("XMid");
+            XMid.MarkerStyle = MarkerStyle.Circle;
+            X1X2.ChartType = SeriesChartType.Point;
+            X1X2.ChartType = SeriesChartType.Line;
+            XMid.MarkerSize = 8;
+
+            double x0 = double.Parse(tb_knx0.Text);
+            double x1 = double.Parse(tb_knx1.Text);
+            richTextBox1.AppendText("      I      x^i\n");
+            double xTemp0 = x0;
+            double xTemp = x1;
+            double xTemp1 = x1;
+            for (int i = 1; i < 1000; i++)
+            {
+                xTemp = xTemp1;
+                xTemp1 = xTemp1 - Math.Pow(((F(xTemp1) - F(xTemp0)) / (xTemp1 - xTemp0)), -1) * F(xTemp1);
+                xTemp0 = xTemp;
+
+                chart1.Series[1].Points.AddXY(xTemp1, F(xTemp1));
+
+                richTextBox1.AppendText(String.Format(" {0,6:d}    {1,12:f9} {2,12:f9} \n", i, xTemp1, F(xTemp1)));
+
+                if (Math.Abs(F(xTemp1)) < 1e-7)
+                {
+                    chart1.Series[2].Points.AddXY(xTemp1, 0);
+                    richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f10}) per {1:d} iteracijas(-a).\n", xTemp1, i));
+                    break;
+                }
+                if (xTemp0 > 10 || xTemp0 < -10)
+                {
+                    richTextBox1.AppendText("RIP");
+                    break;
+                }
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         // ---------------------------------------------- TIESINĖ ALGEBRA ----------------------------------------------
