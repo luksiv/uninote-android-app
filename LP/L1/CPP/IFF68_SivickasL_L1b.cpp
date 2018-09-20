@@ -19,7 +19,7 @@ Atsakymai i klausimus:
 using namespace std;
 
 // Nustatoma kiek duomenu irasu bus faile
-const int n = 15;
+const int n = 16;
 
 // Sukuriamas struct giju rezultatams rasyti
 struct DataResult{

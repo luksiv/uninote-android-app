@@ -8,6 +8,7 @@ Hyundai-i10 2018 4.5
 Kia-Soul 2015 8.32
 MB-C220 2018 8.02
 MB-G65 2016 15.9
+Toyota-Auris 2011 4.4
 Toyota-Aygo 2011 6.87
 Toyota-Prius 2010 3.5
 Volvo-XC90 2018 10.11
