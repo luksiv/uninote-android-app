@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniNote</string>
+    <string name="hello_blank_fragment">Sveikas tuščias fragmentas</string>
+    <string name="title_about">Apie</string>
+    <string name="title_modules">Moduliai</string>
+    <string name="title_notes">Užrašai</string>
+    <string name="title_assignments">Atsiskaitymai</string>
+    <string name="title_home">Pradinis</string>
+    <string name="about_description">Tai yra mano Android aplikacija \\\"UniNote\\\" moduliui P175B156. \\nJos pagrindiniai funkcionalumai yra užrašų rašymas ir atsiskaitymų priminimai.</string>
+</resources>
