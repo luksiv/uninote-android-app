@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -37,6 +38,7 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        MainActivity.mToolbar.setTitle("About");
         View aboutPage = new AboutPage(AboutFragment.super.getContext())
                 .isRTL(false)
                 .setImage(R.drawable.ic_home_black_24dp)
@@ -48,6 +50,8 @@ public class AboutFragment extends Fragment {
                 .addItem(getGithubElement())
                 .addItem(getCopyRightsElement())
                 .create();
+
+        setHasOptionsMenu(true);
 
         return aboutPage;
     }
@@ -114,4 +118,11 @@ public class AboutFragment extends Fragment {
         return element;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.action_bar, menu);
+        for (int i = 0; i < menu.size(); i++) {
+            menu.getItem(i).setVisible(false);
+        }
+    }
 }

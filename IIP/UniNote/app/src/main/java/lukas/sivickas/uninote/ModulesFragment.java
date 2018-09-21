@@ -6,10 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,12 +29,10 @@ public class ModulesFragment extends Fragment {
     private static final int EDIT_REQUEST_CODE = 2;
 
     ListView mModulesView;
-    FloatingActionButton mAdd;
-    FloatingActionButton mRefresh;
 
     ArrayList<Module> mModules;
     ModuleArrayAdapter mModuleAdapter;
-    DBHelper mDbHelper;
+    public static DBHelper mDbHelper;
 
     public ModulesFragment() {
         // Required empty public constructor
@@ -63,42 +61,22 @@ public class ModulesFragment extends Fragment {
         });
         mModules = mDbHelper.getAllModules();
         mModuleAdapter = new ModuleArrayAdapter(super.getContext(), mModules, ModulesFragment.super.getActivity().getFragmentManager());
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: kuriamas naujas view");
+        MainActivity.mToolbar.setTitle(getString(R.string.title_modules));
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_modules, container, false);
         mModulesView = view.findViewById(R.id.lw_modules);
         mModulesView.setAdapter(mModuleAdapter);
-        mAdd = view.findViewById(R.id.fab_add);
-        mAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ModulesFragment.super.getContext(), ModuleForm.class);
-                startActivityForResult(intent, 1);
-            }
-        });
-
 
         return view;
 
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            // Insert request returned
-            if (requestCode == 1) {
-                updateModuleDataSet(mDbHelper.getAllModules());
-            }
-            // Edit request returned
-            else if (requestCode == 2) {
-                updateModuleDataSet(mDbHelper.getAllModules());
-            }
-        }
     }
 
     public void updateModuleDataSet(ArrayList<Module> list) {
@@ -106,4 +84,21 @@ public class ModulesFragment extends Fragment {
         mModules.addAll(list);
         mModuleAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                Log.d(TAG, "onOptionsItemSelected: add pressed");
+                Intent intent = new Intent(ModulesFragment.super.getContext(), ModuleForm.class);
+                startActivityForResult(intent, 1);
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
 }

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">UniNote</string>
     <string name="hello_blank_fragment">Sveikas tuščias fragmentas</string>
-    <string name="title_about">Apie</string>
+    <string name="action_bar_about">Apie</string>
     <string name="title_modules">Moduliai</string>
     <string name="title_notes">Užrašai</string>
     <string name="title_assignments">Atsiskaitymai</string>

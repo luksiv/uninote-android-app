@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
 import lukas.sivickas.uninote.helpers.DBHelper;
 import lukas.sivickas.uninote.helpers.Module;
@@ -31,7 +32,7 @@ public class ModuleForm extends AppCompatActivity {
         setContentView(R.layout.activity_module_form);
         mEditing = getIntent().getBooleanExtra("editing", false);
 
-        mDbHelper = new DBHelper(this);
+        mDbHelper = ModulesFragment.mDbHelper;
 
         mName = findViewById(R.id.et_module_name);
         mCode = findViewById(R.id.et_module_code);

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
 import lukas.sivickas.uninote.forms.ModuleForm;
 import lukas.sivickas.uninote.helpers.DBHelper;
@@ -84,7 +85,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
                                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        (new DBHelper(ModuleArrayAdapter.super.getContext())).deleteModule(item.getId());
+                                        ModulesFragment.mDbHelper.deleteModule(item.getId());
                                     }
                                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                     @Override
