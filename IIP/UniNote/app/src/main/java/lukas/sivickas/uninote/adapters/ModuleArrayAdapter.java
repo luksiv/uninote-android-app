@@ -11,7 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,8 +23,7 @@ import java.util.ArrayList;
 import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
 import lukas.sivickas.uninote.forms.ModuleForm;
-import lukas.sivickas.uninote.helpers.DBHelper;
-import lukas.sivickas.uninote.helpers.Module;
+import lukas.sivickas.uninote.database.Module;
 
 public class ModuleArrayAdapter extends ArrayAdapter<Module> {
 
@@ -47,13 +50,14 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
                     .inflate(R.layout.modules_item, parent, false);
         }
 
-        TextView id = convertView.findViewById(R.id.tv_id);
-        TextView name = convertView.findViewById(R.id.tv_name);
-        TextView code = convertView.findViewById(R.id.tv_code);
-        TextView lead = convertView.findViewById(R.id.tv_lead);
+        TextView id = convertView.findViewById(R.id.tv_module_item_id);
+        TextView name = convertView.findViewById(R.id.tv_module_item_name);
+        TextView code = convertView.findViewById(R.id.tv_module_lv_item_code);
+        TextView lead = convertView.findViewById(R.id.tv_module_lv_item_lead);
+        final ImageView mExpandButton = convertView.findViewById(R.id.btn_module_detail_expand);
 
         id.setText("ID: " + item.getId());
-        name.setText("Name: " + item.getName());
+        name.setText(item.getName());
         code.setText("Code: " + item.getCode());
         lead.setText("Lead: " + item.getLead());
 
@@ -107,6 +111,74 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
             }
         });
 
+        final View finalConvertView = convertView;
+        mExpandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout toolbar = finalConvertView.findViewById(R.id.ll_module_lv_item_details);
+                if(toolbar.getVisibility() == View.GONE){
+                    mExpandButton.setImageResource(R.drawable.ic_expand_less);
+                    expand(toolbar);
+                } else {
+                    mExpandButton.setImageResource(R.drawable.ic_expand_more);
+                    collapse(toolbar);
+                }
+            }
+        });
+
         return convertView;
     }
+
+    public static void expand(final View v) {
+        v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final int targetHeight = v.getMeasuredHeight();
+
+        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
+        v.getLayoutParams().height = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1
+                        ? ViewGroup.LayoutParams.WRAP_CONTENT
+                        : (int) (targetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int) (targetHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation() {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if (interpolatedTime == 1) {
+                    v.setVisibility(View.GONE);
+                } else {
+                    v.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+        v.startAnimation(a);
+    }
+
 }

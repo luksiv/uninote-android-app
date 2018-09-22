@@ -1,4 +1,4 @@
-package lukas.sivickas.uninote.helpers;
+package lukas.sivickas.uninote.database;
 
 import java.util.Date;
 

@@ -9,8 +9,8 @@ import android.widget.EditText;
 
 import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
-import lukas.sivickas.uninote.helpers.DBHelper;
-import lukas.sivickas.uninote.helpers.Module;
+import lukas.sivickas.uninote.database.DBHelper;
+import lukas.sivickas.uninote.database.Module;
 
 public class ModuleForm extends AppCompatActivity {
 

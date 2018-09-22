@@ -1,4 +1,4 @@
-package lukas.sivickas.uninote.helpers;
+package lukas.sivickas.uninote.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,13 +32,13 @@ public class DBHelper extends SQLiteOpenHelper {
             " lead TEXT)";
     private static final String NOTES_CREATION_CODE = "CREATE TABLE IF NOT EXISTS notes (\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            " creation_date DATETIME NOT NULL,\n" +
+            " creation_date TEXT NOT NULL,\n" +
             " text TEXT,\n" +
             " module_id INTEGER,\n" +
             " FOREIGN KEY(module_id) REFERENCES modules(id))";
     private static final String ASSIGNMENTS_CREATION_CODE = "CREATE TABLE IF NOT EXISTS assignments (\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            " due_date DATETIME NOT NULL,\n" +
+            " due_date TEXT NOT NULL,\n" +
             " description TEXT,\n" +
             " module_id INTEGER,\n" +
             " FOREIGN KEY(module_id) REFERENCES modules(id))";
@@ -195,7 +195,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Module> modules = new ArrayList<Module>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME, null);
+        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME + " order by name asc", null);
         res.moveToFirst();
 
         int id_index = res.getColumnIndexOrThrow("id");

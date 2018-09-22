@@ -2,23 +2,22 @@ package lukas.sivickas.uninote;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import lukas.sivickas.uninote.adapters.ModuleArrayAdapter;
 import lukas.sivickas.uninote.forms.ModuleForm;
-import lukas.sivickas.uninote.helpers.DBHelper;
-import lukas.sivickas.uninote.helpers.Module;
-
-import static android.app.Activity.RESULT_OK;
+import lukas.sivickas.uninote.database.DBHelper;
+import lukas.sivickas.uninote.database.Module;
 
 
 public class ModulesFragment extends Fragment {
@@ -62,6 +61,7 @@ public class ModulesFragment extends Fragment {
         mModules = mDbHelper.getAllModules();
         mModuleAdapter = new ModuleArrayAdapter(super.getContext(), mModules, ModulesFragment.super.getActivity().getFragmentManager());
         setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -80,7 +80,9 @@ public class ModulesFragment extends Fragment {
     }
 
     public void updateModuleDataSet(ArrayList<Module> list) {
-        mModules.clear();
+        if (!mModules.isEmpty()) {
+            mModules.clear();
+        }
         mModules.addAll(list);
         mModuleAdapter.notifyDataSetChanged();
     }
@@ -98,7 +100,6 @@ public class ModulesFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
 }

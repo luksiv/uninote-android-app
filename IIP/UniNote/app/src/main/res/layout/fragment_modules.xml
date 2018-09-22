@@ -9,7 +9,9 @@
     <ListView
         android:id="@+id/lw_modules"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"></ListView>
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="2dp"></ListView>
 
 </FrameLayout>

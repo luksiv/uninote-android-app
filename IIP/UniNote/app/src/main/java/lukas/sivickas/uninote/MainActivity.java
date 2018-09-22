@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     public static Toolbar mToolbar;
+    public static ActionBar mSupportActionBar;
 
     private BottomNavigationView mNavigation;
     private ArrayList<Fragment> mFragmentsList;
 
     private String mCurrentFragment;
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -35,17 +38,17 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_modules:
-                    mToolbar.setTitle(R.string.title_modules);
+//                    mToolbar.setTitle(R.string.title_modules);
                     mCurrentFragment = "Modules";
                     loadFragment(mFragmentsList.get(0));
                     return true;
                 case R.id.navigation_notes:
-                    mToolbar.setTitle(R.string.title_notes);
+//                    mToolbar.setTitle(R.string.title_notes);
                     mCurrentFragment = "Notes";
                     loadFragment(mFragmentsList.get(1));
                     return true;
                 case R.id.navigation_assignments:
-                    mToolbar.setTitle(R.string.title_assignments);
+//                    mToolbar.setTitle(R.string.title_assignments);
                     mCurrentFragment = "Assignments";
                     loadFragment(mFragmentsList.get(2));
                     return true;
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
+        mSupportActionBar = getSupportActionBar();
+
         mNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -72,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         mCurrentFragment = "Modules";
         loadFragment(mFragmentsList.get(0));
-
-
     }
 
     private void loadFragment(Fragment fragment) {
@@ -95,11 +98,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
-                // adding a back button on top
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setDisplayShowHomeEnabled(true);
                 // hiding bottom nav bar
-                mNavigation.setVisibility(View.INVISIBLE);
+                mNavigation.setVisibility(View.GONE);
                 mCurrentFragment = "About";
                 loadFragment(new AboutFragment());
                 return true;

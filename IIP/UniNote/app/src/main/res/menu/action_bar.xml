@@ -4,12 +4,12 @@
     <!-- "About" -->
     <item
         android:id="@+id/action_add"
-        android:icon="@drawable/ic_add_24dp"
+        android:icon="@drawable/ic_add_black"
         android:title="@string/action_bar_add"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_about"
-        android:icon="@drawable/ic_information_black_24dp"
+        android:icon="@drawable/ic_information_black"
         android:title="@string/action_bar_about"
         app:showAsAction="never"/>
 

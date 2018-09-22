@@ -39,9 +39,11 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         MainActivity.mToolbar.setTitle("About");
+        MainActivity.mSupportActionBar.setDisplayHomeAsUpEnabled(true);
+        MainActivity.mSupportActionBar.setDisplayShowHomeEnabled(true);
         View aboutPage = new AboutPage(AboutFragment.super.getContext())
                 .isRTL(false)
-                .setImage(R.drawable.ic_home_black_24dp)
+                .setImage(R.drawable.ic_home_black)
                 .setDescription(getString(R.string.about_description))
                 .addItem(new Element().setTitle("Version 0.1"))
                 .addGroup("Contact me")
@@ -50,6 +52,7 @@ public class AboutFragment extends Fragment {
                 .addItem(getGithubElement())
                 .addItem(getCopyRightsElement())
                 .create();
+
 
         setHasOptionsMenu(true);
 
@@ -60,7 +63,7 @@ public class AboutFragment extends Fragment {
         Element element = new Element();
         final String copyrights = String.format("MIT", Calendar.getInstance().get(Calendar.YEAR));
         element.setTitle(copyrights);
-        element.setIconDrawable(R.drawable.ic_information_black_24dp);
+        element.setIconDrawable(R.drawable.ic_information_black);
         element.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
         element.setIconNightTint(android.R.color.white);
         element.setGravity(Gravity.CENTER);

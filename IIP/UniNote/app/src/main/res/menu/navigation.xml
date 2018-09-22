@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/navigation_modules"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_classes_black"
         android:title="@string/title_modules" />
 
     <item
         android:id="@+id/navigation_notes"
-        android:icon="@drawable/ic_notes_black_24dp"
+        android:icon="@drawable/ic_notes_black"
         android:title="@string/title_notes" />
 
     <item
         android:id="@+id/navigation_assignments"
-        android:icon="@drawable/ic_assignment_black_24dp"
+        android:icon="@drawable/ic_assignments_black"
         android:title="@string/title_assignments" />
 
 </menu>

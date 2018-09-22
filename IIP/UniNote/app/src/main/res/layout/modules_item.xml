@@ -1,38 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/tv_id"
+        android:id="@+id/tv_module_item_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:padding="4dp"
         android:text="ID: 0" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_module_item_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_id"
-        android:padding="4dp"
-        android:text="Name: IIP" />
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:text="Ismaniuju irenginiu programavimas"
+        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tv_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tv_name"
-        android:padding="4dp"
-        android:text="Code: P175B156" />
+    <ImageView
+        android:id="@+id/btn_module_detail_expand"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/ic_expand_more" />
 
-    <TextView
-        android:id="@+id/tv_lead"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/ll_module_lv_item_details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_id"
+        android:layout_below="@id/tv_module_item_name"
+        android:background="@drawable/border_top_only_transparent"
+        android:orientation="vertical"
         android:padding="4dp"
-        android:text="Lead: Tomas Blazauskas" />
+        android:visibility="gone">
+
+        <!-- Modulio info -->
+        <TextView
+            android:id="@+id/tv_module_lv_item_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code: P175B156" />
+
+        <TextView
+            android:id="@+id/tv_module_lv_item_lead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lead: Tomas Blazauskas" />
+        <!-- Kitas atsiskaitymas -->
+        <TextView
+            android:id="@+id/tv_module_lv_item_next_ass_due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Kito atsiskaitymo data" />
+
+        <TextView
+            android:id="@+id/tv_module_lv_item_next_ass_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kito atsiskaitymo aprasymas" />
+        <!-- Paskutinis uzrasas -->
+        <TextView
+            android:id="@+id/tv_module_lv_item_latest_note_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Paskutinio uzraso data" />
+
+        <TextView
+            android:id="@+id/tv_module_lv_item_latest_note_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paskutinis uzrasas" />
+
+    </LinearLayout>
 
 </RelativeLayout>
