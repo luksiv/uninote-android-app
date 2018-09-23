@@ -1,7 +1,7 @@
 %
 % Vienos lygties sprendimas: paprastuju iteraciju metodas
 % 
-function Pvz_SMA_1_4_Viena_lygtis_simple_iteration
+function Pvz_SMA_1_4_Viena_lygtis_Simple_iteration
 clc,close all
 
 %------------------------   PRADINIAI DUOMENYS  ----------------------------
