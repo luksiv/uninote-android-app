@@ -4,10 +4,12 @@ import java.util.Date;
 
 public class Note {
 
-    private int id;
-    private int moduleId;
-    private Date creationDate;
-    private String text;
+    int id;
+    int moduleId;
+    Date creationDate;
+    Date lastEditDate;
+    String text;
+
 
     public Note(int id, int moduleId, Date creationDate, String text) {
         this.id = id;

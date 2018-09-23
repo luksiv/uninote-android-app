@@ -1,19 +1,24 @@
 package lukas.sivickas.uninote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import lukas.sivickas.uninote.adapters.ModuleArrayAdapter;
+import lukas.sivickas.uninote.database.DBHelper;
+import lukas.sivickas.uninote.forms.AssignmentForm;
+import lukas.sivickas.uninote.forms.ModuleForm;
+
 
 public class AssignmentsFragment extends Fragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = "AssignmentsFragment";
+    public static DBHelper mDbHelper;
 
     public AssignmentsFragment() {
         // Required empty public constructor
@@ -21,20 +26,15 @@ public class AssignmentsFragment extends Fragment {
 
     public static AssignmentsFragment newInstance(String param1, String param2) {
         AssignmentsFragment fragment = new AssignmentsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        Log.d(TAG, "onCreate: creating new AssignmentsFragment");
+        mDbHelper = new DBHelper(getContext());
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -42,6 +42,23 @@ public class AssignmentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         MainActivity.mToolbar.setTitle(getString(R.string.title_assignments));
-        return inflater.inflate(R.layout.fragment_assignments, container, false);
+        View view = inflater.inflate(R.layout.fragment_assignments, container, false);
+
+        return view;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                Log.d(TAG, "onOptionsItemSelected: add pressed");
+                Intent intent = new Intent(getContext(), AssignmentForm.class);
+                startActivity(intent);
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

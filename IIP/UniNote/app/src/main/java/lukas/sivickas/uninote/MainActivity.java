@@ -1,5 +1,6 @@
 package lukas.sivickas.uninote;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -38,17 +39,14 @@ public class MainActivity extends AppCompatActivity {
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_modules:
-//                    mToolbar.setTitle(R.string.title_modules);
                     mCurrentFragment = "Modules";
                     loadFragment(mFragmentsList.get(0));
                     return true;
                 case R.id.navigation_notes:
-//                    mToolbar.setTitle(R.string.title_notes);
                     mCurrentFragment = "Notes";
                     loadFragment(mFragmentsList.get(1));
                     return true;
                 case R.id.navigation_assignments:
-//                    mToolbar.setTitle(R.string.title_assignments);
                     mCurrentFragment = "Assignments";
                     loadFragment(mFragmentsList.get(2));
                     return true;
@@ -62,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
         mSupportActionBar = getSupportActionBar();
 
-        mNavigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mNavigation = findViewById(R.id.navigation);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mFragmentsList = new ArrayList<>();
@@ -75,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentsList.add(new NotesFragment());
         mFragmentsList.add(new AssignmentsFragment());
 
-        mCurrentFragment = "Modules";
-        loadFragment(mFragmentsList.get(0));
+        mNavigation.setSelectedItemId(R.id.navigation_assignments);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -107,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 

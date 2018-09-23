@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lukas.sivickas.uninote">
 
+    <!-- Camera permission for taking photos for notes (false: app does not require a camera to function) -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,11 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".forms.ModuleForm"></activity>
+        <activity android:name=".forms.ModuleForm" />
+        <activity android:name=".forms.AssignmentForm"></activity>
     </application>
 
 </manifest>

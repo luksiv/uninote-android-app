@@ -47,7 +47,7 @@ public class ModulesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: kuriamas naujas fragmentas");
+        Log.d(TAG, "onCreate: creating new ModulesFragment");
         mDbHelper = new DBHelper(getContext());
         mDbHelper.setDataUpdateEventListener(new DBHelper.DataUpdateEventListener() {
             @Override
@@ -92,8 +92,8 @@ public class ModulesFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Log.d(TAG, "onOptionsItemSelected: add pressed");
-                Intent intent = new Intent(ModulesFragment.super.getContext(), ModuleForm.class);
-                startActivityForResult(intent, 1);
+                Intent intent = new Intent(getContext(), ModuleForm.class);
+                startActivity(intent);
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
