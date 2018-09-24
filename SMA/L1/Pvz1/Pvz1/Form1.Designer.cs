@@ -39,17 +39,14 @@ namespace Pvz1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -71,18 +68,27 @@ namespace Pvz1
             this.tb_knx0 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tb_knx1 = new System.Windows.Forms.TextBox();
+            this.rb_vh = new System.Windows.Forms.RadioButton();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_skenx0 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tb_skenx1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tb_skenstep = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(669, 394);
+            this.chart1.Size = new System.Drawing.Size(774, 394);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -93,14 +99,14 @@ namespace Pvz1
             this.richTextBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 412);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(669, 251);
+            this.richTextBox1.Size = new System.Drawing.Size(774, 434);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(773, 643);
+            this.button1.Location = new System.Drawing.Point(925, 826);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -108,34 +114,10 @@ namespace Pvz1
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(692, 171);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(156, 25);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Pusiaukirtos metodas";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(692, 142);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(156, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Tiesinė algebra";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(692, 643);
+            this.button4.Location = new System.Drawing.Point(844, 826);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 6;
@@ -143,80 +125,65 @@ namespace Pvz1
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(692, 113);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(156, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Parametrinės funkcijos";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // timer3
-            // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(692, 81);
+            this.button6.Location = new System.Drawing.Point(796, 99);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(156, 26);
+            this.button6.Size = new System.Drawing.Size(204, 26);
             this.button6.TabIndex = 8;
-            this.button6.Text = "Kvazi-Niutono";
+            this.button6.Text = "Kvazi-Niutono metodas";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(692, 23);
+            this.button7.Location = new System.Drawing.Point(796, 41);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(156, 23);
+            this.button7.Size = new System.Drawing.Size(204, 23);
             this.button7.TabIndex = 9;
-            this.button7.Text = "Skenavimo";
+            this.button7.Text = "Skenavimo metodas";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(692, 52);
+            this.button8.Location = new System.Drawing.Point(796, 70);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(156, 23);
+            this.button8.Size = new System.Drawing.Size(204, 23);
             this.button8.TabIndex = 10;
-            this.button8.Text = "Paprastųjų iteracijų";
+            this.button8.Text = "Paprastųjų iteracijų metodas";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // tb_x0
             // 
-            this.tb_x0.Location = new System.Drawing.Point(692, 284);
+            this.tb_x0.Location = new System.Drawing.Point(799, 387);
             this.tb_x0.Name = "tb_x0";
             this.tb_x0.Size = new System.Drawing.Size(100, 20);
             this.tb_x0.TabIndex = 11;
-            this.tb_x0.Text = "-1";
+            this.tb_x0.Text = "-2.3714";
             // 
             // tb_x1
             // 
-            this.tb_x1.Location = new System.Drawing.Point(692, 326);
+            this.tb_x1.Location = new System.Drawing.Point(799, 429);
             this.tb_x1.Name = "tb_x1";
             this.tb_x1.Size = new System.Drawing.Size(100, 20);
             this.tb_x1.TabIndex = 12;
-            this.tb_x1.Text = "0";
+            this.tb_x1.Text = "-2.0314";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(692, 265);
+            this.label1.Location = new System.Drawing.Point(799, 368);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "x0 - tikrinimo intervalas";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(692, 307);
+            this.label2.Location = new System.Drawing.Point(799, 410);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 13);
             this.label2.TabIndex = 14;
@@ -226,7 +193,7 @@ namespace Pvz1
             // 
             this.rb_fx.AutoSize = true;
             this.rb_fx.Checked = true;
-            this.rb_fx.Location = new System.Drawing.Point(695, 202);
+            this.rb_fx.Location = new System.Drawing.Point(796, 138);
             this.rb_fx.Name = "rb_fx";
             this.rb_fx.Size = new System.Drawing.Size(82, 17);
             this.rb_fx.TabIndex = 15;
@@ -237,7 +204,7 @@ namespace Pvz1
             // rb_gx
             // 
             this.rb_gx.AutoSize = true;
-            this.rb_gx.Location = new System.Drawing.Point(695, 223);
+            this.rb_gx.Location = new System.Drawing.Point(796, 159);
             this.rb_gx.Name = "rb_gx";
             this.rb_gx.Size = new System.Drawing.Size(85, 17);
             this.rb_gx.TabIndex = 16;
@@ -247,7 +214,7 @@ namespace Pvz1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(695, 249);
+            this.label3.Location = new System.Drawing.Point(796, 355);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 13);
             this.label3.TabIndex = 17;
@@ -256,7 +223,7 @@ namespace Pvz1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(689, 349);
+            this.label4.Location = new System.Drawing.Point(796, 452);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(156, 13);
             this.label4.TabIndex = 18;
@@ -265,7 +232,7 @@ namespace Pvz1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(686, 367);
+            this.label5.Location = new System.Drawing.Point(793, 470);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 13);
             this.label5.TabIndex = 19;
@@ -273,24 +240,24 @@ namespace Pvz1
             // 
             // tb_art
             // 
-            this.tb_art.Location = new System.Drawing.Point(689, 383);
+            this.tb_art.Location = new System.Drawing.Point(796, 486);
             this.tb_art.Name = "tb_art";
             this.tb_art.Size = new System.Drawing.Size(100, 20);
             this.tb_art.TabIndex = 20;
-            this.tb_art.Text = "0";
+            this.tb_art.Text = "-2.2214";
             // 
             // tb_alpha
             // 
-            this.tb_alpha.Location = new System.Drawing.Point(689, 422);
+            this.tb_alpha.Location = new System.Drawing.Point(796, 525);
             this.tb_alpha.Name = "tb_alpha";
             this.tb_alpha.Size = new System.Drawing.Size(100, 20);
             this.tb_alpha.TabIndex = 21;
-            this.tb_alpha.Text = "10";
+            this.tb_alpha.Text = "-30";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(689, 406);
+            this.label6.Location = new System.Drawing.Point(796, 509);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 22;
@@ -299,7 +266,7 @@ namespace Pvz1
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(689, 449);
+            this.label7.Location = new System.Drawing.Point(796, 552);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(174, 13);
             this.label7.TabIndex = 23;
@@ -308,7 +275,7 @@ namespace Pvz1
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(689, 466);
+            this.label8.Location = new System.Drawing.Point(796, 569);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 13);
             this.label8.TabIndex = 24;
@@ -316,15 +283,16 @@ namespace Pvz1
             // 
             // tb_knx0
             // 
-            this.tb_knx0.Location = new System.Drawing.Point(689, 483);
+            this.tb_knx0.Location = new System.Drawing.Point(796, 586);
             this.tb_knx0.Name = "tb_knx0";
             this.tb_knx0.Size = new System.Drawing.Size(100, 20);
             this.tb_knx0.TabIndex = 25;
+            this.tb_knx0.Text = "-2.3714";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(689, 510);
+            this.label9.Location = new System.Drawing.Point(796, 613);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(90, 13);
             this.label9.TabIndex = 26;
@@ -332,16 +300,107 @@ namespace Pvz1
             // 
             // tb_knx1
             // 
-            this.tb_knx1.Location = new System.Drawing.Point(689, 527);
+            this.tb_knx1.Location = new System.Drawing.Point(796, 630);
             this.tb_knx1.Name = "tb_knx1";
             this.tb_knx1.Size = new System.Drawing.Size(100, 20);
             this.tb_knx1.TabIndex = 27;
+            this.tb_knx1.Text = "-2.0314";
+            // 
+            // rb_vh
+            // 
+            this.rb_vh.AutoSize = true;
+            this.rb_vh.Location = new System.Drawing.Point(796, 182);
+            this.rb_vh.Name = "rb_vh";
+            this.rb_vh.Size = new System.Drawing.Size(87, 17);
+            this.rb_vh.TabIndex = 28;
+            this.rb_vh.Text = "Funkcija V(h)";
+            this.rb_vh.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(796, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(204, 23);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Šaknų atskyrimas skenavimo metodu";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(793, 212);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(153, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "---KINTAMIEJI ATSKYRIMUI---";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(796, 229);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 13);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "x0 - tikrinimo intervalas";
+            // 
+            // tb_skenx0
+            // 
+            this.tb_skenx0.Location = new System.Drawing.Point(796, 248);
+            this.tb_skenx0.Name = "tb_skenx0";
+            this.tb_skenx0.Size = new System.Drawing.Size(100, 20);
+            this.tb_skenx0.TabIndex = 31;
+            this.tb_skenx0.Text = "-6.8714";
+            this.tb_skenx0.WordWrap = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(796, 271);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 13);
+            this.label12.TabIndex = 34;
+            this.label12.Text = "x1 - tikrinimo intervalas";
+            // 
+            // tb_skenx1
+            // 
+            this.tb_skenx1.Location = new System.Drawing.Point(796, 290);
+            this.tb_skenx1.Name = "tb_skenx1";
+            this.tb_skenx1.Size = new System.Drawing.Size(100, 20);
+            this.tb_skenx1.TabIndex = 33;
+            this.tb_skenx1.Text = "3.4231";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(796, 313);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 13);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Skenavimo žingsnis";
+            // 
+            // tb_skenstep
+            // 
+            this.tb_skenstep.Location = new System.Drawing.Point(796, 332);
+            this.tb_skenstep.Name = "tb_skenstep";
+            this.tb_skenstep.Size = new System.Drawing.Size(100, 20);
+            this.tb_skenstep.TabIndex = 35;
+            this.tb_skenstep.Text = "0.1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 678);
+            this.ClientSize = new System.Drawing.Size(1010, 861);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.tb_skenstep);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.tb_skenx1);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.tb_skenx0);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.rb_vh);
             this.Controls.Add(this.tb_knx1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tb_knx0);
@@ -362,15 +421,12 @@ namespace Pvz1
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.chart1);
             this.Name = "Form1";
-            this.Text = "Skaitiniai metodai ir Algoritmai";
+            this.Text = "Lukas Šivickas IFF-6/8 (23 variantas)";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -383,11 +439,6 @@ namespace Pvz1
         /// </summary>
         private void Initialize()
         {
-            // pridedam timerius
-            Timerlist.Clear();
-            Timerlist.Add(timer1);
-            Timerlist.Add(timer2);
-            Timerlist.Add(timer3);
         }
 
         /// <summary>
@@ -428,10 +479,7 @@ namespace Pvz1
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Button button3;
-        private Button button2;
         private Button button4;
-        private Button button5;
         private Timer timer3;
         private Button button6;
         private Button button7;
@@ -453,6 +501,15 @@ namespace Pvz1
         private TextBox tb_knx0;
         private Label label9;
         private TextBox tb_knx1;
+        private RadioButton rb_vh;
+        private Button button2;
+        private Label label10;
+        private Label label11;
+        private TextBox tb_skenx0;
+        private Label label12;
+        private TextBox tb_skenx1;
+        private Label label13;
+        private TextBox tb_skenstep;
     }
 
 

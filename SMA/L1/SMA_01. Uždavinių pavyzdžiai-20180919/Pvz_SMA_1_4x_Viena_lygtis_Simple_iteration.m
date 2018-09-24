@@ -14,14 +14,15 @@ range=[-3,8] % parenkame saknu atskyrimo intervala
 x0=0
 x0=0.0001
 x0=-1.7
+x0=-2.2214
 
-eps=1e-4   % parenkame sprendinio tikslumo reiksme
+eps=1e-9   % parenkame sprendinio tikslumo reiksme
 
 nitmax=100 % parenkame didziausia leistina iteraciju skaiciu
 
 method='simple_iteration'  % parenkame metoda
 
-alpha=10 % parenkame daugiklio reiksme
+alpha=-30 % parenkame daugiklio reiksme
 % alpha=2
 % alpha=-10000
 % alpha=-7
@@ -53,17 +54,17 @@ while prec > eps  % iteracijos
         pause
         
     prec=abs(f(xn));
-    fprintf(1,'iteracija %d  x= %g  prec= %g \n',nit,xn,prec);
+    fprintf(1,'iteracija %d  x= %.11f  prec= %g \n',nit,xn,prec);
 end
 plot(xn,fn,'k*');plot(xn,fn,'ko');
 
-fprintf(1,'\n tikslumas pasiektas, saknis xmid=%g\n\n',xn);
+fprintf(1,'\n tikslumas pasiektas, saknis xmid=%.11f\n\n',xn);
 
 end
 
 
 function fff=f(x)
-    fff= 1.5*x.^2-1 % +0.1*sin(100*x);
+    fff= 1.4 * x.^5 + 0.85 * x.^4 - 8.22 * x.^3 - 4.67 * x.^2 + 6.51 * x + 0.86;%1.5*x.^2-1 % +0.1*sin(100*x);
 %     fff=64*x.^4-576*x.^3+10*x.^2+9*x;
 return
 end

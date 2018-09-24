@@ -1,27 +1,41 @@
 function Patikrinimasxd
 clc,close all
 figure(1); grid on; hold on; axis equal;
-title("F(x) šaknys");
-p = [1.4, 0.85, -8.22, -4.67, 6.51, 0.86];
-r = roots(p);
-x=-4:.1:4;
-plot(x,f(x), '-b');
-scatter(real(r),imag(r),'filled','red')
-legend({'y = F(x)','šaknys'},'Location','northeast')
-xlim([-4 4]);
-ylim([-4 5]);
-disp(by(0));
+title('1.4x^5 + 0.85x^4 - 8.22x^3 - 4.67x^2 + 6.51x + 0.86');
+x=-7:.1:7;
+plot(x,f(x), '-k');
+
+%-------------------
+ivery = [0, 0];
+% Grubus ivertis
+%iver = [-6.8714, 6.8714];
+%scatter(iver, ivery, 'filled', '^', 'red');
+%legend({'daugianaris f(x)', 'grubus saknu intervalo ivertis'}, 'Location', 'northeast');
+%-------------------
+% Tikslesnis ivertis
+iver = [-6.8714, 3.4231];
+scatter(iver, ivery, 'filled', '^', 'green');
+legend({'daugianaris f(x)', 'tikslesnis saknu intervalo ivertis'}, 'Location', 'northeast');
+%-------------------
+%-------------------
+
+% Saknu atskyrimas
+%vr = [-2.0714, -1.1714, 0.028599999999997, 0.928599999999997, 2.4286];
+%ar = [-2.3714, -1.4714, -0.271400000000003, 0.628599999999997, 2.1286];
+%avry = [0, 0, 0, 0, 0];
+%scatter(vr, ygr, 15, '<', 'filled', 'blue');
+%scatter(ar, ygr, 15, '>', 'filled', 'red');
+%legend({'daugianaris f(x)', 'virsutinis rezis', 'apatinis rezis'}, 'Location', 'northeast');
+%-------------------
+%-------------------
+
+xlim([-8 8]);
+ylim([-8 8]);
 end
 
 function F = f(x)
     F = 1.4 * x.^5 + 0.85 * x.^4 - 8.22 * x.^3 - 4.67 * x.^2 + 6.51 * x + 0.86;
 end
 
-function boldX = bx(x)
-    boldX = x*0;
-end
 
-function boldY = by(y)
-    boldY = y*0.000000001;
-end
     
