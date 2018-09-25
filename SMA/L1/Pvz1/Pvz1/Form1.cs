@@ -84,8 +84,9 @@ namespace Pvz1
             chart1.Series[2].ChartType = SeriesChartType.Point;
             chart1.Series[2].MarkerSize = 8;
 
-            double[] ar = new double[5];
-            double[] vr = new double[5];
+            double[] ar = new double[8];
+            double[] vr = new double[8];
+            double[] artiniai = new double[8];
 
             double x0 = double.Parse(tb_skenx0.Text);
             double x1 = double.Parse(tb_skenx1.Text);
@@ -101,8 +102,10 @@ namespace Pvz1
                     chart1.Series[2].Points.AddXY(x0 + step, 0);
                     ar[saknu_count] = x0;
                     vr[saknu_count] = x0 + step;
+                    artiniai[saknu_count] = (x0 + step + x0) / 2;
                     saknu_count++;
-                    richTextBox1.AppendText(String.Format("{0}. Rasta {1}-a šaknis intervale [{2,12:f7}; {3,12:f7}]\n", i, saknu_count, x0, x0+step));
+
+                    richTextBox1.AppendText(String.Format("{0}. Rasta {1}-a šaknis intervale [{2,12:f9}; {3,12:f9}]; Artinys = [{4,12:f9}]\n", i, saknu_count, x0, x0+step, artiniai[saknu_count-1]));
                     x0 += step;
                 }
                 else
@@ -129,6 +132,17 @@ namespace Pvz1
                     for (int d = 0; d < ar.Length; d++)
                     {
                         richTextBox1.AppendText(ar[d].ToString());
+                        if (d + 1 < vr.Length)
+                        {
+                            richTextBox1.AppendText(", ");
+                        }
+                    }
+                    richTextBox1.AppendText(String.Format("];\n"));
+
+                    richTextBox1.AppendText(String.Format("artin = ["));
+                    for (int d = 0; d < artiniai.Length; d++)
+                    {
+                        richTextBox1.AppendText(artiniai[d].ToString());
                         if (d + 1 < vr.Length)
                         {
                             richTextBox1.AppendText(", ");
@@ -205,7 +219,8 @@ namespace Pvz1
                 if (Math.Abs(F((x0 + x1)/2)) < 1e-9)
                 {
                     chart1.Series[2].Points.AddXY(x0, 0);
-                    richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f11}, f(x) = {1:f11}) per {2:d} iteracijas(-a).\n", (x0+x1)/2, F((x0 + x1) / 2), i));
+                    richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f11}, f(x) = {1:f11}) per {2:d} iteracijas(-a).\n", (x0 + x1) / 2, F((x0 + x1) / 2), i));
+                    richTextBox1.AppendText(String.Format("{0:f11}\n{1:f11}\n{2:d}\n", (x0 + x1) / 2, F((x0 + x1) / 2), i));
                     chart1.Series[3].Points.AddXY((x0 + x1) / 2, F((x0 + x1) / 2));
                     break;
                 }
@@ -262,6 +277,7 @@ namespace Pvz1
                 {
                     rez.Points.AddXY(xTemp, 0);
                     richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f11}; F(x) = {1:f11}) per {2:d} iteracijas(-a).\n", xTemp, F(xTemp), i));
+                    richTextBox1.AppendText(String.Format("{0:f11}\n{1:f11}\n{2:d}\n", xTemp, F(xTemp), i));
                     break;
                 }
                 if (xTemp > 10 || xTemp < -10)
@@ -324,6 +340,7 @@ namespace Pvz1
                 {
                     chart1.Series[2].Points.AddXY(xTemp1, 0);
                     richTextBox1.AppendText(String.Format("Pabaiga. Rasta saknis (x = {0:f11}; f(x) = {1:f11}) per {2:d} iteracijas(-a).\n", xTemp1, F(xTemp1), i));
+                    richTextBox1.AppendText(String.Format("{0:f11}\n{1:f11}\n{2:d}.\n", xTemp1, F(xTemp1), i));
                     break;
                 }
                 if (xTemp0 > 10 || xTemp0 < -10)
@@ -351,7 +368,11 @@ namespace Pvz1
         {
             ClearForm();
         }
-        
+
+        private void rb_fx_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
 
         public void ClearForm()
         {
