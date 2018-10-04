@@ -7,11 +7,11 @@
     tools:context=".ModulesFragment">
 
     <ListView
-        android:id="@+id/lw_modules"
+        android:id="@+id/lv_modules"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:divider="@color/colorPrimary"
-        android:dividerHeight="2dp"></ListView>
+        android:dividerHeight="2dp"/>
 
 </FrameLayout>

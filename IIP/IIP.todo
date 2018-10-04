@@ -42,14 +42,14 @@ Notes:
 
 Assignments:
   Func:
-    ☐ View all assignments
-      ☐ Module
-      ☐ Due date
-      ☐ Description
+    ✔ View all assignments @done (18-10-05 00:37)
+      ✔ Module @done (18-10-05 00:37)
+      ✔ Due date @done (18-10-05 00:37)
+      ✔ Description @done (18-10-05 00:37)
     ☐ Mark them as complete
-    ☐ Add new assignment
-    ☐ Edit assignments
-    ☐ Delete assignments
+    ✔ Add new assignment @done (18-10-05 00:37)
+    ✔ Edit assignments @done (18-10-05 00:37)
+    ✔ Delete assignments @done (18-10-05 00:37)
   Assignment:
     ✔ id (pk) (int) @done (18-09-20 21:32)
     ✔ module (fk) (int) @done (18-09-20 21:32)

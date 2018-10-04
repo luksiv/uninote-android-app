@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -53,9 +51,8 @@ public class ModulesFragment extends Fragment {
             @Override
             public void onDataUpdated(DBHelper.Destination table) {
                 Log.d(TAG, "onDataUpdated: got a callback: " + table);
-                if (table == DBHelper.Destination.MODULES) {
-                    updateModuleDataSet(mDbHelper.getAllModules());
-                }
+                updateModuleDataSet(mDbHelper.getAllModules());
+
             }
         });
         mModules = mDbHelper.getAllModules();
@@ -72,7 +69,7 @@ public class ModulesFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_modules, container, false);
-        mModulesView = view.findViewById(R.id.lw_modules);
+        mModulesView = view.findViewById(R.id.lv_modules);
         mModulesView.setAdapter(mModuleAdapter);
 
         return view;
@@ -80,11 +77,13 @@ public class ModulesFragment extends Fragment {
     }
 
     public void updateModuleDataSet(ArrayList<Module> list) {
-        if (!mModules.isEmpty()) {
-            mModules.clear();
+        if (mModules != null) {
+            if (!mModules.isEmpty()) {
+                mModules.clear();
+            }
+            mModules.addAll(list);
+            mModuleAdapter.notifyDataSetChanged();
         }
-        mModules.addAll(list);
-        mModuleAdapter.notifyDataSetChanged();
     }
 
     @Override

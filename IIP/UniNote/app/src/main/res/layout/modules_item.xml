@@ -41,7 +41,7 @@
         android:background="@drawable/border_top_only_transparent"
         android:orientation="vertical"
         android:padding="4dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <!-- Modulio info -->
         <TextView
@@ -64,7 +64,7 @@
             android:text="Kito atsiskaitymo data" />
 
         <TextView
-            android:id="@+id/tv_module_lv_item_next_ass_description"
+            android:id="@+id/tv_module_lv_item_next_ass_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kito atsiskaitymo aprasymas" />

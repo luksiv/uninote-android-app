@@ -61,6 +61,16 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         code.setText("Code: " + item.getCode());
         lead.setText("Lead: " + item.getLead());
 
+        //TODO: FIX ISSUE WITH DUPLICATE ASSIGMENT (first and last)
+        if(item.hasNextAssignment()){
+            TextView next_assig_date = convertView.findViewById(R.id.tv_module_lv_item_next_ass_due_date);
+            TextView next_assig_title = convertView.findViewById(R.id.tv_module_lv_item_next_ass_title);
+            next_assig_date.setText(item.getNextAssignment().getDueDate().toString());
+            next_assig_title.setText(item.getNextAssignment().getTitle());
+        } else {
+            Log.d(TAG, "getView: " + item.getName() + " neturi atsiskaitymu");
+        }
+
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

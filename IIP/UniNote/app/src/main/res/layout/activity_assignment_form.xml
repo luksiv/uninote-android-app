@@ -7,32 +7,110 @@
     tools:context=".forms.AssignmentForm">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:id="@+id/ll_assig_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp">
-        <
-        <EditText
-            android:id="@+id/et_module_name"
-            android:layout_width="128dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Module" />
+
+            <Spinner
+                android:id="@+id/spn_assig_module_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:" />
+
+            <TextView
+                android:id="@+id/tv_assig_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="Date"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btn_assig_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:text="set date" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:" />
+
+            <TextView
+                android:id="@+id/tv_assig_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="Time"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btn_assig_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:text="set time" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Module name" />
+            android:text="Title" />
+
         <EditText
-            android:id="@+id/et_module_code"
-            android:layout_width="128dp"
+            android:id="@+id/et_assig_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Module code" />
+            android:hint="Enter a title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description" />
+
         <EditText
-            android:id="@+id/et_module_lead"
-            android:layout_width="128dp"
+            android:id="@+id/et_assig_description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Module lead" />
+            android:hint="Enter a description" />
+
         <Button
-            android:id="@+id/btn_module_save"
+            android:id="@+id/btn_assig_save"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:text="Save"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Save" />
     </LinearLayout>
 
 </RelativeLayout>

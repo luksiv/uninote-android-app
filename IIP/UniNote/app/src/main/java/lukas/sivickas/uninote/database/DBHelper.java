@@ -38,9 +38,11 @@ public class DBHelper extends SQLiteOpenHelper {
             " FOREIGN KEY(module_id) REFERENCES modules(id))";
     private static final String ASSIGNMENTS_CREATION_CODE = "CREATE TABLE IF NOT EXISTS assignments (\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            " due_date TEXT NOT NULL,\n" +
+            " due_date BIGINT NOT NULL,\n" +
+            " title TEXT,\n" +
             " description TEXT,\n" +
             " module_id INTEGER,\n" +
+            " is_done BOOLEAN, \n" +
             " FOREIGN KEY(module_id) REFERENCES modules(id))";
     //endregion
 
@@ -103,7 +105,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", module.getName());
-        contentValues.put("code", module.getLead());
+        contentValues.put("code", module.getCode());
         contentValues.put("lead", module.getLead());
         db.insert(MODULES_TABLE_NAME, null, contentValues);
         if (listener != null) {
@@ -118,7 +120,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", module.getName());
-        contentValues.put("code", module.getLead());
+        contentValues.put("code", module.getCode());
         contentValues.put("lead", module.getLead());
         db.update(MODULES_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(module.getId())});
         if (listener != null) {
@@ -198,6 +200,17 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME + " order by name asc", null);
         res.moveToFirst();
 
+        //TODO: remove this when publishing
+        if (res.getCount() == 0) {
+            this.insertModule(new Module("Informacinių sistemų pagringai", "P170B114", "R. Butleris"));
+            this.insertModule(new Module("Skaitiniai metodai ir algoritmai", "P170B115", "R. Barauskas"));
+            this.insertModule(new Module("Lygiagretusis programavimas", "P170B328", "Karolis Ryselis"));
+            this.insertModule(new Module("Išmaniųjų įrenginių programavimas", "P175B156", "Tomas Blažauskas"));
+            this.insertModule(new Module("Kompiuterių tinklai ir internetinės technologijos", "T120B145", "R. Kavaliūnas"));
+            res = db.rawQuery("select * from " + MODULES_TABLE_NAME + " order by name asc", null);
+            res.moveToFirst();
+        }
+
         int id_index = res.getColumnIndexOrThrow("id");
         int name_index = res.getColumnIndexOrThrow("name");
         int code_index = res.getColumnIndexOrThrow("code");
@@ -222,8 +235,8 @@ public class DBHelper extends SQLiteOpenHelper {
             } else {
                 lead = res.getString(lead_index);
             }
-
-            modules.add(new Module(id, name, code, lead));
+            Log.d(TAG, "getAllModules: " + id + " " + name + " " + code + " " + lead);
+            modules.add(new Module(id, name, code, lead, getNextAssignment(id)));
             res.moveToNext();
         }
         return modules;
@@ -361,18 +374,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return modules;
     }
-    //endregion
+    //endregion*/
 
     //region Assignment methods
     public boolean insertAssignment(Assignment assignment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", assignment.getName());
-        contentValues.put("code", assignment.getLead());
-        contentValues.put("lead", assignment.getLead());
-        db.insert(MODULES_TABLE_NAME, null, contentValues);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
+        contentValues.put("title", assignment.getTitle());
+        contentValues.put("description", assignment.getDescription());
+        contentValues.put("due_date", assignment.getDueDateTimestamp());
+        contentValues.put("module_id", assignment.getModuleId());
+        contentValues.put("is_done", assignment.isDone());
+        db.insert(ASSIGNMENTS_TABLE_NAME, null, contentValues);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.ASSIGNMENTS);
         } else {
             Log.e(TAG, "insertModule: listener is null");
         }
@@ -382,176 +397,141 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateAssignment(Assignment assignment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", assignment.getName());
-        contentValues.put("code", assignment.getLead());
-        contentValues.put("lead", assignment.getLead());
-        db.update(MODULES_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(assignment.getId())});
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
+        contentValues.put("title", assignment.getTitle());
+        contentValues.put("description", assignment.getDescription());
+        contentValues.put("due_date", assignment.getDueDateTimestamp());
+        contentValues.put("module_id", assignment.getModuleId());
+        contentValues.put("is_done", assignment.isDone());
+        db.update(ASSIGNMENTS_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(assignment.getId())});
+        if (listener != null) {
+            listener.onDataUpdated(Destination.ASSIGNMENTS);
         } else {
             Log.e(TAG, "insertModule: listener is null");
         }
-        Log.d(TAG, "updateModule: " + MODULES_CREATION_CODE);
-        Log.d(TAG, "updateModule: " + ASSIGNMENTS_CREATION_CODE);
-        Log.d(TAG, "updateModule: " + NOTES_CREATION_CODE);
         return true;
     }
 
-    public Integer deleteAssignment(Assignment assignment) {
+    public void deleteAssignment(Assignment assignment) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args = new String[]{Integer.toString(assignment.getId())};
-        int notes = db.delete(NOTES_TABLE_NAME, "module_id = ?", args);
-        int assignments = db.delete(ASSIGNMENTS_TABLE_NAME, "module_id = ?", args);
-        int modules = db.delete(MODULES_TABLE_NAME, "id = ?", args);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
+        db.delete(ASSIGNMENTS_TABLE_NAME, "id = ?", args);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.ASSIGNMENTS);
         }
-        return notes + assignments + modules;
     }
 
-    public Integer deleteAssignment(int id) {
+    public void deleteAssignment(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args = new String[]{Integer.toString(id)};
-        int notes = db.delete(NOTES_TABLE_NAME, "module_id = ?", args);
-        int assignments = db.delete(ASSIGNMENTS_TABLE_NAME, "module_id = ?", args);
-        int modules = db.delete(MODULES_TABLE_NAME, "id = ?", args);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
-            Log.d(TAG, "deleteModule: message sent");
-        } else {
-            Log.e(TAG, "deleteModule: listener is null");
+        db.delete(ASSIGNMENTS_TABLE_NAME, "id = ?", args);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.ASSIGNMENTS);
         }
-        return notes + assignments + modules;
     }
 
     public Assignment getAssignment(int id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME +
+        Cursor res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME +
                 " where id=" + id + "", null);
 
         res.moveToFirst();
-        int name_index = res.getColumnIndexOrThrow("name");
-        int code_index = res.getColumnIndexOrThrow("code");
-        int lead_index = res.getColumnIndexOrThrow("lead");
 
-        String name;
-        String code;
-        String lead;
+        int title_index = res.getColumnIndexOrThrow("title");
+        int desc_index = res.getColumnIndexOrThrow("description");
+        int due_date_index = res.getColumnIndexOrThrow("due_date");
+        int module_id_index = res.getColumnIndexOrThrow("module_id");
+        int is_done_index = res.getColumnIndex("is_done");
 
-        name = res.getString(name_index);
+        String title;
+        String desc;
+        Long due_date_timestamp;
+        int module_id;
+        Boolean isDone;
 
-        if (res.isNull(code_index)) {
-            code = "";
-        } else {
-            code = res.getString(code_index);
-        }
+        title = res.getString(title_index);
+        desc = res.getString(desc_index);
+        due_date_timestamp = res.getLong(due_date_index);
+        module_id = res.getInt(module_id_index);
+        isDone = res.getInt(is_done_index) > 0;
 
-        if (res.isNull(lead_index)) {
-            lead = "";
-        } else {
-            lead = res.getString(lead_index);
-        }
+        Date due_date = new Date(due_date_timestamp);
+        Module module = this.getModule(module_id);
 
-        return new Module(id, name, code, lead);
+        return new Assignment(id, module, due_date, title, desc, isDone);
     }
 
     public ArrayList<Assignment> getAllAssignments() {
-        ArrayList<Module> modules = new ArrayList<Module>();
+        ArrayList<Assignment> assignments = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME, null);
+        Cursor res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME, null);
         res.moveToFirst();
 
         int id_index = res.getColumnIndexOrThrow("id");
-        int name_index = res.getColumnIndexOrThrow("name");
-        int code_index = res.getColumnIndexOrThrow("code");
-        int lead_index = res.getColumnIndexOrThrow("lead");
+        int title_index = res.getColumnIndexOrThrow("title");
+        int desc_index = res.getColumnIndexOrThrow("description");
+        int due_date_index = res.getColumnIndexOrThrow("due_date");
+        int module_id_index = res.getColumnIndexOrThrow("module_id");
+        int is_done_index = res.getColumnIndex("is_done");
 
         int id;
-        String name;
-        String code;
-        String lead;
+        String title;
+        String desc;
+        Long due_date_timestamp;
+        int module_id;
+        Boolean isDone;
 
         while (res.isAfterLast() == false) {
             id = res.getInt(id_index);
-            name = res.getString(name_index);
-            if (res.isNull(code_index)) {
-                code = "";
-            } else {
-                code = res.getString(code_index);
-            }
+            title = res.getString(title_index);
+            desc = res.getString(desc_index);
+            due_date_timestamp = res.getLong(due_date_index);
+            module_id = res.getInt(module_id_index);
+            isDone = res.getInt(is_done_index) > 0;
+            Log.d(TAG, "getAllAssignments: " + res.getInt(is_done_index));
+            Log.d(TAG, "getAllAssignments: " + isDone);
 
-            if (res.isNull(lead_index)) {
-                lead = "";
-            } else {
-                lead = res.getString(lead_index);
-            }
+            Date due_date = new Date(due_date_timestamp);
+            Module module = this.getModule(module_id);
 
-            modules.add(new Module(id, name, code, lead));
+            assignments.add(new Assignment(id, module, due_date, title, desc, isDone));
             res.moveToNext();
         }
-        return modules;
+        return assignments;
     }
-    */
+
     public Assignment getNextAssignment(int module_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select id, cast(due_date as text) as due_date, description) " +
-                "from " + ASSIGNMENTS_TABLE_NAME + " " +
-                "where module_id = " + module_id  + " " +
-                "and due_date >= date('now') " +
-                "order by due_date asc limit 1", null);
+        Cursor res = db.rawQuery("select * from assignments where module_id = "+ module_id +" and is_done = 0 order by due_date asc limit 1", null);
 
         res.moveToFirst();
-        if(res.getCount()>0) {
-            int idIndex = res.getColumnIndexOrThrow("id");
-            int dueDateIndex = res.getColumnIndexOrThrow("due_date");
-            int descriptionIndex = res.getColumnIndexOrThrow("description");
+        if (res.getCount() > 0) {
+            int id_index = res.getColumnIndexOrThrow("id");
+            int title_index = res.getColumnIndexOrThrow("title");
+            int desc_index = res.getColumnIndexOrThrow("description");
+            int due_date_index = res.getColumnIndexOrThrow("due_date");
+            int is_done_index = res.getColumnIndex("is_done");
 
             int id;
-            Date dueDate;
-            String description;
+            String title;
+            String desc;
+            Long due_date_timestamp;
+            Boolean isDone;
 
-            id = res.getInt(dueDateIndex);
-            String dueDateString = res.getString(dueDateIndex);
-            description = res.getString(descriptionIndex);
+            id = res.getInt(id_index);
+            title = res.getString(title_index);
+            desc = res.getString(desc_index);
+            due_date_timestamp = res.getLong(due_date_index);
+            isDone = res.getInt(is_done_index) > 0;
 
-            dueDate = new Date(dueDateString);
+            Date due_date = new Date(due_date_timestamp);
+            Module module = this.getModule(module_id);
 
-            return new Assignment(id, module_id, dueDate, description);
+            return new Assignment(id, module, due_date, title, desc, isDone);
         } else {
             return null;
         }
-    }
-
-    public static String formatDateTime(Context context, String timeToFormat) {
-
-        String finalDateTime = "";
-
-        SimpleDateFormat iso8601Format = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss");
-
-        Date date = null;
-        if (timeToFormat != null) {
-            try {
-                date = iso8601Format.parse(timeToFormat);
-            } catch (ParseException e) {
-                date = null;
-            }
-
-            if (date != null) {
-                long when = date.getTime();
-                int flags = 0;
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
-                flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
-
-                finalDateTime = android.text.format.DateUtils.formatDateTime(context,
-                        when + TimeZone.getDefault().getOffset(when), flags);
-            }
-        }
-        return finalDateTime;
     }
 
     //endregion

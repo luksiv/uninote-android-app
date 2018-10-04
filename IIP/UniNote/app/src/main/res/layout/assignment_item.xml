@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_top_only_transparent"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/tv_assig_item_module"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Module: [XXX] YYYYYYY" />
+
+        <TextView
+            android:id="@+id/tv_assig_item_due_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Due date: YYYY/MM/DD HH:mm" />
+
+        <TextView
+            android:id="@+id/tv_assig_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title: XXX" />
+
+        <TextView
+            android:id="@+id/tv_assig_item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description: XXXXXXXX" />
+        <TextView
+            android:id="@+id/tv_assig_item_is_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is done: false"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
