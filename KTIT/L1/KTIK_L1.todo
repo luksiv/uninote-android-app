@@ -1,8 +1,8 @@
 ✔ Started (18-10-02 22:32)
-☐ Pratybos IP adresavimas
-☐ Pratybos Marsrutai
+✔ Pratybos IP adresavimas @done (18-10-03 02:24)
+✔ Pratybos Marsrutai @done (18-10-03 02:24)
 ✔ Laboratorinis Tinklo modeliavimas @done (18-10-03 01:13)
-☐ Pratybos Pasiekiamumo valdymas
+✔ Pratybos Pasiekiamumo valdymas @done (18-10-03 02:24)
 ✔ Laboratorinis Virtualus lokalus tinklai @done (18-10-03 01:13)
 ✔ Laboratorinis Pasiekiamumo valdymas @done (18-10-03 01:13)
 
@@ -16,4 +16,4 @@ GYNIMO PVZ:
   ✔ 4.  V_Pavarde.vlan2.pkt modelyje prie abiejų komutatorių sukurti papildomą  VLAN4 papildomiems administracijos kompiuteriams. Jiems skiriami IP: 2.2.2.16/28. Pilnai sukonfigūruoti papildytą modelį @done (18-10-03 02:14)
 
 
-☐ Done
+✔ Done @done (18-10-03 02:24)
