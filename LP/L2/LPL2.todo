@@ -1,0 +1,54 @@
+Duomenu faile Grupe_PavardeV_L2_dat_x.txt yra L1 darbo metu pasirinktos strukturos duomenys, surikiuoti pagal viena is lauku (pasirinkti paciam).
+ ✔ Pasirinkti duomenu struktura is L1 @done (18-10-08 15:17)
+ ✔ Surikiuoti pagal viena lauka @done (18-10-08 15:17)
+(Grupe - jusu grupe)
+(PavardeV - jusupavarde, v.) 
+(failo pletinys - pagal pasirinkta formata)
+(x - eiles numeris) 
+
+Duomenu failas:
+ ✔ papildomas nauju duomenu rinkiniu - m (3<m<10) grupiu @done (18-10-09 00:25)
+ ✔ kiekvienoje grupeje i pasirinktas kiekis r (3<r<10) irasu @done (18-10-09 00:25)
+ ✔ Iraso struktura - du laukai: pasirinktas rikiavimo laukas, kiekis. @done (18-10-08 15:29)
+
+Sukuriama duomenu struktura:
+  ✔ klase, turinti masyva, kurio elementai turi tokius laukus: @done (18-10-08 15:17)
+    ✔ pasirinktas rikiavimo laukas @done (18-10-08 15:17)
+    ✔ kiekis. @done (18-10-08 15:18)
+    Duomenu struktura turi bent du metodus:
+      ✔ duomenims ideti @done (18-10-08 17:19)
+         Duomenu idejimas vykdomas taip: 
+           ✔ jei irasas su idedama grupavimo reiksme neegzistuoja, jis pridedamas i masyva taip, kad jis liktu surikiuotas, o kiekis irasomas 1; @done (18-10-08 17:19)
+           ✔ Jei irasas su idedama reiksme jau yra, kiekis tai reiksmei padidinamas 1. @done (18-10-08 17:01)
+
+      ✔ duomenims pasalinti @done (18-10-09 00:25)
+         Duomenu salinimas vykdomas taip: 
+           ✔ jei reiksme yra masyve ir kiekis didesnis uz 1, kiekis mazinamas 1; @done (18-10-09 00:25)
+           ✔ jei kiekis lygus vienam, irasas salinamas is masyvo ir kiti elementai pastumiami, kad neliktu tarpu; @done (18-10-09 00:25)
+           ✔ jei elemento nera, salinti neleidziama. @done (18-10-09 00:25)
+
+ ✔ Duomenu struktura turi buti apsaugota nuo lygiagrecios prieigos panaudojant kritines sekcijos apsauga monitoriumi. @done (18-10-09 00:25)
+ ✔ Sukuriamas vienas duomenu strukturos objektas ir naudojamas visu giju. @done (18-10-09 00:25)
+
+-- RASYTOJAI
+ ✔ Sukuriami procesai - rasytojai. @done (18-10-09 00:25)
+ ✔ Kiekvienam procesui - rasytojui jo sukurimo metu perduodamas pasirinktos duomenu strukturos rinkinys. @done (18-10-09 00:25)
+ ✔ Sie procesai i duomenu struktura deda savo duomenis. @done (18-10-09 00:25)
+ ✔ Procesai dirba tol, kol i duomenu struktura suraso visus savo duomenis. @done (18-10-09 00:25)
+
+-- SKAITYTOJAI
+ ✔ Sukuriami procesai - skaitytojai. @done (18-10-09 00:25)
+ ✔ Kiekvienam procesui - skaitytojui jo sukurimo metu perduodamas duomenu strukturos, sudarytos is pasirinkto lauko ir kiekio, rinkinys. @done (18-10-09 00:25)
+  ✔ Sie procesai bando is duomenu strukturos salinti nurodytus kiekius duomenu. @done (18-10-09 00:25)
+  ✔ Procesai tol kartoja salinima, kol dar galimi pasikeitimai duomenu strukturoje. @done (18-10-09 00:25)
+
+ ✔ Procesai - rasytojai ir procesai - skaitytojai vykdomi lygiagreciai. @done (18-10-09 00:25)
+
+ ✔ Realizuojamas bent vienas salygines sinchronizacijos variantas (nebandyti imti is tuscio masyvo, nebandyti deti i pilna masyva ar kt.). @done (18-10-09 00:26)
+
+ ✔ Gijoms baigus darba i rezultatu faila Grupe_PavardeV_L2a_rez.txt ar Grupe_PavardeV_L2b_rez.txt lentelemis su stulpeliu pavadinimas ir eiluciu numeriais isvedami pradiniai duomenys bei duomenu strukturos turinys. @done (18-10-09 00:26)
+
+Paruosti tris duomenu rinkinius:
+ ✔ • Grupe_PavardeV_L2_dat_1.txt - po salinimo duomenu struktura tuscia. @done (18-10-09 00:26)
+ ✔ • Grupe_PavardeV_L2_dat_2.txt - is duomenu strukturos nepasalinamas nei vienas elementas. @done (18-10-09 00:26)
+ ✔ • Grupe_PavardeV_L2_dat_3.txt - is duomenu strukturos pasalinama dalis elementu. @done (18-10-09 00:26)
