@@ -9,8 +9,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//TODO: perrasyti
-// Klasė, sauganti reikiamų rikiavimo laukų ir jų kiekių objektus
+
+/**
+ * Klase sauganti rikiavimo struktura (rikiavimo laukas, kiekis)
+ */
 class rikiavimoStruktura {
 
     private int rikiavimoLaukas;
@@ -22,22 +24,14 @@ class rikiavimoStruktura {
         this.kiekis = kiekis;
     }
 
-    // Duomenų ėmimo bei talpinimo metodai
+    // getteriai ir setteriai
 
     public int getRikiavimoLaukas() {
         return rikiavimoLaukas;
     }
 
-    public void setRikiavimoLaukas(int rikiavimoLaukas) {
-        this.rikiavimoLaukas = rikiavimoLaukas;
-    }
-
     public int getKiekis() {
         return kiekis;
-    }
-
-    public void setKiekis(int kiekis) {
-        this.kiekis = kiekis;
     }
 
     public void incKiekis() {
@@ -57,12 +51,14 @@ class rikiavimoStruktura {
     }
 }
 
-//TODO: perrasyti
-// Klase skirta saugoti automobilio objektus
+
+/**
+ * Klase skirta saugoti automobilio duomenis
+ */
 class Automobilis {
-    String modelis;
-    int metai;
-    double sanaudos;
+    private String modelis;
+    private int metai;
+    private double sanaudos;
 
     // Konstruktorius
     public Automobilis(String modelis, int metai, double sanaudos) {
@@ -71,29 +67,16 @@ class Automobilis {
         this.sanaudos = sanaudos;
     }
 
-    // Getteriai ir setteriai
     public String getModelis() {
         return modelis;
-    }
-
-    public void setModelis(String modelis) {
-        this.modelis = modelis;
     }
 
     public int getMetai() {
         return metai;
     }
 
-    public void setMetai(int metai) {
-        this.metai = metai;
-    }
-
     public double getSanaudos() {
         return sanaudos;
-    }
-
-    public void setSanaudos(double sanaudos) {
-        this.sanaudos = sanaudos;
     }
 
     @Override
@@ -106,13 +89,16 @@ class Automobilis {
     }
 }
 
-//TODO: perrasyti
-// Monitorius, skirtas veiksmų sinchronizacijai
+/**
+ * Monitorius skirtas apsaugoti kritines sekcijas nuo lygiagrecios prieigos
+ */
 class Monitorius {
     // Boolean masyvas, kuris pasako ar rasytojai vis dar kazka raso
     private boolean[] dirbantysRasytojai;
     // Bendrame masyve esanciu elementu kiekis
     private int strukturuKiekis;
+    // buferio dydis
+    private int buferioDydis;
     // Bendras masyvas, į kurį rasytojai talpina duomenis, o skaitytojai iš jo ima
     private rikiavimoStruktura[] rikiavimoStrukturos;
 
@@ -120,23 +106,25 @@ class Monitorius {
      * Monitoriaus konstruktorius
      *
      * @param n - rasytoju-procesu skaicius
-     * @param m - skaitytoju-procesu skaicius
+     * @param buferioDydis - buferio dydis
      */
-    public Monitorius(int n, int m) {
-        rikiavimoStrukturos = new rikiavimoStruktura[20];
+    public Monitorius(int n, int buferioDydis) {
+        rikiavimoStrukturos = new rikiavimoStruktura[buferioDydis];
         dirbantysRasytojai = new boolean[n];
-        for (boolean g : dirbantysRasytojai) g = true;
+        for (int i = 0; i < dirbantysRasytojai.length; i++) {
+            dirbantysRasytojai[i] = true;
+        }
         strukturuKiekis = 0;
+        this.buferioDydis = buferioDydis;
     }
 
-    // Grąžina bendrą masyvą
-    public rikiavimoStruktura[] imtiStrukturas() {
-        return rikiavimoStrukturos;
-    }
-
-    // Grąžina šiuo metu bendrame masyve esančių objektų kiekį
-    public int imtiKieki() {
+    // getteriai
+    public int getStrukturuKiekis() {
         return strukturuKiekis;
+    }
+
+    public rikiavimoStruktura[] getRikiavimoStrukturos() {
+        return rikiavimoStrukturos;
     }
 
     /**
@@ -150,6 +138,7 @@ class Monitorius {
         if (strukturuKiekis == 0) {
             return 0;
         }
+        // ieskoma didesne reiksme, jei randama, tai reiskia, kad elementas yra pries ta didesne reiksme
         for (int i = 0; i < strukturuKiekis; i++) {
             if (laukas <= rikiavimoStrukturos[i].getRikiavimoLaukas()) {
                 return i;
@@ -159,32 +148,45 @@ class Monitorius {
         return strukturuKiekis;
     }
 
-    //    Sinchronizuotas metodas, reikalingas elementui įterpti į bendrą masyvą
-    //    Duomenys talpinami, kai bendrame masyve yra vietos arba jau toks elementas
-    //    yra ir padidinamas tik jo kiekis - kitu atveju metodas laukia, kad bus
-    //    galima patalpinti objektą Automobilis
+    /**
+     * Sinchronizuotas metodas, skirtas iterpti automobilius i duomenu strukturos masyva
+     * Sinchronizacijos argumentacija
+     * Metodas turi buti sinchronizuotas, nes daugiau nei vienas rasytojas gali noreti tuo paciu metu rasyti i masyva
+     * @param automobilis - automobilio objektas, kurio duomenys bus dedami i masyva
+     */
     public synchronized void iterptiAutomobili(Automobilis automobilis) {
-        // Pasiimama per funkciją grąžinta įterpimo vieta
+
+        // kol buferis pilnas, laukia, kad kazkas istrintu is masyvo struktura
+        // galimas deadlockas su elementu trynimu
+        while (strukturuKiekis == buferioDydis) {
+            try {
+                System.out.println("laukia iterpt");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         int laukas = automobilis.getMetai();
-        int vieta = rastiIterpimoIndeksa(laukas);
+        int indeksas = rastiIterpimoIndeksa(laukas);
 
         // jei nera nei vieno lauko arba jeigu laukas bus idedamas gale
         // sukuriamas naujas laukas ir priskiriama kiekis 1
-        if (vieta == strukturuKiekis) {
-            rikiavimoStrukturos[vieta] = new rikiavimoStruktura(laukas, 1);
+        if (indeksas == strukturuKiekis) {
+            rikiavimoStrukturos[indeksas] = new rikiavimoStruktura(laukas, 1);
             strukturuKiekis++;
         }
         // jei yra laukas rastas, padidinamas kiekis vienetu
-        else if (rikiavimoStrukturos[vieta].getRikiavimoLaukas() == laukas) {
-            rikiavimoStrukturos[vieta].incKiekis();
+        else if (rikiavimoStrukturos[indeksas].getRikiavimoLaukas() == laukas) {
+            rikiavimoStrukturos[indeksas].incKiekis();
         }
         // jei naujas laukas yra kazkur tarp esamu
         else {
             // prastumiam masyvo elementus, kad padaryti vietos naujam elementui
-            for (int i = strukturuKiekis; i > vieta; i--) {
+            for (int i = strukturuKiekis; i > indeksas; i--) {
                 rikiavimoStrukturos[i] = rikiavimoStrukturos[i - 1];
             }
-            rikiavimoStrukturos[vieta] = new rikiavimoStruktura(laukas, 1);
+            rikiavimoStrukturos[indeksas] = new rikiavimoStruktura(laukas, 1);
             strukturuKiekis++;
         }
         notifyAll();
@@ -194,10 +196,11 @@ class Monitorius {
      * sinchronizuotas metodas, skirtas salinti elementus is duomenu strukturos
      * Sinchronizacijos argumentacija
      * Metodas turi buti sinchronizuotas, nes trinti elementus gali noreti daugiau nei vienas skaitytojas
-     * @param struktura - struktura, pagal kurios reiksmes bus trinami duomenys
+     *
+     * @param rikiavimoLaukas - laukas, pagal kuri bus trinami duomenys
      * @return ar buvo istrinti duomenys
      */
-    public synchronized boolean trintiElementa(rikiavimoStruktura struktura) {
+    public synchronized boolean trintiElementa(int rikiavimoLaukas) {
         // jei nera strukturu, bet yra bent vienas dirbantis rasytojas,
         // tai potencialiai gali buti idetos naujos strukturos ir del to laukiame
         while (strukturuKiekis == 0 && arYraDirbanciuRasytoju()) {
@@ -213,18 +216,17 @@ class Monitorius {
             return false;
         }
         boolean pasalinta = false;
-        // Einama pro visą bendrą masyvą ir ieškoma reikiamos prekės (objekto)
+        // ieskome rikiavimo lauko visame masyve
         for (int i = 0; i < strukturuKiekis; i++) {
-            // Skaitytojas randa norimą prekę (rastas tinkamas laukas)
-            if (rikiavimoStrukturos[i].getRikiavimoLaukas() == struktura.getRikiavimoLaukas()) {
-                int dabartinisKiekis = rikiavimoStrukturos[i].getKiekis();
+            if (rikiavimoStrukturos[i].getRikiavimoLaukas() == rikiavimoLaukas) {
                 // jei reikiamas kiekis mazesnis uz esama
-                if (struktura.getKiekis() < dabartinisKiekis) {
-                    rikiavimoStrukturos[i].setKiekis(dabartinisKiekis - struktura.getKiekis());
+                if (rikiavimoStrukturos[i].getKiekis() > 1) {
+                    rikiavimoStrukturos[i].decKiekis();
                 }
-                // jei reikiamas kiekis didesnis arba lygus uz esama
+                // jei kiekis didesnis arba lygus uz esamam
                 else {
-                    // jei tai vienintele struktura arba jei tai struktura esanti gale masyvo tiesiog priskiriam null
+                    // jei tai vienintele struktura arba jei tai struktura esanti masyvo gale,
+                    // tai tiesiog priskiriam null
                     if (i == 0 && strukturuKiekis == 1 || i == strukturuKiekis - 1) {
                         rikiavimoStrukturos[i] = null;
                         strukturuKiekis--;
@@ -242,7 +244,7 @@ class Monitorius {
                 pasalinta = true;
             }
         }
-        // Pranešama kitoms laukiančioms gijoms, kad išeinama iš kritinės sekcijos
+        // pranesame kitoms gijoms, kad kritine sekcija laisva
         notifyAll();
         return pasalinta;
     }
@@ -304,7 +306,6 @@ class Rasytojas implements Runnable {
     }
 }
 
-
 /**
  * Skaitytojo klase, kuri "skaitys"(trins) duomenis
  */
@@ -329,22 +330,36 @@ class Skaitytojas implements Runnable {
      */
     @Override
     public void run() {
+        int finalNotFoundCounter = 0;
+        int strukturuCounter = strukturos.length;
         // Kol yra rasytoju "skaityti"(trinti) irasus
-        while (!IFF68_SivickasL_L2a.monitorius.arYraDirbanciuRasytoju() && !dataContainsNotNull()) {
+        while (!IFF68_SivickasL_L2a.monitorius.arYraDirbanciuRasytoju() || dataContainsNotNull()) {
             for (int i = 0; i < strukturos.length; i++) {
-                if (strukturos[i] != null &&
-                        (strukturos[i].getKiekis() == 0 || IFF68_SivickasL_L2a.monitorius.trintiElementa(strukturos[i])))
-                    strukturos[i] = null;
+                if (strukturos[i] != null)
+                    if (strukturos[i].getKiekis() > 0) {
+                        if (IFF68_SivickasL_L2a.monitorius.trintiElementa(strukturos[i].getRikiavimoLaukas())) {
+                            strukturos[i].decKiekis();
+                            // jei istrinti visi elementai darome struktura lygia null
+                            if (strukturos[i].getKiekis() == 0) {
+                                strukturos[i] = null;
+                                strukturuCounter--;
+                            }
+                        } else {
+                            if (!IFF68_SivickasL_L2a.monitorius.arYraDirbanciuRasytoju()) finalNotFoundCounter++;
+                        }
+                    } else {
+                        strukturos[i] = null;
+                        strukturuCounter--;
+                    }
             }
+            if (finalNotFoundCounter == strukturuCounter) break;
         }
-        // Kai jau visi rasytojai baige darba dar karta patikrinti ar viskas "perskaityta"
-        for (rikiavimoStruktura d1 : strukturos)
-            if (d1 != null)
-                IFF68_SivickasL_L2a.monitorius.trintiElementa(d1);
     }
 }
 
-
+/**
+ * Pagrindine klase
+ */
 public class IFF68_SivickasL_L2a {
 
     // Rasytoju procesu skaicius
@@ -352,8 +367,11 @@ public class IFF68_SivickasL_L2a {
     // Skaitytoju procesu skaicius
     private static final int SPS = 4;
 
+    // Buferio dydis
+    private static final int BUFERIO_DYDIS = 15;
+
     // Kuriamas public static monitorius, tam kad butu pasiekiamas is kitu klasiu
-    public static Monitorius monitorius = new Monitorius(RPS, SPS);
+    public static Monitorius monitorius = new Monitorius(RPS, BUFERIO_DYDIS);
 
     // Kuriami static ArrayListai, kad pasiektu nuskaitymo/spausdinimo metodai
     private static ArrayList<Automobilis[]> duomenysRasytojam = new ArrayList<>();
@@ -457,8 +475,8 @@ public class IFF68_SivickasL_L2a {
         writer.println(skirtukas);
         writer.println(String.format("| %-3s| %-12s| %-7s|", "#", "Rik. laukas", "Kiekis"));
         writer.println(skirtukas);
-        for (int i = 0; i < monitorius.imtiKieki(); i++) {
-            rikiavimoStruktura struktura = monitorius.imtiStrukturas()[i];
+        for (int i = 0; i < monitorius.getStrukturuKiekis(); i++) {
+            rikiavimoStruktura struktura = monitorius.getRikiavimoStrukturos()[i];
             writer.println(String.format("| %-3d| %-12s| %-7d|", i + 1, struktura.getRikiavimoLaukas(), struktura.getKiekis()));
         }
         writer.println(skirtukas);
@@ -512,7 +530,7 @@ public class IFF68_SivickasL_L2a {
          * Variantas 1 - is duomenu strukturos nepasalinamas nei vienas elementas
          * Variantas 2 - is duomenu strukturos pasalinama dalis elementu.
          */
-        int variantas = 1;
+        int variantas = 2;
 
         nuskaitytiDuomenis(duomenuVariantai[variantas]);
         try {
