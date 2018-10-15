@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2377672b-64c8-409e-8858-c420b39d85d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IFF68_SivickasL_L2_dat_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/IFF68_SivickasL_L2_dat_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IFF68_SivickasL_L2a_rez.txt" beforeDir="false" afterPath="$PROJECT_DIR$/IFF68_SivickasL_L2a_rez.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/Automobilis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/Automobilis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/IFF68_SivickasL_L2a.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/IFF68_SivickasL_L2a.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/Monitorius.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/Monitorius.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/Rasytojas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/Rasytojas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/Skaitytojas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/Skaitytojas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/a/rikiavimoStruktura.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a/rikiavimoStruktura.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IFF68_SivickasL_L2a.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IFF68_SivickasL_L2a.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2a_rez.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2a_rez.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2b.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2b.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2b.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../b/IFF68_SivickasL_L2b.exe" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +20,9 @@
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -97,41 +91,69 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5944518">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/IFF68_SivickasL_L2a.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="560">
-                  <caret line="594" column="47" selection-start-line="594" selection-start-column="47" selection-end-line="594" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#0#19117#0" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#2818#2819#0" expanded="true" />
-                    <element signature="e#2856#2857#0" expanded="true" />
-                    <element signature="e#2916#2917#0" expanded="true" />
-                    <element signature="e#2958#2959#0" expanded="true" />
-                    <element signature="method#nuskaitytiDuomenis#0;class#IFF68_SivickasL_L2a#0" />
-                    <element signature="method#duomenuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
-                    <element signature="method#rezultatuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/IFF68_SivickasL_L2a_rez.txt">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IFF68_SivickasL_L2a.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="94" column="3" lean-forward="true" selection-start-line="92" selection-end-line="94" selection-end-column="3" />
+              <folding>
+                <element signature="class#rikiavimoStruktura#0" />
+                <element signature="method#rikiavimoStruktura#0;class#rikiavimoStruktura#0" />
+                <element signature="method#toString#0;class#rikiavimoStruktura#0" />
+                <element signature="docComment;class#Automobilis#0" />
+                <element signature="class#Automobilis#0" />
+                <element signature="method#Automobilis#0;class#Automobilis#0" />
+                <element signature="method#toString#0;class#Automobilis#0" />
+                <element signature="docComment;method#Monitorius#0;class#Monitorius#0" />
+                <element signature="method#Monitorius#0;class#Monitorius#0" />
+                <element signature="docComment;method#rastiIterpimoIndeksa#0;class#Monitorius#0" />
+                <element signature="method#rastiIterpimoIndeksa#0;class#Monitorius#0" />
+                <element signature="docComment;method#iterptiAutomobili#0;class#Monitorius#0" />
+                <element signature="method#iterptiAutomobili#0;class#Monitorius#0" />
+                <element signature="e#4436#4506#0" />
+                <element signature="e#5000#5063#0" />
+                <element signature="docComment;method#trintiElementa#0;class#Monitorius#0" />
+                <element signature="method#trintiElementa#0;class#Monitorius#0" />
+                <element signature="e#6373#6436#0" />
+                <element signature="e#7466#7540#0" />
+                <element signature="docComment;method#setRasytojasNebedirba#0;class#Monitorius#0" />
+                <element signature="method#setRasytojasNebedirba#0;class#Monitorius#0" />
+                <element signature="method#setSkaitytojasNebedirba#0;class#Monitorius#0" />
+                <element signature="docComment;method#arYraDirbanciuRasytoju#0;class#Monitorius#0" />
+                <element signature="method#arYraDirbanciuRasytoju#0;class#Monitorius#0" />
+                <element signature="method#arYraDirbanciuSkaitytoju#0;class#Monitorius#0" />
+                <element signature="method#arGalimiPakitimai#0;class#Monitorius#0" />
+                <element signature="docComment;class#Rasytojas#0" />
+                <element signature="class#Rasytojas#0" />
+                <element signature="method#Rasytojas#0;class#Rasytojas#0" />
+                <element signature="docComment;method#run#0;class#Rasytojas#0" />
+                <element signature="method#run#0;class#Rasytojas#0" />
+                <element signature="docComment;class#Skaitytojas#0" />
+                <element signature="class#Skaitytojas#0" />
+                <element signature="method#Skaitytojas#0;class#Skaitytojas#0" />
+                <element signature="method#dataContainsNotNull#0;class#Skaitytojas#0" />
+                <element signature="docComment;method#run#0;class#Skaitytojas#0" />
+                <element signature="method#run#0;class#Skaitytojas#0" />
+                <element signature="docComment;class#IFF68_SivickasL_L2a#0" />
+                <element signature="class#IFF68_SivickasL_L2a#0" />
+                <element signature="docComment;method#nuskaitytiDuomenis#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#nuskaitytiDuomenis#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="docComment;method#duomenuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#duomenuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="docComment;method#rezultatuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#rezultatuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="docComment;method#pradetiProcesus#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#pradetiProcesus#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#gautiBuferioDydi#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="docComment;method#main#0;class#IFF68_SivickasL_L2a#0" />
+                <element signature="method#main#0;class#IFF68_SivickasL_L2a#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -176,8 +198,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -249,14 +271,15 @@
       <workItem from="1538996573040" duration="34738000" />
       <workItem from="1539071265333" duration="41000" />
       <workItem from="1539071651181" duration="5723000" />
+      <workItem from="1539625807264" duration="2402000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40502000" />
+    <option name="totallyTimeSpent" value="42904000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="62" y="-8" width="1866" height="1096" extended-state="6" />
+    <frame x="1912" y="-214" width="1040" height="1256" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -264,7 +287,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16168328" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16530612" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32952183" />
@@ -352,18 +375,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IFF68_SivickasL_L2a.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="594" column="47" selection-start-line="594" selection-start-column="47" selection-end-line="594" selection-end-column="47" />
+        <state relative-caret-position="255">
+          <caret line="94" column="3" lean-forward="true" selection-start-line="92" selection-end-line="94" selection-end-column="3" />
           <folding>
-            <element signature="e#0#19117#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#2818#2819#0" expanded="true" />
-            <element signature="e#2856#2857#0" expanded="true" />
-            <element signature="e#2916#2917#0" expanded="true" />
-            <element signature="e#2958#2959#0" expanded="true" />
+            <element signature="class#rikiavimoStruktura#0" />
+            <element signature="method#rikiavimoStruktura#0;class#rikiavimoStruktura#0" />
+            <element signature="method#toString#0;class#rikiavimoStruktura#0" />
+            <element signature="docComment;class#Automobilis#0" />
+            <element signature="class#Automobilis#0" />
+            <element signature="method#Automobilis#0;class#Automobilis#0" />
+            <element signature="method#toString#0;class#Automobilis#0" />
+            <element signature="docComment;method#Monitorius#0;class#Monitorius#0" />
+            <element signature="method#Monitorius#0;class#Monitorius#0" />
+            <element signature="docComment;method#rastiIterpimoIndeksa#0;class#Monitorius#0" />
+            <element signature="method#rastiIterpimoIndeksa#0;class#Monitorius#0" />
+            <element signature="docComment;method#iterptiAutomobili#0;class#Monitorius#0" />
+            <element signature="method#iterptiAutomobili#0;class#Monitorius#0" />
+            <element signature="e#4436#4506#0" />
+            <element signature="e#5000#5063#0" />
+            <element signature="docComment;method#trintiElementa#0;class#Monitorius#0" />
+            <element signature="method#trintiElementa#0;class#Monitorius#0" />
+            <element signature="e#6373#6436#0" />
+            <element signature="e#7466#7540#0" />
+            <element signature="docComment;method#setRasytojasNebedirba#0;class#Monitorius#0" />
+            <element signature="method#setRasytojasNebedirba#0;class#Monitorius#0" />
+            <element signature="method#setSkaitytojasNebedirba#0;class#Monitorius#0" />
+            <element signature="docComment;method#arYraDirbanciuRasytoju#0;class#Monitorius#0" />
+            <element signature="method#arYraDirbanciuRasytoju#0;class#Monitorius#0" />
+            <element signature="method#arYraDirbanciuSkaitytoju#0;class#Monitorius#0" />
+            <element signature="method#arGalimiPakitimai#0;class#Monitorius#0" />
+            <element signature="docComment;class#Rasytojas#0" />
+            <element signature="class#Rasytojas#0" />
+            <element signature="method#Rasytojas#0;class#Rasytojas#0" />
+            <element signature="docComment;method#run#0;class#Rasytojas#0" />
+            <element signature="method#run#0;class#Rasytojas#0" />
+            <element signature="docComment;class#Skaitytojas#0" />
+            <element signature="class#Skaitytojas#0" />
+            <element signature="method#Skaitytojas#0;class#Skaitytojas#0" />
+            <element signature="method#dataContainsNotNull#0;class#Skaitytojas#0" />
+            <element signature="docComment;method#run#0;class#Skaitytojas#0" />
+            <element signature="method#run#0;class#Skaitytojas#0" />
+            <element signature="docComment;class#IFF68_SivickasL_L2a#0" />
+            <element signature="class#IFF68_SivickasL_L2a#0" />
+            <element signature="docComment;method#nuskaitytiDuomenis#0;class#IFF68_SivickasL_L2a#0" />
             <element signature="method#nuskaitytiDuomenis#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="docComment;method#duomenuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
             <element signature="method#duomenuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="docComment;method#rezultatuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
             <element signature="method#rezultatuSpausdinimas#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="docComment;method#pradetiProcesus#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="method#pradetiProcesus#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="method#gautiBuferioDydi#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="docComment;method#main#0;class#IFF68_SivickasL_L2a#0" />
+            <element signature="method#main#0;class#IFF68_SivickasL_L2a#0" />
           </folding>
         </state>
       </provider>
