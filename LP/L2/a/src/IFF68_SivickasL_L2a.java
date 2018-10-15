@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 
@@ -94,24 +96,29 @@ class Automobilis {
 class Monitorius {
     // Boolean masyvas, kuris pasako ar rasytojai vis dar kazka raso
     private boolean[] dirbantysRasytojai;
+    private boolean[] dirbantysSkaitytojai;
     // Bendrame masyve esanciu elementu kiekis
     private int strukturuKiekis;
     // buferio dydis
     private int buferioDydis;
-    // Bendras masyvas, į kurį rasytojai talpina duomenis, o skaitytojai iš jo ima
+    // bendras masyvas, i kuri rasytojai raso duomenis ir is kurio skaitytojai skaito
     private rikiavimoStruktura[] rikiavimoStrukturos;
 
     /**
      * Monitoriaus konstruktorius
      *
-     * @param n - rasytoju-procesu skaicius
+     * @param n            - rasytoju-procesu skaicius
      * @param buferioDydis - buferio dydis
      */
-    public Monitorius(int n, int buferioDydis) {
+    public Monitorius(int n, int m, int buferioDydis) {
         rikiavimoStrukturos = new rikiavimoStruktura[buferioDydis];
         dirbantysRasytojai = new boolean[n];
         for (int i = 0; i < dirbantysRasytojai.length; i++) {
             dirbantysRasytojai[i] = true;
+        }
+        dirbantysSkaitytojai = new boolean[m];
+        for (int i = 0; i < dirbantysSkaitytojai.length; i++) {
+            dirbantysSkaitytojai[i] = true;
         }
         strukturuKiekis = 0;
         this.buferioDydis = buferioDydis;
@@ -151,19 +158,24 @@ class Monitorius {
      * Sinchronizuotas metodas, skirtas iterpti automobilius i duomenu strukturos masyva
      * Sinchronizacijos argumentacija
      * Metodas turi buti sinchronizuotas, nes daugiau nei vienas rasytojas gali noreti tuo paciu metu rasyti i masyva
+     *
      * @param automobilis - automobilio objektas, kurio duomenys bus dedami i masyva
      */
     public synchronized void iterptiAutomobili(Automobilis automobilis) {
 
         // kol buferis pilnas, laukia, kad kazkas istrintu is masyvo struktura
-        // galimas deadlockas su elementu trynimu
-        while (strukturuKiekis == buferioDydis) {
+        // galimas deadlockas
+        while (strukturuKiekis == buferioDydis && arYraDirbanciuSkaitytoju()) {
             try {
                 System.out.println("laukia iterpt");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+
+        if(!arYraDirbanciuSkaitytoju()){
+            return;
         }
 
         int laukas = automobilis.getMetai();
@@ -258,6 +270,10 @@ class Monitorius {
         dirbantysRasytojai[rasytojas] = false;
         notifyAll();
     }
+    public synchronized void setSkaitytojasNebedirba(int skaitytojas) {
+        dirbantysSkaitytojai[skaitytojas] = false;
+        notifyAll();
+    }
 
     /**
      * sinchronizuotas metodas, kuris tikrina ar yra dirbanciu rasytoju
@@ -275,6 +291,24 @@ class Monitorius {
         notifyAll();
         return false;
     }
+
+    public synchronized boolean arYraDirbanciuSkaitytoju() {
+        for (int i = 0; i < dirbantysSkaitytojai.length; i++) {
+            if (dirbantysSkaitytojai[i]) {
+                notifyAll();
+                return true;
+            }
+        }
+        notifyAll();
+        return false;
+    }
+
+    public synchronized boolean arGalimiPakitimai() {
+        if (getStrukturuKiekis() > 0) {
+            return true;
+        }
+        return false;
+    }
 }
 
 /**
@@ -285,7 +319,7 @@ class Rasytojas implements Runnable {
     private Automobilis[] automobiliai;
     private int rasytojoNr;
 
-    //    Klasės konstruktorius
+    // Konstruktorius
     public Rasytojas(int rasytojoNr, Automobilis[] autoDuomenys) {
         this.automobiliai = autoDuomenys;
         this.rasytojoNr = rasytojoNr;
@@ -310,10 +344,12 @@ class Rasytojas implements Runnable {
  */
 class Skaitytojas implements Runnable {
 
+    private int nr;
     private rikiavimoStruktura[] strukturos;
 
     // Konstruktorius
-    public Skaitytojas(rikiavimoStruktura[] duomenys) {
+    public Skaitytojas(int numeris, rikiavimoStruktura[] duomenys) {
+        nr = numeris;
         this.strukturos = duomenys;
     }
 
@@ -344,6 +380,7 @@ class Skaitytojas implements Runnable {
                                 strukturuCounter--;
                             }
                         } else {
+                            // jeigu nebebus pasikeitimu ir nerado, tai didinamas neradusiuju kiekis
                             if (!IFF68_SivickasL_L2a.monitorius.arYraDirbanciuRasytoju()) finalNotFoundCounter++;
                         }
                     } else {
@@ -353,6 +390,7 @@ class Skaitytojas implements Runnable {
             }
             if (finalNotFoundCounter == strukturuCounter) break;
         }
+        IFF68_SivickasL_L2a.monitorius.setSkaitytojasNebedirba(nr);
     }
 }
 
@@ -367,10 +405,10 @@ public class IFF68_SivickasL_L2a {
     private static final int SPS = 4;
 
     // Buferio dydis
-    private static final int BUFERIO_DYDIS = 15;
+    private static int BUFERIO_DYDIS = 12;
 
     // Kuriamas public static monitorius, tam kad butu pasiekiamas is kitu klasiu
-    public static Monitorius monitorius = new Monitorius(RPS, BUFERIO_DYDIS);
+    public static Monitorius monitorius;
 
     // Kuriami static ArrayListai, kad pasiektu nuskaitymo/spausdinimo metodai
     private static ArrayList<Automobilis[]> duomenysRasytojam = new ArrayList<>();
@@ -416,7 +454,6 @@ public class IFF68_SivickasL_L2a {
         }
     }
 
-
     /**
      * Duomenu spausdinimas faile
      */
@@ -445,7 +482,7 @@ public class IFF68_SivickasL_L2a {
         skirtukas = "+---------------------------+";
         // Spausdinam rikiavimo strukturos duomenis
         writer.println(skirtukas);
-        writer.println("|    Rikiavimo struktūros   |");
+        writer.println("|    Rikiavimo strukturos   |");
         for (int i = 0; i < SPS; i++) {
             writer.println(skirtukas);
             writer.println(String.format("|   %d rikiavimo struktura   |", i + 1));
@@ -464,7 +501,7 @@ public class IFF68_SivickasL_L2a {
     /**
      * Rezultatu spausdinimas faile
      */
-    public static void rezultatuSpausdinimas() {
+    private static void rezultatuSpausdinimas() {
         writer.println("**********************************************");
         writer.println("*                 REZULTATAI                 *");
         writer.println("**********************************************\n");
@@ -472,11 +509,15 @@ public class IFF68_SivickasL_L2a {
         writer.println(skirtukas);
         writer.println("|  Duomenu strukt. masyvas  |");
         writer.println(skirtukas);
-        writer.println(String.format("| %-3s| %-12s| %-7s|", "#", "Rik. laukas", "Kiekis"));
-        writer.println(skirtukas);
-        for (int i = 0; i < monitorius.getStrukturuKiekis(); i++) {
-            rikiavimoStruktura struktura = monitorius.getRikiavimoStrukturos()[i];
-            writer.println(String.format("| %-3d| %-12s| %-7d|", i + 1, struktura.getRikiavimoLaukas(), struktura.getKiekis()));
+        if (monitorius.getStrukturuKiekis() > 0) {
+            writer.println(String.format("| %-3s| %-12s| %-7s|", "#", "Rik. laukas", "Kiekis"));
+            writer.println(skirtukas);
+            for (int i = 0; i < monitorius.getStrukturuKiekis(); i++) {
+                rikiavimoStruktura struktura = monitorius.getRikiavimoStrukturos()[i];
+                writer.println(String.format("| %-3d| %-12s| %-7d|", i + 1, struktura.getRikiavimoLaukas(), struktura.getKiekis()));
+            }
+        } else {
+            writer.println("|    MASYVAS YRA TUSCIAS    |");
         }
         writer.println(skirtukas);
     }
@@ -493,7 +534,7 @@ public class IFF68_SivickasL_L2a {
             threads.add(new Thread(new Rasytojas(i, duomenysRasytojam.get(i))));
         }
         for (int i = 0; i < SPS; i++) {
-            threads.add(new Thread(new Skaitytojas(duomenysSkaitytojam.get(i))));
+            threads.add(new Thread(new Skaitytojas(i, duomenysSkaitytojam.get(i))));
         }
 
         for (Thread thread : threads) {
@@ -506,6 +547,16 @@ public class IFF68_SivickasL_L2a {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static int gautiBuferioDydi(ArrayList<Automobilis[]> automobiliai) {
+        HashSet<Integer> unikalus = new HashSet<>();
+        for (Automobilis[] a : automobiliai) {
+            for (Automobilis aa : a) {
+                unikalus.add(aa.getMetai());
+            }
+        }
+        return unikalus.size();
     }
 
     /**
@@ -539,6 +590,8 @@ public class IFF68_SivickasL_L2a {
             return;
         }
         duomenuSpausdinimas();
+        BUFERIO_DYDIS = gautiBuferioDydi(duomenysRasytojam);
+        monitorius = new Monitorius(RPS, SPS, 5);
         pradetiProcesus();
         rezultatuSpausdinimas();
         writer.close();

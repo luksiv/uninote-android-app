@@ -1,0 +1,31 @@
+2 variantas
+Mokyklu tinku konfiguracija:
+  1 potinklis:
+    ☐ 12v + 14a
+  2 potinklis:
+    ☐ R + 10v
+  3 potinklis:
+    ☐ 17v
+  4 potinklis:
+    ☐ 18v + 15v + R
+  5 potinklis:
+    ☐ 30vW
+IP numeriu intevalai:
+  Viesiems tinklams (pazymeti v):
+    ☐ 172.16.8.0/23
+  Administraciju tinklams (pazymeti a):
+    ☐ 192.168.24.0/24
+  Tarnybiniams rysiams (tarp :
+    ☐ 10.10.10.32/27
+
+Marsrutizatoriai bus reikalingi:
+  ☐ Mosedyje: atskirti v ir a
+  ☐ Barstyciuose: nes nurodyta +R
+  ☐ Sateje: nes Notenai jungiami nuosekliai nuo Sates ir nurodyta +R (tai reikes tik vieno)
+
+Komutatoriu kiekiai:
+  ☐ Aleksandrijoje: 1 
+  ☐ Mosedyje:       2 (v ir a tinklams)
+  ☐ Sates:          1 (tik v tinklui)
+  ☐ Bastyciai:      2
+  ☐ Notenai:        1?

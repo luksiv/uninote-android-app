@@ -24,19 +24,21 @@ Toyota-Auris 2012 4.4
 Toyota-Aygo 2015 6.87
 Toyota-Yaris  2016 5.41
 Toyota-86 2017 8
-6
+8
 VW-Passat 2011 6.5
 VW-Scirocco 2012 8.95
 VW-Jetta 2015 7.44
 VW-Polo 2017 5.98
 VW-Golf 2018 7.12
 VW-Polo 2018 5.12
+VW-Polo 2018 5.12
+VW-Polo 2018 5.12
 
 4
 1995 2
 2002 2
 2017 2
-2018 2
+2018 10
 4
 2004 3
 2006 3
