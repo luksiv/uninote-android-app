@@ -51,7 +51,6 @@ class rikiavimoStruktura {
     }
 }
 
-
 /**
  * Klase skirta saugoti automobilio duomenis
  */
@@ -90,7 +89,7 @@ class Automobilis {
 }
 
 /**
- * Monitorius skirtas apsaugoti kritines sekcijas nuo lygiagrecios prieigos
+ * Monitorius skirtas apsaugoti kritines sekcijas nuo lygiagrecios prieigos ir uztikrinanti tarpusavio isskyrima
  */
 class Monitorius {
     // Boolean masyvas, kuris pasako ar rasytojai vis dar kazka raso
