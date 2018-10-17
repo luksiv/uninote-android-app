@@ -97,5 +97,137 @@ namespace SystemsOfLinearEquations
 
 
         }
+        double[,] CHA = { { 64, 16, 32, 8 }, { 16, 8, 0, 0}, {32, 0, 48, 0}, {8, 0, 0, 10} }; // koeficientu matrica
+        double[] CHB = { 256, 48, 112, 96 };// koeficientu vektorius 
+        private void btn_choleskio_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            // ----------------------Pradiniai duomenys--------------------------
+            // matricos generuojamos pagal virsuje aprasytus masyvus
+            Matrix<double> A = Matrix<double>.Build.DenseOfArray(CHA);
+            Vector<double> b = Vector<double>.Build.DenseOfArray(CHB);
+
+            op("Pradiniai duomenys:");
+            op("A =");
+            op(A.ToString());
+            op("b =");
+            op(b.ToString());
+
+            int n = A.Rank();
+
+            // Choleckio L'*L skaida
+            for (int eil = 0; eil < n; eil++)
+            {
+                op("Ciklas nr. " + (eil+1));
+                double suma = 0;
+                if (eil != 0)
+                {
+                    Matrix<double> a = A.SubMatrix(0, eil, eil, 1);
+                    for (int i = 0; i < a.Column(0).Count; i++)
+                    {
+                        suma += Math.Pow(a.Column(0)[i], 2);
+                    }                    
+                }
+                // A(e,e) - virs jos esanciu skaiciu kvadratu suma
+                A[eil, eil] = Math.Sqrt(Math.Abs(A[eil, eil] - suma));
+                for (int stu = eil+1; stu < n; stu++)
+                {
+                    if(eil != 0)
+                        A[eil, stu] = (A[eil, stu] - (A.SubMatrix(0, eil, eil, 1).Transpose() * A.SubMatrix(0, eil, stu, 1))[0, 0]) / A[eil, eil];
+                    else
+                        A[eil, stu] = (A[eil, stu]) / A[eil, eil];
+                }
+                op(A);
+            }
+
+            // 1-as atvirkstinis zingsnis, sprendziama  L'y=b, y->b
+            for (int eil = 0; eil < n; eil++)
+            {
+                if (eil != 0) {
+                    b[eil] = (b[eil] - (A.SubMatrix(0, eil, eil, 1).Transpose() * b.SubVector(0, eil)).Sum()) / A[eil, eil];
+                }
+                else
+                    b[eil] = (b[eil]) / A[eil, eil];
+                op(b);
+            }
+
+            // 2-as atvirkstinis zingsnis   Ux=b,  x->b
+            for (int eil = n-1; eil >= 0; eil--)
+            {
+                if (eil != n-1)
+                {
+                    op(A.SubMatrix(eil, 1, eil + 1, n - eil - 1));
+                    op(b.SubVector(eil+1, n-eil-1));
+                    b[eil] = (b[eil] - (A.SubMatrix(eil, 1, eil+1, n - eil - 1) * b.SubVector(eil + 1, n - eil - 1)).Sum()) / A[eil, eil];
+                }
+                else
+                    b[eil] = (b[eil]) / A[eil, eil];
+                op(b);
+            }
+
+            op(A);
+            op(b);
+            op("Patikrinimas");
+            Matrix<double> C = Matrix<double>.Build.DenseOfArray(CHA);
+            op(C.Append(Vector<double>.Build.DenseOfArray(CHB).ToColumnMatrix()));
+            for (int i = 0; i < n; i++)
+            {
+                op("               " + (i + 1) + " salyga");
+                String output  = "";
+                String output2 = "";
+                double suma = 0;
+                for (int o = 0; o < n; o++)
+                {
+                    suma += C[i, o] * b[o];
+                    if(C[i,o] < 10)
+                    {
+                        output += " " + C[i, o] + " * x" + (o + 1);
+                    }
+                    else
+                    {
+                        output += C[i, o] + " * x" + (o + 1);
+                    }
+
+                    if (C[i, o] < 10)
+                    {
+                        if(b[o] < 10)
+                            output2 += " " + C[i, o] + " * " + b[o];
+                        else
+                            output2 += " " + C[i, o] + " *" + b[o];
+                    }
+                    else
+                    {
+                        if (b[o] < 10)
+                            output2 += C[i, o] + " * " + b[o];
+                        else
+                            output2 += C[i, o] + " *" + b[o];
+                    }
+
+                    if (o != n - 1)
+                    {
+                        output += " + ";
+                        output2 += " + ";
+                    } else
+                    {
+                        output += " = ";
+                        output2 += " = ";
+                    }
+
+
+                }
+                output2 += suma + "\n";
+                op(output + output2);                
+            }
+
+
+
+
+        }
+        private void op(Object x)
+        {
+            richTextBox1.AppendText(x.ToString() + '\n');
+        }
     }
+    
+
 }

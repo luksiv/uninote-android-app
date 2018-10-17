@@ -22,3 +22,14 @@ C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfL
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.csproj.CopyComplete
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.exe
 C:\Users\Lukas\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.pdb
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\bin\Debug\SystemsOfLinearEquations.exe.config
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\bin\Debug\SystemsOfLinearEquations.exe
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\bin\Debug\SystemsOfLinearEquations.pdb
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\bin\Debug\MathNet.Numerics.dll
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\bin\Debug\MathNet.Numerics.xml
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.Form1.resources
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.Properties.Resources.resources
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.exe
+C:\Users\User\Desktop\SemestroDarbai\SMA\L2\SystemsOfLinearEquations\SystemsOfLinearEquations\obj\Debug\SystemsOfLinearEquations.pdb
