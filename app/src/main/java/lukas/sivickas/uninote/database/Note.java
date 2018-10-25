@@ -5,23 +5,27 @@ import java.util.Date;
 public class Note {
 
     int id;
-    int moduleId;
+    Module module;
     Date creationDate;
     Date lastEditDate;
+    String title;
     String text;
 
-
-    public Note(int id, int moduleId, Date creationDate, String text) {
+    public Note(int id, Module module, Date creationDate, Date lastEditDate, String title, String text) {
         this.id = id;
-        this.moduleId = moduleId;
+        this.module = module;
         this.creationDate = creationDate;
+        this.lastEditDate = lastEditDate;
+        this.title = title;
         this.text = text;
     }
 
-    public Note(int moduleId, Date creationDate, String text) {
+    public Note(Module module, Date creationDate, Date lastEditDate, String title, String text) {
         this.id = -1;
-        this.moduleId = moduleId;
+        this.module = module;
         this.creationDate = creationDate;
+        this.lastEditDate = lastEditDate;
+        this.title = title;
         this.text = text;
     }
 
@@ -29,12 +33,20 @@ public class Note {
         return id;
     }
 
-    public int getModuleId() {
-        return moduleId;
+    public String getTitle() {
+        return title;
+    }
+
+    public Module getModule() {
+        return module;
     }
 
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public Date getLastEditDate() {
+        return lastEditDate;
     }
 
     public String getText() {
@@ -45,8 +57,10 @@ public class Note {
     public String toString() {
         return "Note{" +
                 "id=" + id +
-                ", moduleId=" + moduleId +
+                ", module=" + module +
                 ", creationDate=" + creationDate +
+                ", lastEditDate=" + lastEditDate +
+                ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 '}';
     }
