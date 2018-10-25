@@ -33,7 +33,7 @@ public class AssignmentsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static AssignmentsFragment newInstance(String param1, String param2) {
+    public static AssignmentsFragment newInstance() {
         AssignmentsFragment fragment = new AssignmentsFragment();
         return fragment;
     }
@@ -87,11 +87,13 @@ public class AssignmentsFragment extends Fragment {
     }
 
     public void updateAssignmentDataSet(ArrayList<Assignment> list) {
-        if (!mAssignments.isEmpty()) {
-            mAssignments.clear();
+        if (mAssignments != null) {
+            if (!mAssignments.isEmpty()) {
+                mAssignments.clear();
+            }
+            mAssignments.addAll(list);
+            mAssignmentAdapter.notifyDataSetChanged();
         }
-        mAssignments.addAll(list);
-        mAssignmentAdapter.notifyDataSetChanged();
     }
 
 }
