@@ -465,8 +465,46 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Assignment> assignments = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME, null);
+        Cursor res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME + " order by due_date", null);
         res.moveToFirst();
+
+        //TODO: remove this when publishing
+        if (res.getCount() == 0) {
+            ArrayList<Module> modules = getAllModules();
+            // public Assignment(Module moduleId, Date dueDate, String title, String description, boolean isDone) {
+            this.insertAssignment(
+                    new Assignment(modules.get(0),
+                            new Date(Long.parseLong("1540486063000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(1),
+                            new Date(Long.parseLong("1540658863000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(2),
+                            new Date(Long.parseLong("1540918063000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(3),
+                            new Date(Long.parseLong("1543596463000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(4),
+                            new Date(Long.parseLong("1535820463000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME + " order by due_date", null);
+            res.moveToFirst();
+        }
 
         int id_index = res.getColumnIndexOrThrow("id");
         int title_index = res.getColumnIndexOrThrow("title");
