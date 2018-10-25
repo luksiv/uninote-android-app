@@ -2,6 +2,7 @@ package lukas.sivickas.uninote.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
+
+import lukas.sivickas.uninote.R;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -32,7 +35,9 @@ public class DBHelper extends SQLiteOpenHelper {
             " lead TEXT)";
     private static final String NOTES_CREATION_CODE = "CREATE TABLE IF NOT EXISTS notes (\n" +
             " id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            " creation_date TEXT NOT NULL,\n" +
+            " creation_date BIGINT NOT NULL,\n" +
+            " last_edit_date BIGINT NOT NULL,\n" +
+            " title TEXT,\n" +
             " text TEXT,\n" +
             " module_id INTEGER,\n" +
             " FOREIGN KEY(module_id) REFERENCES modules(id))";
@@ -243,19 +248,19 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     //endregion
 
-    /*
     //region Note methods
     public boolean insertNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", note.getName());
-        contentValues.put("code", note.getLead());
-        contentValues.put("lead", note.getLead());
-        db.insert(MODULES_TABLE_NAME, null, contentValues);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
-        } else {
-            Log.e(TAG, "insertModule: listener is null");
+        contentValues.put("creation_date", note.getCreationDate().getTime());
+        contentValues.put("last_edit_date", note.getLastEditDate().getTime());
+        contentValues.put("title", note.getTitle());
+        contentValues.put("text", note.getText());
+        contentValues.put("module_id", note.getModule().getId());
+
+        db.insert(NOTES_TABLE_NAME, null, contentValues);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.NOTES);
         }
         return true;
     }
@@ -263,116 +268,126 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", note.getName());
-        contentValues.put("code", note.getLead());
-        contentValues.put("lead", note.getLead());
-        db.update(MODULES_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(note.getId())});
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
+        contentValues.put("last_edit_date", note.getLastEditDate().getTime());
+        contentValues.put("title", note.getTitle());
+        contentValues.put("text", note.getText());
+        contentValues.put("module_id", note.getModule().getId());
+        db.update(NOTES_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(note.getId())});
+        if (listener != null) {
+            listener.onDataUpdated(Destination.NOTES);
         } else {
             Log.e(TAG, "insertModule: listener is null");
         }
-        Log.d(TAG, "updateModule: " + MODULES_CREATION_CODE);
-        Log.d(TAG, "updateModule: " + ASSIGNMENTS_CREATION_CODE);
-        Log.d(TAG, "updateModule: " + NOTES_CREATION_CODE);
         return true;
     }
 
-    public Integer deleteNote(Note note) {
+    public boolean deleteNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args = new String[]{Integer.toString(note.getId())};
-        int notes = db.delete(NOTES_TABLE_NAME, "module_id = ?", args);
-        int assignments = db.delete(ASSIGNMENTS_TABLE_NAME, "module_id = ?", args);
-        int modules = db.delete(MODULES_TABLE_NAME, "id = ?", args);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
+        db.delete(NOTES_TABLE_NAME, "id = ?", args);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.NOTES);
+        } else {
+            Log.e(TAG, "insertModule: listener is null");
         }
-        return notes + assignments + modules;
+        return true;
     }
 
-    public Integer deleteNote(int id) {
+    public boolean deleteNote(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] args = new String[]{Integer.toString(id)};
-        int notes = db.delete(NOTES_TABLE_NAME, "module_id = ?", args);
-        int assignments = db.delete(ASSIGNMENTS_TABLE_NAME, "module_id = ?", args);
-        int modules = db.delete(MODULES_TABLE_NAME, "id = ?", args);
-        if(listener != null){
-            listener.onDataUpdated(Destination.MODULES);
-            Log.d(TAG, "deleteModule: message sent");
+        db.delete(NOTES_TABLE_NAME, "id = ?", args);
+        if (listener != null) {
+            listener.onDataUpdated(Destination.NOTES);
         } else {
             Log.e(TAG, "deleteModule: listener is null");
         }
-        return notes + assignments + modules;
+        return true;
     }
 
     public Note getNote(int id) {
-
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME +
+        Cursor res = db.rawQuery("select * from " + NOTES_TABLE_NAME +
                 " where id=" + id + "", null);
 
         res.moveToFirst();
-        int name_index = res.getColumnIndexOrThrow("name");
-        int code_index = res.getColumnIndexOrThrow("code");
-        int lead_index = res.getColumnIndexOrThrow("lead");
+        int crdIndex = res.getColumnIndexOrThrow("creation_date");
+        int ledIndex = res.getColumnIndexOrThrow("last_edit_date");
+        int titleIndex = res.getColumnIndexOrThrow("title");
+        int textIndex = res.getColumnIndexOrThrow("text");
+        int modlIndex = res.getColumnIndexOrThrow("module_id");
 
-        String name;
-        String code;
-        String lead;
+        Long crTimestamp;
+        Long leTimestamp;
+        String title;
+        String text;
+        int moduleId;
 
-        name = res.getString(name_index);
+        crTimestamp = res.getLong(crdIndex);
+        leTimestamp = res.getLong(ledIndex);
+        title = res.getString(titleIndex);
+        text = res.getString(textIndex);
+        moduleId = res.getInt(modlIndex);
 
-        if (res.isNull(code_index)) {
-            code = "";
-        } else {
-            code = res.getString(code_index);
-        }
+        Date crDate = new Date(crTimestamp);
+        Date leDate = new Date(leTimestamp);
+        Module module = this.getModule(moduleId);
 
-        if (res.isNull(lead_index)) {
-            lead = "";
-        } else {
-            lead = res.getString(lead_index);
-        }
-
-        return new Module(id, name, code, lead);
+        return new Note(id, module, crDate, leDate, title, text);
     }
 
     public ArrayList<Note> getAllNotes() {
-        ArrayList<Module> modules = new ArrayList<Module>();
+        ArrayList<Note> notes = new ArrayList<Note>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + MODULES_TABLE_NAME, null);
+        Cursor res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date", null);
         res.moveToFirst();
 
+        //TODO: remove this when publishing
+        if (res.getCount() == 0) {
+            ArrayList<Module> modules = getAllModules();
+            Log.d(TAG, "getAllNotes: gogogo");
+            String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie faucibus mauris quis consectetur. Quisque malesuada quis diam ut fermentum. Donec in neque quis nisi pretium egestas et sed leo. Nunc hendrerit finibus nunc. Phasellus viverra nunc nisi, sed faucibus dui consequat in. Fusce id erat elementum, eleifend purus vel, scelerisque leo. Nullam vitae ex a urna hendrerit vehicula. Etiam tempus accumsan semper.";
+            insertNote(new Note(modules.get(0), new Date(Long.parseLong("1540489564000")), new Date(Long.parseLong("1540489564000")), "Note 1", lorem));
+            insertNote(new Note(modules.get(1), new Date(Long.parseLong("1540575964000")), new Date(Long.parseLong("1540575964000")), "Note 2", lorem));
+            insertNote(new Note(modules.get(2), new Date(Long.parseLong("1540921564000")), new Date(Long.parseLong("1540921564000")), "Note 3", lorem));
+            insertNote(new Note(modules.get(3), new Date(Long.parseLong("1539625564000")), new Date(Long.parseLong("1539625564000")), "Note 4", lorem));
+            insertNote(new Note(modules.get(4), new Date(Long.parseLong("1542303964000")), new Date(Long.parseLong("1542303964000")), "Note 5", lorem));
+            res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date", null);
+            res.moveToFirst();
+        }
+
         int id_index = res.getColumnIndexOrThrow("id");
-        int name_index = res.getColumnIndexOrThrow("name");
-        int code_index = res.getColumnIndexOrThrow("code");
-        int lead_index = res.getColumnIndexOrThrow("lead");
+        int crdIndex = res.getColumnIndexOrThrow("creation_date");
+        int ledIndex = res.getColumnIndexOrThrow("last_edit_date");
+        int titleIndex = res.getColumnIndexOrThrow("title");
+        int textIndex = res.getColumnIndexOrThrow("text");
+        int modlIndex = res.getColumnIndexOrThrow("module_id");
+
 
         int id;
-        String name;
-        String code;
-        String lead;
+        Long crTimestamp;
+        Long leTimestamp;
+        String title;
+        String text;
+        int moduleId;
 
         while (res.isAfterLast() == false) {
             id = res.getInt(id_index);
-            name = res.getString(name_index);
-            if (res.isNull(code_index)) {
-                code = "";
-            } else {
-                code = res.getString(code_index);
-            }
+            crTimestamp = res.getLong(crdIndex);
+            leTimestamp = res.getLong(ledIndex);
+            title = res.getString(titleIndex);
+            text = res.getString(textIndex);
+            moduleId = res.getInt(modlIndex);
 
-            if (res.isNull(lead_index)) {
-                lead = "";
-            } else {
-                lead = res.getString(lead_index);
-            }
+            Date crDate = new Date(crTimestamp);
+            Date leDate = new Date(leTimestamp);
+            Module module = this.getModule(moduleId);
 
-            modules.add(new Module(id, name, code, lead));
+            notes.add(new Note(id, module, crDate, leDate, title, text));
             res.moveToNext();
         }
-        return modules;
+        return notes;
     }
     //endregion*/
 
@@ -471,7 +486,6 @@ public class DBHelper extends SQLiteOpenHelper {
         //TODO: remove this when publishing
         if (res.getCount() == 0) {
             ArrayList<Module> modules = getAllModules();
-            // public Assignment(Module moduleId, Date dueDate, String title, String description, boolean isDone) {
             this.insertAssignment(
                     new Assignment(modules.get(0),
                             new Date(Long.parseLong("1540486063000")),
@@ -541,7 +555,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Assignment getNextAssignment(int module_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from assignments where module_id = "+ module_id +" and is_done = 0 order by due_date asc limit 1", null);
+        Cursor res = db.rawQuery("select * from assignments where module_id = " + module_id + " and is_done = 0 order by due_date asc limit 1", null);
 
         res.moveToFirst();
         if (res.getCount() > 0) {
