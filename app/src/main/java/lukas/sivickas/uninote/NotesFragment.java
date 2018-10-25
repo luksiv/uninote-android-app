@@ -1,31 +1,31 @@
 package lukas.sivickas.uninote;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ListView;
 
-import static android.app.Activity.RESULT_OK;
+import java.util.ArrayList;
+
+import lukas.sivickas.uninote.adapters.NoteArrayAdapter;
+import lukas.sivickas.uninote.database.DBHelper;
+import lukas.sivickas.uninote.database.Note;
+import lukas.sivickas.uninote.forms.NoteForm;
 
 
 public class NotesFragment extends Fragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "NotesFragment";
 
-    private String mParam1;
-    private String mParam2;
+    ListView noteView;
 
-    ImageView mImageTaken;
-    Button mTestButton;
+    ArrayList<Note> mNotes;
+    NoteArrayAdapter mNoteAdapter;
+    public static DBHelper mDbHelper;
 
     public NotesFragment() {
         // Required empty public constructor
@@ -33,20 +33,25 @@ public class NotesFragment extends Fragment {
 
     public static NotesFragment newInstance(String param1, String param2) {
         NotesFragment fragment = new NotesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        Log.d(TAG, "onCreate: creating new NotesFragments");
+        mDbHelper = new DBHelper(getContext());
+        mDbHelper.setDataUpdateEventListener(new DBHelper.DataUpdateEventListener() {
+            @Override
+            public void onDataUpdated(DBHelper.Destination table) {
+                Log.d(TAG, "onDataUpdated: got a callback: " + table);
+                if (table == DBHelper.Destination.NOTES) {
+                    updateNotesDataSet(mDbHelper.getAllNotes());
+                }
+            }
+        });
+        mNotes = mDbHelper.getAllNotes();
+        mNoteAdapter = new NoteArrayAdapter(super.getContext(), mNotes, NotesFragment.super.getActivity().getFragmentManager());
     }
 
     @Override
@@ -57,34 +62,34 @@ public class NotesFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
-        mImageTaken = view.findViewById(R.id.iw_taken_pic);
-        mTestButton = view.findViewById(R.id.btn_test);
 
-        mTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivityForResult(takePictureIntent, 1);
-                    }
-                } else {
-                    Toast.makeText(getContext(), "No camera :(", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
+        noteView = view.findViewById(R.id.lv_notes);
+        noteView.setAdapter(mNoteAdapter);
 
         return view;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mImageTaken.setImageBitmap(imageBitmap);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                Log.d(TAG, "onOptionsItemSelected: add pressed");
+                Intent intent = new Intent(getContext(), NoteForm.class);
+                startActivity(intent);
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void updateNotesDataSet(ArrayList<Note> list) {
+        if (mNotes != null) {
+            if (!mNotes.isEmpty()) {
+                mNotes.clear();
+            }
+            mNotes.addAll(list);
+            mNoteAdapter.notifyDataSetChanged();
         }
     }
 }
