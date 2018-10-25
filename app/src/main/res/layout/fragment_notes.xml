@@ -5,20 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".NotesFragment">
 
-    <ImageView
-        android:id="@+id/iw_taken_pic"
-        android:layout_width="270dp"
-        android:layout_height="480dp"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
-
-        android:text="Test" />
+    <ListView
+        android:id="@+id/lv_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="2dp"/>
 
 </RelativeLayout>
