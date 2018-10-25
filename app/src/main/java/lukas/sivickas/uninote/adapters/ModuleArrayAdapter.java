@@ -47,7 +47,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.modules_item, parent, false);
+                    .inflate(R.layout.module_item, parent, false);
         }
 
         TextView id = convertView.findViewById(R.id.tv_module_item_id);
