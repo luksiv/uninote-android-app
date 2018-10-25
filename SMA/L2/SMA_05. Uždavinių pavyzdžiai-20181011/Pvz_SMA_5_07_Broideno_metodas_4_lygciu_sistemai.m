@@ -5,19 +5,28 @@ clc,close all
 
 eps=1e-10
 itmax=100000
-x=[1;1;1;1];   
+x=[ 4;4;4;4];   
 n=length(x);
 
 % Pradines Jakobio matricos reiksmes apskaiciavimas:
 dx=sum(abs(x))*1e-5;
 f0=f(x);
-for i=1:n, x1=x; x1(i)=x1(i)+dx; f1=f(x1); A(:,i)=(f1-f0)/dx; end
+for i=1:n 
+    x1=x; 
+    x1(i)=x1(i)+dx; 
+    f1=f(x1); 
+    A(:,i)=(f1-f0)/dx; 
+end
+A
 % A=-eye(n)*10   %*10  *(-10) 
 
 % Broideno metodo iteracijos:
 fi=f(x);  % pradine funkcijos reiksme
 for iii=1:itmax
-    deltax=-A\f(x); x=x+deltax; fi1=f(x); A=A+(fi1-fi-A*deltax)*deltax'/(deltax'*deltax);
+    deltax=-A\f(x); 
+    x=x+deltax; 
+    fi1=f(x); 
+    A=A+(fi1-fi-A*deltax)*deltax'/(deltax'*deltax);
     
     tikslumas=norm(deltax)/(norm(x)+norm(deltax));
     fprintf(1,'\n iteracija %d  tikslumas %g',iii,tikslumas);
@@ -37,11 +46,11 @@ end
 end
 
 %   Lygciu sistemos funkcija 
-function F=f(X) 
- F(1)=X(1)+2*X(2)+X(3)+4*X(4)-20.7;
- F(2)=X(1)^2+2*X(1)*X(2)+X(4)^3-15.88;
- F(3)=X(1)^3+X(3)^2+X(4)-21.218;
- F(4)=3*X(2)+X(3)*X(4)-7.9;
+function F=f(x) 
+ F(1)=2*x(1) + 5*x(2) - 2*x(3) + x(4) - 17;
+ F(2)=-1*x(2)^2 + 3*x(3)^2 - 18;
+ F(3)=x(3)^3 + 4*x(1)*x(3) - 2*x(4)^2 - 79;
+ F(4)=5*x(1) - 15*x(2) + x(3) + 4*x(4) + 25;
  F=F(:);
  return
 end 

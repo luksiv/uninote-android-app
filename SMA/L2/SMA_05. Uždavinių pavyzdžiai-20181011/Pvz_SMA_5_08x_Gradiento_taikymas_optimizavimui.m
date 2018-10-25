@@ -24,8 +24,14 @@ surf(X,Y,Z,'FaceAlpha',0.8,'EdgeColor',0.8*[1 1 1],'FaceColor',0.9*[0.6 1 0],'Fa
 
 npoints1=30;xp=5;yp=-5;xg=0;yg=2;xgf=-5;ygf=5;
 npoints2=30
-x01=[xp:(xg-xp)/npoints1:xg];x02=[xg:(xgf-xg)/npoints2:xgf];x0=[x01(1:end-1),x02]
-y01=[yp:(yg-yp)/npoints1:yg];y02=[yg:(ygf-yg)/npoints2:ygf];y0=[y01(1:end-1),y02]
+x01=[xp:(xg-xp)/npoints1:xg];
+x02=[xg:(xgf-xg)/npoints2:xgf];
+x0=[x01(1:end-1),x02]
+
+y01=[yp:(yg-yp)/npoints1:yg];
+y02=[yg:(ygf-yg)/npoints2:ygf];
+y0=[y01(1:end-1),y02]
+
 lng=min(length(x0),length(y0));
 x0=x0(1:lng);y0=y0(1:lng);
 z0=kalnas(x0,y0);  % intial trial solution
@@ -54,8 +60,11 @@ for iii=1:itmax
        nrm= [y0(3:end)-y0(1:end-2)
              x0(1:end-2)-x0(3:end)];  % normal to the path right 
        grd=[delta(1:n-2);
-            delta(n-1:2*n-4)]; 
-       for ii=1:n-2, grd(:,ii)=dot(nrm(:,ii),grd(:,ii))*nrm(:,ii)/norm(nrm(:,ii)); end
+            delta(n-1:2*n-4)]
+        pause
+       for ii=1:n-2 
+           grd(:,ii)=dot(nrm(:,ii),grd(:,ii))*nrm(:,ii)/norm(nrm(:,ii)); 
+       end
        delta=[grd(1,:),grd(2,:)]; 
        
         x(2:n-1)=x(2:n-1)-delta(1:n-2); 
@@ -74,7 +83,10 @@ for iii=1:itmax
         tikslumas=norm(fff-fff1)/(norm(fff)+norm(fff1));
         fprintf(1,'\n kryptis %d  tikslumas %g  zingsnis % g',iii,tikslumas,step);
         if tikslumas < eps,break,end
-        if fff1 > fff, x(2:end-1)=x(2:end-1)+delta(1:n-2); y(2:end-1)=y(2:end-1)+delta(n-1:2*n-4); step=step/2; 
+        if fff1 > fff
+            x(2:end-1)=x(2:end-1)+delta(1:n-2); 
+            y(2:end-1)=y(2:end-1)+delta(n-1:2*n-4); 
+            step=step/2; 
         else, fff=fff1; if tikslumas < EPS, step=step*2;end
         end
     end
@@ -115,9 +127,10 @@ end
         % returns 2 vectors of length n-2
         z=kalnas(x,y);
         [dfffx1,dfffy1]=Dkalnas(x,y);
-        dfffx=dfffx1(2:end-1);dfffy=dfffy1(2:end-1);
+        dfffx=dfffx1(2:end-1);
+        dfffy=dfffy1(2:end-1);
         rezx=2*(x(2:end-1)-x(1:end-2))-2*(x(3:end)-x(2:end-1))+2*AB*(z(2:end-1)-z(1:end-2)).*dfffx-2*AB*(z(3:end)-z(2:end-1)).*dfffx;
-        rezy=2*(y(2:end-1)-y(1:end-2))-2*(y(3:end)-y(2:end-1))+2*AB*(z(2:end-1)-z(1:end-2)).*dfffy-2*AB*(z(3:end)-z(2:end-1)).*dfffy; 
+        rezy=2*(y(2:end-1)-y(1:end-2))-2*(y(3:end)-y(2:end-1))+2*AB*(z(2:end-1)-z(1:end-2)).*dfffy-2*AB*(z(3:end)-z(2:end-1)).*dfffy;
     return
     end
 end

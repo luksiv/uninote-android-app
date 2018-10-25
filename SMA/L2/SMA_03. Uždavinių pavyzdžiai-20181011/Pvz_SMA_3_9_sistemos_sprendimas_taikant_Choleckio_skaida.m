@@ -43,16 +43,19 @@ end
 disp("Pabaiga L'*L skaidos");
 A
 % 1-as atvirkstinis zingsnis, sprendziama  L'y=b, y->b
-
+disp("1-as atvirkstinis zingsnis, sprendziama  L'y=b, y->b");
 for i=1:n
-    %disp("kas yra b(i,:)");
-    %A(1:i-1,i)'
-    %b(1:i-1)
-    %A(1:i-1,i)'*b(1:i-1)
-    %disp("~_-~--~-~_~_");
+    disp(i + " ciklas")
+    disp("kas yra b(i,:)");
+    A
+    b
+    A(1:i-1,i)'
+    b(1:i-1)
+    A(1:i-1,i)'*b(1:i-1)
+    disp("~_-~--~-~_~_");
     b(i,:)=(b(i,:)-A(1:i-1,i)'*b(1:i-1))/A(i,i);
 end
-disp("1-as atvirkstinis zingsnis, sprendziama  L'y=b, y->b");
+disp("1-as atvirkstinis zingsnis pabaiga");
 b
 
 % 2-as atvirkstinis zingsnis   Ux=b,  x->b

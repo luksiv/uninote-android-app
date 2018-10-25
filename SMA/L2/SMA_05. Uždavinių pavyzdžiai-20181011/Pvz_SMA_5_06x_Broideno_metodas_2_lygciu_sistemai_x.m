@@ -4,7 +4,7 @@ function pagrindine
 clc,close all
 scrsz = get(0,'ScreenSize')
 
-x=[-5:0.2:5];y=[-6:0.2:6];
+x=[-10:0.1:10];y=[-6:0.1:6];
 Z=pavirsius(@f,x,y);
 % [left, bottom, width, height]
 fig1=figure(1);set(fig1,'Position',[50 scrsz(4)/1.8 scrsz(3)/3 scrsz(4)/3],'Color','w');
@@ -16,7 +16,7 @@ pause
 xx=axis; fill([xx(1),xx(1),xx(2),xx(2)],[xx(3),xx(4),xx(4),xx(3)],'b','FaceAlpha',0.2);
 
 eps=1e-5;itmax=100;
-x=[3.5;-8];
+x=[-4;4];
 n=length(x);
 
 % Pradinio Jakobio matricos artinio apskaiciavimas: **********
@@ -54,8 +54,8 @@ end
 
 %   Lygciu sistemos funkcija 
     function fff=f(x)
-          fff=[ sin(4*x(1))+x(2)^2-2;
-                x(1)^2+x(2)^2-(0.5*sin(6*atan(x(2)/x(1)))+1.5)^2];
+    fff=[((x(1)^2)/(((x(2) + cos(x(1)))^2)+1)) - 2;
+         ((x(1)/3)^2) + ((x(2) + cos(x(1)))^2) - 5];
     return
     end
 
