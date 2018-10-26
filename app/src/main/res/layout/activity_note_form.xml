@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".forms.NoteForm">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Module" />
+
+            <Spinner
+                android:id="@+id/spn_note_module_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <EditText
+            android:id="@+id/et_note_title"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:hint="Title" />
+        <EditText
+            android:id="@+id/et_note_text"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:hint="Note" />
+        <Button
+            android:id="@+id/btn_module_save"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="Save"/>
+    </LinearLayout>
+
+</RelativeLayout>
