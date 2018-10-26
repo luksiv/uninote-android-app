@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".forms.ModuleForm" />
         <activity android:name=".forms.AssignmentForm"></activity>
+        <activity android:name=".forms.NoteForm"></activity>
     </application>
 
 </manifest>
