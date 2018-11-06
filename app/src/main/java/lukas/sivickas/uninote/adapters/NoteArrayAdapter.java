@@ -53,19 +53,17 @@ public class NoteArrayAdapter extends ArrayAdapter<Note> {
                     .inflate(R.layout.note_item, parent, false);
         }
 
-        TextView id = convertView.findViewById(R.id.tv_note_id);
         TextView crd = convertView.findViewById(R.id.tv_note_crd);
         TextView led = convertView.findViewById(R.id.tv_note_led);
         TextView title = convertView.findViewById(R.id.tv_note_title);
         TextView text = convertView.findViewById(R.id.tv_note_text);
         TextView module = convertView.findViewById(R.id.tv_note_module);
 
-        id.setText("ID: " + item.getId());
-        crd.setText("Creation date: " + item.getCreationDate().toString());
+        crd.setText("Created: " + item.getCreationDate().toString());
         led.setText("Last edit: " + item.getCreationDate().toString());
-        title.setText("Title: " + item.getTitle());
-        text.setText("Text: " + item.getText());
-        module.setText("Module: " + item.getModule().getName() + " (" + item.getModule().getCode() + ")");
+        title.setText(item.getTitle());
+        text.setText(item.getText());
+        module.setText("[" + item.getModule().getCode() + "] " + item.getModule().getName());
 
 
         convertView.setOnLongClickListener(new View.OnLongClickListener() {

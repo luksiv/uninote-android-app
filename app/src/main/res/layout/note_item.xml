@@ -5,42 +5,22 @@
     android:layout_margin="8dp"
     android:background="@drawable/border_top_only_transparent"
     android:orientation="vertical"
-    android:padding="4dp">
-
-    <TextView
-        android:id="@+id/tv_note_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="ID" />
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/tv_note_module"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Module Name (ID)" />
-
-    <TextView
-        android:id="@+id/tv_note_crd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Creation date" />
-
-    <TextView
-        android:id="@+id/tv_note_led"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Last edit date" />
+        android:text="[CODE] Module Name" />
 
     <TextView
         android:id="@+id/tv_note_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Title" />
+        android:text="Title"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_note_text"
@@ -48,5 +28,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/lorem_ipsum" />
+
+    <TextView
+        android:id="@+id/tv_note_crd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="4dp"
+        android:text="Created: 2018-18-4 16:13"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tv_note_led"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Last edit:2018-18-4 16:13"
+        android:textStyle="italic" />
 
 </LinearLayout>
