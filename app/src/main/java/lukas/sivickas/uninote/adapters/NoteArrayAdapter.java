@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.NotesFragment;
 import lukas.sivickas.uninote.R;
+import lukas.sivickas.uninote.Tools;
 import lukas.sivickas.uninote.database.Module;
 import lukas.sivickas.uninote.database.Note;
 import lukas.sivickas.uninote.forms.ModuleForm;
@@ -59,8 +60,8 @@ public class NoteArrayAdapter extends ArrayAdapter<Note> {
         TextView text = convertView.findViewById(R.id.tv_note_text);
         TextView module = convertView.findViewById(R.id.tv_note_module);
 
-        crd.setText("Created: " + item.getCreationDate().toString());
-        led.setText("Last edit: " + item.getCreationDate().toString());
+        crd.setText("Created: " + Tools.convertToString(item.getCreationDate()));
+        led.setText("Last edit: " + Tools.convertToString(item.getCreationDate()));
         title.setText(item.getTitle());
         text.setText(item.getText());
         module.setText("[" + item.getModule().getCode() + "] " + item.getModule().getName());
