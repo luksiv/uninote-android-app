@@ -72,15 +72,12 @@ public class NotesFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected: method invoked");
         switch (item.getItemId()) {
             case R.id.action_add:
-                Log.d(TAG, "onOptionsItemSelected: add pressed");
                 if (mDbHelper.getAllModules().size() != 0) {
                     Intent intent = new Intent(getContext(), NoteForm.class);
                     startActivity(intent);
                 } else {
-                    Log.d(TAG, "onOptionsItemSelected: should make toast");
                     Toast.makeText(this.getContext(), "Add modules, before adding notes", Toast.LENGTH_SHORT).show();
                 }
             default:
