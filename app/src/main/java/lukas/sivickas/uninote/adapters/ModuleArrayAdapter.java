@@ -64,8 +64,8 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         lead.setText(item.getLead());
 
         if (item.hasNextAssignment()) {
-            next_assig_date.setText("Next assignment:\n" + item.getNextAssignment().getDueDate().toString());
-            next_assig_title.setText(item.getNextAssignment().getTitle());
+            next_assig_date.setText(item.getNextAssignment().getDueDate().toString());
+            next_assig_title.setText("Next assignment:\n" + item.getNextAssignment().getTitle());
         } else {
             next_assig_date.setVisibility(View.GONE);
             next_assig_title.setVisibility(View.GONE);
