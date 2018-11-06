@@ -207,13 +207,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //TODO: remove this when publishing
         if (res.getCount() == 0) {
-            this.insertModule(new Module("Informacinių sistemų pagringai", "P170B114", "R. Butleris"));
-            this.insertModule(new Module("Skaitiniai metodai ir algoritmai", "P170B115", "R. Barauskas"));
-            this.insertModule(new Module("Lygiagretusis programavimas", "P170B328", "Karolis Ryselis"));
-            this.insertModule(new Module("Išmaniųjų įrenginių programavimas", "P175B156", "Tomas Blažauskas"));
-            this.insertModule(new Module("Kompiuterių tinklai ir internetinės technologijos", "T120B145", "R. Kavaliūnas"));
-            res = db.rawQuery("select * from " + MODULES_TABLE_NAME + " order by name asc", null);
-            res.moveToFirst();
+            return modules;
+//            this.insertModule(new Module("Informacinių sistemų pagringai", "P170B114", "R. Butleris"));
+//            this.insertModule(new Module("Skaitiniai metodai ir algoritmai", "P170B115", "R. Barauskas"));
+//            this.insertModule(new Module("Lygiagretusis programavimas", "P170B328", "Karolis Ryselis"));
+//            this.insertModule(new Module("Išmaniųjų įrenginių programavimas", "P175B156", "Tomas Blažauskas"));
+//            this.insertModule(new Module("Kompiuterių tinklai ir internetinės technologijos", "T120B145", "R. Kavaliūnas"));
+//            res = db.rawQuery("select * from " + MODULES_TABLE_NAME + " order by name asc", null);
+//            res.moveToFirst();
         }
 
         int id_index = res.getColumnIndexOrThrow("id");
@@ -345,16 +346,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //TODO: remove this when publishing
         if (res.getCount() == 0) {
-            ArrayList<Module> modules = getAllModules();
-            Log.d(TAG, "getAllNotes: gogogo");
-            String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie faucibus mauris quis consectetur. Quisque malesuada quis diam ut fermentum. Donec in neque quis nisi pretium egestas et sed leo. Nunc hendrerit finibus nunc. Phasellus viverra nunc nisi, sed faucibus dui consequat in. Fusce id erat elementum, eleifend purus vel, scelerisque leo. Nullam vitae ex a urna hendrerit vehicula. Etiam tempus accumsan semper.";
-            insertNote(new Note(modules.get(0), new Date(Long.parseLong("1540489564000")), new Date(Long.parseLong("1540489564000")), "Note 1", lorem));
-            insertNote(new Note(modules.get(1), new Date(Long.parseLong("1540575964000")), new Date(Long.parseLong("1540575964000")), "Note 2", lorem));
-            insertNote(new Note(modules.get(2), new Date(Long.parseLong("1540921564000")), new Date(Long.parseLong("1540921564000")), "Note 3", lorem));
-            insertNote(new Note(modules.get(3), new Date(Long.parseLong("1539625564000")), new Date(Long.parseLong("1539625564000")), "Note 4", lorem));
-            insertNote(new Note(modules.get(4), new Date(Long.parseLong("1542303964000")), new Date(Long.parseLong("1542303964000")), "Note 5", lorem));
-            res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date", null);
-            res.moveToFirst();
+            return notes;
+//            ArrayList<Module> modules = getAllModules();
+//            Log.d(TAG, "getAllNotes: gogogo");
+//            String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie faucibus mauris quis consectetur. Quisque malesuada quis diam ut fermentum. Donec in neque quis nisi pretium egestas et sed leo. Nunc hendrerit finibus nunc. Phasellus viverra nunc nisi, sed faucibus dui consequat in. Fusce id erat elementum, eleifend purus vel, scelerisque leo. Nullam vitae ex a urna hendrerit vehicula. Etiam tempus accumsan semper.";
+//            insertNote(new Note(modules.get(0), new Date(Long.parseLong("1540489564000")), new Date(Long.parseLong("1540489564000")), "Note 1", lorem));
+//            insertNote(new Note(modules.get(1), new Date(Long.parseLong("1540575964000")), new Date(Long.parseLong("1540575964000")), "Note 2", lorem));
+//            insertNote(new Note(modules.get(2), new Date(Long.parseLong("1540921564000")), new Date(Long.parseLong("1540921564000")), "Note 3", lorem));
+//            insertNote(new Note(modules.get(3), new Date(Long.parseLong("1539625564000")), new Date(Long.parseLong("1539625564000")), "Note 4", lorem));
+//            insertNote(new Note(modules.get(4), new Date(Long.parseLong("1542303964000")), new Date(Long.parseLong("1542303964000")), "Note 5", lorem));
+//            res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date", null);
+//            res.moveToFirst();
         }
 
         int id_index = res.getColumnIndexOrThrow("id");
@@ -485,39 +487,40 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //TODO: remove this when publishing
         if (res.getCount() == 0) {
-            ArrayList<Module> modules = getAllModules();
-            this.insertAssignment(
-                    new Assignment(modules.get(0),
-                            new Date(Long.parseLong("1540486063000")),
-                            "Pirmas atsiskaitymas",
-                            "Pirmo atsiskaitymo aprasas",
-                            false));
-            this.insertAssignment(
-                    new Assignment(modules.get(1),
-                            new Date(Long.parseLong("1540658863000")),
-                            "Pirmas atsiskaitymas",
-                            "Pirmo atsiskaitymo aprasas",
-                            false));
-            this.insertAssignment(
-                    new Assignment(modules.get(2),
-                            new Date(Long.parseLong("1540918063000")),
-                            "Pirmas atsiskaitymas",
-                            "Pirmo atsiskaitymo aprasas",
-                            false));
-            this.insertAssignment(
-                    new Assignment(modules.get(3),
-                            new Date(Long.parseLong("1543596463000")),
-                            "Pirmas atsiskaitymas",
-                            "Pirmo atsiskaitymo aprasas",
-                            false));
-            this.insertAssignment(
-                    new Assignment(modules.get(4),
-                            new Date(Long.parseLong("1535820463000")),
-                            "Pirmas atsiskaitymas",
-                            "Pirmo atsiskaitymo aprasas",
-                            false));
-            res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME + " order by due_date", null);
-            res.moveToFirst();
+            return assignments;
+//            ArrayList<Module> modules = getAllModules();
+//            this.insertAssignment(
+//                    new Assignment(modules.get(0),
+//                            new Date(Long.parseLong("1540486063000")),
+//                            "Pirmas atsiskaitymas",
+//                            "Pirmo atsiskaitymo aprasas",
+//                            false));
+//            this.insertAssignment(
+//                    new Assignment(modules.get(1),
+//                            new Date(Long.parseLong("1540658863000")),
+//                            "Pirmas atsiskaitymas",
+//                            "Pirmo atsiskaitymo aprasas",
+//                            false));
+//            this.insertAssignment(
+//                    new Assignment(modules.get(2),
+//                            new Date(Long.parseLong("1540918063000")),
+//                            "Pirmas atsiskaitymas",
+//                            "Pirmo atsiskaitymo aprasas",
+//                            false));
+//            this.insertAssignment(
+//                    new Assignment(modules.get(3),
+//                            new Date(Long.parseLong("1543596463000")),
+//                            "Pirmas atsiskaitymas",
+//                            "Pirmo atsiskaitymo aprasas",
+//                            false));
+//            this.insertAssignment(
+//                    new Assignment(modules.get(4),
+//                            new Date(Long.parseLong("1535820463000")),
+//                            "Pirmas atsiskaitymas",
+//                            "Pirmo atsiskaitymo aprasas",
+//                            false));
+//            res = db.rawQuery("select * from " + ASSIGNMENTS_TABLE_NAME + " order by due_date", null);
+//            res.moveToFirst();
         }
 
         int id_index = res.getColumnIndexOrThrow("id");

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -75,8 +76,13 @@ public class NotesFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Log.d(TAG, "onOptionsItemSelected: add pressed");
-                Intent intent = new Intent(getContext(), NoteForm.class);
-                startActivity(intent);
+                if (mDbHelper.getAllModules().size() != 0) {
+                    Intent intent = new Intent(getContext(), NoteForm.class);
+                    startActivity(intent);
+                } else {
+                    Log.d(TAG, "onOptionsItemSelected: should make toast");
+                    Toast.makeText(this.getContext(), "Add modules, before adding notes", Toast.LENGTH_SHORT).show();
+                }
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
