@@ -40,7 +40,7 @@
         android:layout_below="@id/tv_module_item_name"
         android:background="@drawable/border_top_only_transparent"
         android:orientation="vertical"
-        android:padding="4dp"
+        android:padding="8dp"
         android:visibility="visible">
 
         <!-- Modulio info -->
@@ -67,7 +67,6 @@
             android:id="@+id/tv_module_lv_item_next_ass_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="Kito atsiskaitymo data" />
 
     </LinearLayout>
