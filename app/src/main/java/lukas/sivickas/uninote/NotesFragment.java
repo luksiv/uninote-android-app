@@ -52,6 +52,7 @@ public class NotesFragment extends Fragment {
         });
         mNotes = mDbHelper.getAllNotes();
         mNoteAdapter = new NoteArrayAdapter(super.getContext(), mNotes, NotesFragment.super.getActivity().getFragmentManager());
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -65,12 +66,12 @@ public class NotesFragment extends Fragment {
 
         noteView = view.findViewById(R.id.lv_notes);
         noteView.setAdapter(mNoteAdapter);
-
         return view;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: method invoked");
         switch (item.getItemId()) {
             case R.id.action_add:
                 Log.d(TAG, "onOptionsItemSelected: add pressed");
