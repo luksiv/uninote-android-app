@@ -11,74 +11,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:orientation="vertical">
+        android:layout_margin="32dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Module" />
+
+        <Spinner
+            android:id="@+id/spn_assig_module_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Module" />
-
-            <Spinner
-                android:id="@+id/spn_assig_module_selected"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date:" />
 
             <TextView
                 android:id="@+id/tv_assig_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Date"
+                android:text="Not set"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/btn_assig_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="64dp"
+                android:background="@drawable/border_surround_transparent"
                 android:text="set date" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time:" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time:" />
 
             <TextView
                 android:id="@+id/tv_assig_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Time"
+                android:text="Not set"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/btn_assig_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
+                android:layout_marginLeft="64dp"
+                android:background="@drawable/border_surround_transparent"
                 android:text="set time" />
 
         </LinearLayout>
@@ -103,13 +100,16 @@
             android:id="@+id/et_assig_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter a description" />
+            android:hint="Enter a description"
+            android:inputType="text|textMultiLine" />
 
         <Button
             android:id="@+id/btn_assig_save"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/border_surround_transparent"
             android:text="Save" />
     </LinearLayout>
 
