@@ -11,41 +11,51 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="32dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Module" />
+        <Spinner
+            android:id="@+id/spn_note_module_selected"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Module" />
-
-            <Spinner
-                android:id="@+id/spn_note_module_selected"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Title" />
         <EditText
             android:id="@+id/et_note_title"
-            android:layout_width="128dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:hint="Title" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Note" />
         <EditText
             android:id="@+id/et_note_text"
-            android:layout_width="128dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Note" />
+            android:hint="Note"
+            android:inputType="text|textMultiLine" />
 
         <Button
             android:id="@+id/btn_note_save"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_surround_transparent"
             android:text="Save" />
     </LinearLayout>
 
