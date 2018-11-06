@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import lukas.sivickas.uninote.AssignmentsFragment;
 import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
+import lukas.sivickas.uninote.Tools;
 import lukas.sivickas.uninote.forms.AssignmentForm;
 import lukas.sivickas.uninote.forms.ModuleForm;
 import lukas.sivickas.uninote.database.Module;
@@ -57,13 +58,11 @@ public class AssignmentArrayAdapter extends ArrayAdapter<Assignment> {
         TextView dueDate = convertView.findViewById(R.id.tv_assig_item_due_date);
         TextView title = convertView.findViewById(R.id.tv_assig_item_title);
         TextView desc = convertView.findViewById(R.id.tv_assig_item_desc);
-        TextView isDone = convertView.findViewById(R.id.tv_assig_item_is_done);
 
         module.setText(item.getModuleDesc());
-        dueDate.setText(item.getDueDate().toString());
+        dueDate.setText(Tools.convertToString(item.getDueDate()));
         title.setText(item.getTitle());
         desc.setText(item.getDescription());
-        isDone.setText(String.valueOf(item.isDone()));
 
 
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
