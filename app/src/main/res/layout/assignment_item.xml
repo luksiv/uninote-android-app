@@ -9,24 +9,25 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_top_only_transparent"
         android:orientation="vertical"
-        android:padding="4dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/tv_assig_item_module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Module: [XXX] YYYYYYY" />
+            android:text="[XXX] YYYYYYY" />
 
         <TextView
             android:id="@+id/tv_assig_item_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Due date: YYYY/MM/DD HH:mm" />
+            android:text="YYYY/MM/DD HH:mm" />
 
         <TextView
             android:id="@+id/tv_assig_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Title: XXX" />
 
         <TextView
@@ -34,11 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description: XXXXXXXX" />
-        <TextView
-            android:id="@+id/tv_assig_item_is_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Is done: false"/>
 
     </LinearLayout>
 
