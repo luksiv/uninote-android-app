@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import lukas.sivickas.uninote.ModulesFragment;
 import lukas.sivickas.uninote.R;
+import lukas.sivickas.uninote.Tools;
 import lukas.sivickas.uninote.forms.ModuleForm;
 import lukas.sivickas.uninote.database.Module;
 
@@ -64,7 +65,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         lead.setText(item.getLead());
 
         if (item.hasNextAssignment()) {
-            next_assig_date.setText(item.getNextAssignment().getDueDate().toString());
+            next_assig_date.setText(Tools.convertToString(item.getNextAssignment().getDueDate()));
             next_assig_title.setText("Next assignment:\n" + item.getNextAssignment().getTitle());
         } else {
             next_assig_date.setVisibility(View.GONE);
