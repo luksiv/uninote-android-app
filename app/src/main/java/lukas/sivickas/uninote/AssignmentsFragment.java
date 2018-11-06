@@ -69,6 +69,7 @@ public class AssignmentsFragment extends Fragment {
 
         assignmentView = view.findViewById(R.id.lv_assignments);
         assignmentView.setAdapter(mAssignmentAdapter);
+        updateAssignmentDataSet(mDbHelper.getAllAssignments());
 
         return view;
     }

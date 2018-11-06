@@ -67,6 +67,7 @@ public class NotesFragment extends Fragment {
 
         noteView = view.findViewById(R.id.lv_notes);
         noteView.setAdapter(mNoteAdapter);
+        updateNotesDataSet(mDbHelper.getAllNotes());
         return view;
     }
 

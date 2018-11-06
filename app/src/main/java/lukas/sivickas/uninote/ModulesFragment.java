@@ -71,6 +71,7 @@ public class ModulesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_modules, container, false);
         mModulesView = view.findViewById(R.id.lv_modules);
         mModulesView.setAdapter(mModuleAdapter);
+        updateModuleDataSet(mDbHelper.getAllModules());
 
         return view;
 
