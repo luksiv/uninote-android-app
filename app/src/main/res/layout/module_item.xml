@@ -19,16 +19,16 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
-        android:textStyle="bold"
         android:text="Ismaniuju irenginiu programavimas"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/btn_module_detail_expand"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="4dp"
         android:src="@drawable/ic_expand_more" />
 
@@ -57,30 +57,18 @@
             android:text="Lead: Tomas Blazauskas" />
         <!-- Kitas atsiskaitymas -->
         <TextView
-            android:id="@+id/tv_module_lv_item_next_ass_due_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Kito atsiskaitymo data" />
-
-        <TextView
             android:id="@+id/tv_module_lv_item_next_ass_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kito atsiskaitymo aprasymas" />
-        <!-- Paskutinis uzrasas -->
-        <TextView
-            android:id="@+id/tv_module_lv_item_latest_note_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Paskutinio uzraso data" />
+            android:text="Kito atsiskaitymo aprasymas" />
 
         <TextView
-            android:id="@+id/tv_module_lv_item_latest_note_text"
+            android:id="@+id/tv_module_lv_item_next_ass_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paskutinis uzrasas" />
+
+            android:text="Kito atsiskaitymo data" />
 
     </LinearLayout>
 

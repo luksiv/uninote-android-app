@@ -55,19 +55,20 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         TextView code = convertView.findViewById(R.id.tv_module_lv_item_code);
         TextView lead = convertView.findViewById(R.id.tv_module_lv_item_lead);
         final ImageView mExpandButton = convertView.findViewById(R.id.btn_module_detail_expand);
+        TextView next_assig_date = convertView.findViewById(R.id.tv_module_lv_item_next_ass_due_date);
+        TextView next_assig_title = convertView.findViewById(R.id.tv_module_lv_item_next_ass_title);
 
         id.setText("ID: " + item.getId());
         name.setText(item.getName());
-        code.setText("Code: " + item.getCode());
-        lead.setText("Lead: " + item.getLead());
+        code.setText("[" + item.getCode() + "] " + item.getName());
+        lead.setText(item.getLead());
 
-        //TODO: FIX ISSUE WITH DUPLICATE ASSIGMENT (first and last)
-        if(item.hasNextAssignment()){
-            TextView next_assig_date = convertView.findViewById(R.id.tv_module_lv_item_next_ass_due_date);
-            TextView next_assig_title = convertView.findViewById(R.id.tv_module_lv_item_next_ass_title);
-            next_assig_date.setText(item.getNextAssignment().getDueDate().toString());
+        if (item.hasNextAssignment()) {
+            next_assig_date.setText("Next assignment:\n" + item.getNextAssignment().getDueDate().toString());
             next_assig_title.setText(item.getNextAssignment().getTitle());
         } else {
+            next_assig_date.setVisibility(View.GONE);
+            next_assig_title.setVisibility(View.GONE);
             Log.d(TAG, "getView: " + item.getName() + " neturi atsiskaitymu");
         }
 
@@ -126,7 +127,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
             @Override
             public void onClick(View v) {
                 LinearLayout toolbar = finalConvertView.findViewById(R.id.ll_module_lv_item_details);
-                if(toolbar.getVisibility() == View.GONE){
+                if (toolbar.getVisibility() == View.GONE) {
                     mExpandButton.setImageResource(R.drawable.ic_expand_less);
                     expand(toolbar);
                 } else {
@@ -162,7 +163,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         };
 
         // 1dp/ms
-        a.setDuration((int) (targetHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+        a.setDuration((int) (targetHeight / v.getContext().getResources().getDisplayMetrics().density) * 2);
         v.startAnimation(a);
     }
 
@@ -187,7 +188,7 @@ public class ModuleArrayAdapter extends ArrayAdapter<Module> {
         };
 
         // 1dp/ms
-        a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density)*2);
+        a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density) * 2);
         v.startAnimation(a);
     }
 
