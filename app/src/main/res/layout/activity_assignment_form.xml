@@ -6,10 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".forms.AssignmentForm">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/assig_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Add assignment"
+        app:titleTextColor="@color/white" />
+
     <LinearLayout
         android:id="@+id/ll_assig_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/assig_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_margin="32dp"
         android:orientation="vertical"

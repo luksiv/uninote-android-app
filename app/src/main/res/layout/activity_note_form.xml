@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".forms.NoteForm">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/note_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Add note"
+        app:titleTextColor="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/note_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_margin="32dp"
         android:orientation="vertical"
@@ -19,17 +31,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:text="Module" />
+
         <Spinner
             android:id="@+id/spn_note_module_selected"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:text="Title" />
+
         <EditText
             android:id="@+id/et_note_title"
             android:layout_width="match_parent"
@@ -42,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:text="Note" />
+
         <EditText
             android:id="@+id/et_note_text"
             android:layout_width="match_parent"
@@ -53,8 +68,8 @@
             android:id="@+id/btn_note_save"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:background="@drawable/border_surround_transparent"
             android:text="Save" />
     </LinearLayout>
