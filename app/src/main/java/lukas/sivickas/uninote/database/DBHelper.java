@@ -105,6 +105,51 @@ public class DBHelper extends SQLiteOpenHelper {
         this.listener = listener;
     }
 
+    public void addTestData() {
+        insertModule(new Module("Informacinių sistemų pagringai", "P170B114", "R. Butleris"));
+        insertModule(new Module("Skaitiniai metodai ir algoritmai", "P170B115", "R. Barauskas"));
+        insertModule(new Module("Lygiagretusis programavimas", "P170B328", "Karolis Ryselis"));
+        insertModule(new Module("Išmaniųjų įrenginių programavimas", "P175B156", "Tomas Blažauskas"));
+        insertModule(new Module("Kompiuterių tinklai ir internetinės technologijos", "T120B145", "R. Kavaliūnas"));
+        ArrayList<Module> modules = getAllModules();
+        String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie faucibus mauris quis consectetur. Quisque malesuada quis diam ut fermentum. Donec in neque quis nisi pretium egestas et sed leo. Nunc hendrerit finibus nunc. Phasellus viverra nunc nisi, sed faucibus dui consequat in. Fusce id erat elementum, eleifend purus vel, scelerisque leo. Nullam vitae ex a urna hendrerit vehicula. Etiam tempus accumsan semper.";
+        insertNote(new Note(modules.get(0), new Date(Long.parseLong("1540489564000")), new Date(Long.parseLong("1540489564000")), "Note 1", lorem));
+        insertNote(new Note(modules.get(1), new Date(Long.parseLong("1540575964000")), new Date(Long.parseLong("1540575964000")), "Note 2", lorem));
+        insertNote(new Note(modules.get(2), new Date(Long.parseLong("1540921564000")), new Date(Long.parseLong("1540921564000")), "Note 3", lorem));
+        insertNote(new Note(modules.get(3), new Date(Long.parseLong("1539625564000")), new Date(Long.parseLong("1539625564000")), "Note 4", lorem));
+        insertNote(new Note(modules.get(4), new Date(Long.parseLong("1542303964000")), new Date(Long.parseLong("1542303964000")), "Note 5", lorem));
+            this.insertAssignment(
+                    new Assignment(modules.get(0),
+                            new Date(Long.parseLong("1540486063000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(1),
+                            new Date(Long.parseLong("1540658863000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(2),
+                            new Date(Long.parseLong("1540918063000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(3),
+                            new Date(Long.parseLong("1543596463000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+            this.insertAssignment(
+                    new Assignment(modules.get(4),
+                            new Date(Long.parseLong("1535820463000")),
+                            "Pirmas atsiskaitymas",
+                            "Pirmo atsiskaitymo aprasas",
+                            false));
+    }
+
     //region Module methods
     public boolean insertModule(Module module) {
         SQLiteDatabase db = this.getWritableDatabase();
