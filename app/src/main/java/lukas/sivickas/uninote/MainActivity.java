@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         mFragmentsList.add(new NotesFragment());
         mFragmentsList.add(new AssignmentsFragment());
 
-        mNavigation.setSelectedItemId(R.id.navigation_assignments);
+        mNavigation.setSelectedItemId(R.id.navigation_modules);
     }
 
     private void loadFragment(Fragment fragment) {
