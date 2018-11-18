@@ -2,8 +2,11 @@ package lukas.sivickas.uninote.forms;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +27,9 @@ import lukas.sivickas.uninote.database.Note;
 public class NoteForm extends AppCompatActivity {
 
     private static final String TAG = "NoteForm";
+
+    public static Toolbar mToolbar;
+    public static ActionBar mSupportActionBar;
 
     Spinner mModule;
     ArrayList<Module> modules;
@@ -46,6 +52,11 @@ public class NoteForm extends AppCompatActivity {
         mEditing = getIntent().getBooleanExtra("editing", false);
 
         mDbHelper = NotesFragment.mDbHelper;
+
+        mToolbar = findViewById(R.id.note_toolbar);
+        setSupportActionBar(mToolbar);
+        mSupportActionBar = getSupportActionBar();
+        mSupportActionBar.setDisplayHomeAsUpEnabled(true);
 
         mModule = findViewById(R.id.spn_note_module_selected);
         mTitle = findViewById(R.id.et_note_title);
@@ -88,6 +99,19 @@ public class NoteForm extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private ArrayList<String> getAllModuleNames(ArrayList<Module> modules) {

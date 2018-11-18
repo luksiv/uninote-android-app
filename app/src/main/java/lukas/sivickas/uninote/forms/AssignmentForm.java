@@ -4,9 +4,12 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +34,9 @@ import lukas.sivickas.uninote.database.Module;
 public class AssignmentForm extends AppCompatActivity {
 
     private static final String TAG = "AssignmentForm";
+
+    public static Toolbar mToolbar;
+    public static ActionBar mSupportActionBar;
 
     Spinner mModule;
     ArrayList<Module> modules;
@@ -63,6 +69,10 @@ public class AssignmentForm extends AppCompatActivity {
 
         mDbHelper = AssignmentsFragment.mDbHelper;
 
+        mToolbar = findViewById(R.id.assig_toolbar);
+        setSupportActionBar(mToolbar);
+        mSupportActionBar = getSupportActionBar();
+        mSupportActionBar.setDisplayHomeAsUpEnabled(true);
 
         mTitle = findViewById(R.id.et_assig_title);
         mTime = findViewById(R.id.tv_assig_time);
@@ -164,6 +174,19 @@ public class AssignmentForm extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private Date parseDate(String time, String date) {
