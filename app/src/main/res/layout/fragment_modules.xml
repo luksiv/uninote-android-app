@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:divider="@color/colorPrimary"
-        android:dividerHeight="2dp"/>
+        android:dividerHeight="2dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_modules_skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="There are no modules. Press + to add one."
+        android:textSize="18sp" />
 
 </FrameLayout>

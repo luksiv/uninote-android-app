@@ -11,6 +11,14 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:divider="@color/colorPrimary"
+        android:visibility="gone"
         android:dividerHeight="2dp"/>
+    <TextView
+        android:id="@+id/tv_assig_skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="There are no assignments. Press + to add one."
+        android:textSize="18sp" />
 
 </FrameLayout>
