@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import lukas.sivickas.uninote.adapters.AssignmentArrayAdapter;
 import lukas.sivickas.uninote.database.Assignment;
@@ -24,7 +24,8 @@ public class AssignmentsFragment extends Fragment {
 
     private static final String TAG = "AssignmentsFragment";
 
-    ListView assignmentView;
+    ListView mAssignmentView;
+    TextView mSkeletonText;
 
     ArrayList<Assignment> mAssignments;
     AssignmentArrayAdapter mAssignmentAdapter;
@@ -67,8 +68,9 @@ public class AssignmentsFragment extends Fragment {
         MainActivity.mToolbar.setTitle(getString(R.string.title_assignments));
         View view = inflater.inflate(R.layout.fragment_assignments, container, false);
 
-        assignmentView = view.findViewById(R.id.lv_assignments);
-        assignmentView.setAdapter(mAssignmentAdapter);
+        mAssignmentView = view.findViewById(R.id.lv_assignments);
+        mSkeletonText = view.findViewById(R.id.tv_assig_skeleton);
+        mAssignmentView.setAdapter(mAssignmentAdapter);
         updateAssignmentDataSet(mDbHelper.getAllAssignments());
 
         return view;
@@ -99,6 +101,13 @@ public class AssignmentsFragment extends Fragment {
             }
             mAssignments.addAll(list);
             mAssignmentAdapter.notifyDataSetChanged();
+        }
+        if(list.size() > 0){
+            mAssignmentView.setVisibility(View.VISIBLE);
+            mSkeletonText.setVisibility(View.GONE);
+        } else{
+            mAssignmentView.setVisibility(View.GONE);
+            mSkeletonText.setVisibility(View.VISIBLE);
         }
     }
 

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class ModulesFragment extends Fragment {
     private static final int EDIT_REQUEST_CODE = 2;
 
     ListView mModulesView;
+    TextView mSkeletonText;
 
     ArrayList<Module> mModules;
     ModuleArrayAdapter mModuleAdapter;
@@ -70,6 +72,7 @@ public class ModulesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_modules, container, false);
         mModulesView = view.findViewById(R.id.lv_modules);
+        mSkeletonText = view.findViewById(R.id.tv_modules_skeleton);
         mModulesView.setAdapter(mModuleAdapter);
         updateModuleDataSet(mDbHelper.getAllModules());
 
@@ -84,6 +87,13 @@ public class ModulesFragment extends Fragment {
             }
             mModules.addAll(list);
             mModuleAdapter.notifyDataSetChanged();
+        }
+        if(list.size() > 0){
+            mModulesView.setVisibility(View.VISIBLE);
+            mSkeletonText.setVisibility(View.GONE);
+        } else{
+            mModulesView.setVisibility(View.GONE);
+            mSkeletonText.setVisibility(View.VISIBLE);
         }
     }
 

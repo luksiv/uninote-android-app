@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ import lukas.sivickas.uninote.forms.NoteForm;
 public class NotesFragment extends Fragment {
     private static final String TAG = "NotesFragment";
 
-    ListView noteView;
+    ListView mNoteView;
+    TextView mSkeletonText;
 
     ArrayList<Note> mNotes;
     NoteArrayAdapter mNoteAdapter;
@@ -65,8 +67,9 @@ public class NotesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
 
-        noteView = view.findViewById(R.id.lv_notes);
-        noteView.setAdapter(mNoteAdapter);
+        mNoteView = view.findViewById(R.id.lv_notes);
+        mSkeletonText = view.findViewById(R.id.tv_notes_skeleton);
+        mNoteView.setAdapter(mNoteAdapter);
         updateNotesDataSet(mDbHelper.getAllNotes());
         return view;
     }
@@ -96,5 +99,13 @@ public class NotesFragment extends Fragment {
             mNotes.addAll(list);
             mNoteAdapter.notifyDataSetChanged();
         }
+        if(list.size() > 0){
+            mNoteView.setVisibility(View.VISIBLE);
+            mSkeletonText.setVisibility(View.GONE);
+        } else{
+            mNoteView.setVisibility(View.GONE);
+            mSkeletonText.setVisibility(View.VISIBLE);
+        }
+
     }
 }
