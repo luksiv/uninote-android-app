@@ -558,8 +558,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Assignment getNextAssignment(int module_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from assignments where module_id = " + module_id + " and is_done = 0 order by due_date asc limit 1", null);
-
+        Cursor res = db.rawQuery("select * from assignments where module_id = " + module_id + " and is_done = 0 and due_date >= cast(strftime('%s', 'now', 'localtime') as BIGINT)*1000 order by due_date asc limit 1", null);
         res.moveToFirst();
         if (res.getCount() > 0) {
             int id_index = res.getColumnIndexOrThrow("id");
