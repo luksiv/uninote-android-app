@@ -61,7 +61,7 @@ public class NoteArrayAdapter extends ArrayAdapter<Note> {
         TextView module = convertView.findViewById(R.id.tv_note_module);
 
         crd.setText("Created: " + Tools.convertToString(item.getCreationDate()));
-        led.setText("Last edit: " + Tools.convertToString(item.getCreationDate()));
+        led.setText("Last edit: " + Tools.convertToString(item.getLastEditDate()));
         title.setText(item.getTitle());
         text.setText(item.getText());
         module.setText("[" + item.getModule().getCode() + "] " + item.getModule().getName());
