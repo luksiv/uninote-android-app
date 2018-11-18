@@ -1,8 +1,11 @@
 package lukas.sivickas.uninote.forms;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,9 @@ import lukas.sivickas.uninote.database.Module;
 public class ModuleForm extends AppCompatActivity {
 
     private static final String TAG = "ModuleForm";
+
+    public static Toolbar mToolbar;
+    public static ActionBar mSupportActionBar;
 
     EditText mName;
     EditText mCode;
@@ -31,6 +37,11 @@ public class ModuleForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_form);
         mEditing = getIntent().getBooleanExtra("editing", false);
+
+        mToolbar = findViewById(R.id.module_toolbar);
+        setSupportActionBar(mToolbar);
+        mSupportActionBar = getSupportActionBar();
+        mSupportActionBar.setDisplayHomeAsUpEnabled(true);
 
         mDbHelper = ModulesFragment.mDbHelper;
 
@@ -71,5 +82,17 @@ public class ModuleForm extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
