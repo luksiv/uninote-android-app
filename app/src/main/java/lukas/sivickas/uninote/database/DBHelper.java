@@ -386,7 +386,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Note> notes = new ArrayList<Note>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date", null);
+        Cursor res = db.rawQuery("select * from " + NOTES_TABLE_NAME + " order by creation_date desc", null);
         res.moveToFirst();
 
         //TODO: remove this when publishing
